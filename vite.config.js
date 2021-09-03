@@ -8,7 +8,6 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   alias: {
     "@": path.resolve(__dirname, "src"),
-    "@part1": path.resolve(__dirname, "src/api/module/part1.js")
   },
   server: {
     host: '0.0.0.0',
