@@ -129,7 +129,7 @@ $theme-red: #c45c66;
         height: 100vmax;
         background-color: $theme-red;
         z-index: 1;
-        animation: left_circle 1s linear 0s 1 normal forwards;
+        animation: left_circle 1s cubic-bezier(.4,-0.15,0,1) 0s 1 normal forwards;
       }
     }
     .center_bg_circle {
@@ -148,7 +148,7 @@ $theme-red: #c45c66;
         height: 0;
         background-color: $theme-black;
         z-index: 2;
-        animation: center_circle 1.2s cubic-bezier(0.56, 0.79, 0.2, 1.02) 0s 1
+        animation: center_circle 1.2s cubic-bezier(0,.5,.2,.98) -0.3s 1
           normal forwards;
       }
       &::before {
@@ -164,8 +164,8 @@ $theme-red: #c45c66;
         border: solid 3px $theme-blue;
         opacity: 0.7;
         z-index: 3;
-        animation: center_inner_circle 1.2s cubic-bezier(0.56, 0.79, 0.2, 1.02)
-          0s 1 normal forwards;
+        animation: center_inner_circle 1.2s cubic-bezier(0,.5,.2,.98)
+          -0.3s 1 normal forwards;
       }
     }
     .right_bg_circle {
@@ -183,7 +183,7 @@ $theme-red: #c45c66;
         height: 100vmax;
         background-color: $theme-green;
         z-index: 1;
-        animation: right_circle 1s linear 0s 1 normal forwards;
+        animation: right_circle 1s cubic-bezier(.4,-0.15,0,1) 0s 1 normal forwards;
       }
     }
   }
