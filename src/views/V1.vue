@@ -37,6 +37,7 @@ $theme-red: #c45c66;
   display: flex;
   justify-content: center;
   align-items: center;
+  contain: paint;
   .container2 {
     position: absolute;
     left: 0;
@@ -45,6 +46,9 @@ $theme-red: #c45c66;
     height: 100%;
     box-sizing: border-box;
     z-index: 5;
+    transform: scale(1);
+    opacity: 0;
+    animation: border 1.2s cubic-bezier(0, 0.99, 0.44, 1) 0.8s 1 normal forwards;
     .xx {
       width: 100%;
       height: 100%;
@@ -113,6 +117,7 @@ $theme-red: #c45c66;
     align-items: center;
     width: 100%;
     height: 100vh;
+
     position: relative;
     .left_bg_circle {
       width: 0px;
@@ -129,7 +134,8 @@ $theme-red: #c45c66;
         height: 100vmax;
         background-color: $theme-red;
         z-index: 1;
-        animation: left_circle 1s cubic-bezier(.4,-0.15,0,1) 0s 1 normal forwards;
+        animation: left_circle 1s cubic-bezier(0.4, -0.15, 0, 1) 0s 1 normal
+          forwards;
       }
     }
     .center_bg_circle {
@@ -148,8 +154,8 @@ $theme-red: #c45c66;
         height: 0;
         background-color: $theme-black;
         z-index: 2;
-        animation: center_circle 1.2s cubic-bezier(0,.5,.2,.98) -0.3s 1
-          normal forwards;
+        animation: center_circle 1.2s cubic-bezier(0, 0.5, 0.2, 0.98) -0.3s 1 normal
+          forwards;
       }
       &::before {
         content: "";
@@ -164,8 +170,8 @@ $theme-red: #c45c66;
         border: solid 3px $theme-blue;
         opacity: 0.7;
         z-index: 3;
-        animation: center_inner_circle 1.2s cubic-bezier(0,.5,.2,.98)
-          -0.3s 1 normal forwards;
+        animation: center_inner_circle 1.2s cubic-bezier(0, 0.5, 0.2, 0.98) -0.3s
+          1 normal forwards;
       }
     }
     .right_bg_circle {
@@ -183,9 +189,21 @@ $theme-red: #c45c66;
         height: 100vmax;
         background-color: $theme-green;
         z-index: 1;
-        animation: right_circle 1s cubic-bezier(.4,-0.15,0,1) 0s 1 normal forwards;
+        animation: right_circle 1s cubic-bezier(0.4, -0.15, 0, 1) 0s 1 normal
+          forwards;
       }
     }
+  }
+}
+@keyframes border {
+  0% {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 @media screen and (max-width: 760px) {
@@ -254,6 +272,7 @@ $theme-red: #c45c66;
       opacity: 0.7;
     }
   }
+
   .V1 {
     .container2 {
       padding: 10px;
@@ -337,6 +356,7 @@ $theme-red: #c45c66;
       opacity: 0.7;
     }
   }
+
   .V1 {
     .container2 {
       padding: 25px;
