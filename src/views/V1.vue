@@ -13,11 +13,16 @@
         <div class="border"></div>
       </div>
     </div>
+    <StarAndMoon/>
   </div>
 </template>
 <script>
+import StarAndMoon from "@/views/StarAndMoon.vue"
 export default {
   name: "V1",
+  components:{
+    StarAndMoon
+  },
   setup() {},
   mounted() {},
 };
@@ -33,11 +38,14 @@ $theme-red: #c45c66;
   margin: 0;
   padding: 0;
 }
+
+
 .V1 {
   display: flex;
   justify-content: center;
   align-items: center;
   contain: paint;
+  
   .container2 {
     position: absolute;
     left: 0;
@@ -275,7 +283,7 @@ $theme-red: #c45c66;
 
   .V1 {
     .container2 {
-      padding: 10px;
+      padding: 15px;
     }
     .container {
       flex-direction: column;
