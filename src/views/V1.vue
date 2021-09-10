@@ -5,23 +5,18 @@
       <div class="center_bg_circle circle"></div>
       <div class="right_bg_circle circle"></div>
     </div>
-    <div class="container2">
-      <div class="xx">
-        <div class="border"></div>
-        <div class="border"></div>
-        <div class="border"></div>
-        <div class="border"></div>
-      </div>
-    </div>
-    <StarAndMoon/>
+    <Border />
+    <StarAndMoon />
   </div>
 </template>
 <script>
-import StarAndMoon from "@/views/StarAndMoon.vue"
+import StarAndMoon from "@/views/StarAndMoon.vue";
+import Border from "@/views/Border.vue";
 export default {
   name: "V1",
-  components:{
-    StarAndMoon
+  components: {
+    StarAndMoon,
+    Border,
   },
   setup() {},
   mounted() {},
@@ -39,85 +34,12 @@ $theme-red: #c45c66;
   padding: 0;
 }
 
-
 .V1 {
   display: flex;
   justify-content: center;
   align-items: center;
   contain: paint;
-  
-  .container2 {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    z-index: 5;
-    transform: scale(1);
-    opacity: 0;
-    animation: border 1.2s cubic-bezier(0, 0.99, 0.44, 1) 0.8s 1 normal forwards;
-    .xx {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      .border {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        &:nth-of-type(1) {
-          &::after {
-            content: "";
-            display: block;
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 5px;
-            background: url("@/image/homePage/line-2.svg");
-          }
-        }
-        &:nth-of-type(2) {
-          &::after {
-            content: "";
-            display: block;
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            height: 5px;
-            background: url("@/image/homePage/line-2.svg");
-          }
-        }
-        &:nth-of-type(3) {
-          &::after {
-            content: "";
-            display: block;
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 5px;
-            height: 100%;
-            background: url("@/image/homePage/line-1.svg");
-          }
-        }
-        &:nth-of-type(4) {
-          &::after {
-            content: "";
-            display: block;
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 5px;
-            height: 100%;
-            background: url("@/image/homePage/line-1.svg");
-          }
-        }
-      }
-    }
-  }
+
   .container {
     display: flex;
     contain: paint;
@@ -203,17 +125,7 @@ $theme-red: #c45c66;
     }
   }
 }
-@keyframes border {
-  0% {
-    transform: scale(1.1);
-    opacity: 0;
-  }
 
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
 @media screen and (max-width: 760px) {
   @keyframes left_circle {
     0% {

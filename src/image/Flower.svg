@@ -1,0 +1,16 @@
+<svg width="35" height="35" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <style>.cls-1{fill:#eddb8d;opacity:0.8;}.cls-2{fill:#fff;}.cls-3{fill:#43445b;}.cls-4{fill:#d35b6e;}.cls-5,.cls-7,.cls-8,.cls-9{fill:none;}.cls-5{stroke:#f5f5f5;}.cls-5,.cls-7,.cls-9{stroke-linecap:round;}.cls-5,.cls-7{stroke-linejoin:round;}.cls-5,.cls-7,.cls-8{stroke-width:3px;}.cls-6{fill:#f5f5f5;}.cls-7,.cls-8{stroke:#fff;}.cls-8,.cls-9{stroke-miterlimit:10;}.cls-9{stroke:#d35b6e;stroke-width:19px;}.cls-10{fill:#c45c66;}.cls-11{fill:#faf7d9;}.cls-12{fill:#4aa9a4;}.cls-13{fill:#e58840;}</style>
+ </defs>
+ <title>logo</title>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="37" width="37" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g id="ogp">
+   <path id="svg_69" d="m17.598657,16.699888c10.44,-23.63 -15.25,-20.86 0,0c-15.25,-20.86 -25.7,2.78 0,0c-25.7,2.78 -10.45,23.64 0,0c-10.45,23.64 15.24,20.87 0,0c15.24,20.87 25.69,-2.77 0,0c25.69,-2.77 10.4,-23.63 0,0z" class="cls-2"/>
+  </g>
+ </g>
+</svg>
