@@ -38,7 +38,7 @@ $theme-red: #c45c66;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 6;
+  z-index: 7;
   .star {
     position: absolute;
     top: 0;

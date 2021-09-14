@@ -7,16 +7,19 @@
     </div>
     <Border />
     <StarAndMoon />
+    <Logo/>
   </div>
 </template>
 <script>
 import StarAndMoon from "@/views/StarAndMoon.vue";
 import Border from "@/views/Border.vue";
+import Logo from "@/views/Logo.vue"
 export default {
   name: "V1",
   components: {
     StarAndMoon,
     Border,
+    Logo
   },
   setup() {},
   mounted() {},
