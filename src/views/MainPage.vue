@@ -8,18 +8,21 @@
     <Border />
     <StarAndMoon />
     <Logo/>
+    <MenuBtn class="MenuBtn_Container"/>
   </div>
 </template>
 <script>
-import StarAndMoon from "@/views/StarAndMoon.vue";
-import Border from "@/views/Border.vue";
-import Logo from "@/views/Logo.vue"
+import StarAndMoon from "@/components/StarAndMoon.vue";
+import Border from "@/components/Border.vue";
+import Logo from "@/components/Logo.vue"
+import MenuBtn from "@/components/MenuBtn.vue"
 export default {
   name: "V1",
   components: {
     StarAndMoon,
     Border,
-    Logo
+    Logo,
+    MenuBtn
   },
   setup() {},
   mounted() {},
@@ -101,7 +104,7 @@ $theme-red: #c45c66;
         width: 0;
         height: 0;
         border: solid 3px $theme-blue;
-        opacity: 0.7;
+        opacity: 1;
         z-index: 3;
         animation: center_inner_circle 1.2s cubic-bezier(0, 0.5, 0.2, 0.98) -0.3s
           1 normal forwards;
@@ -192,7 +195,7 @@ $theme-red: #c45c66;
     100% {
       width: 86vmax;
       height: 86vmax;
-      opacity: 0.7;
+      opacity: 1;
     }
   }
 
@@ -212,6 +215,11 @@ $theme-red: #c45c66;
         }
       }
     }
+  }
+  .MenuBtn_Container{
+    position: absolute;
+    top: 15px;
+    right: 15px;
   }
 }
 @media screen and (min-width: 761px) {
@@ -276,7 +284,7 @@ $theme-red: #c45c66;
     100% {
       width: 86vmax;
       height: 86vmax;
-      opacity: 0.7;
+      opacity: 1;
     }
   }
 
@@ -287,6 +295,11 @@ $theme-red: #c45c66;
     .container {
       flex-direction: row;
     }
+  }
+  .MenuBtn_Container{
+    position: absolute;
+    top: 25px;
+    right: 25px;
   }
 }
 </style>

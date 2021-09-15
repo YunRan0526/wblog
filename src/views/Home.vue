@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <V1 />
+    <MainPage />
     <a
       href="http://www.beian.gov.cn/portal/registerSystemInfo?spm=a2cmq.17629970.J_9220772140.114.f0d079feFwsJR2"
       target="_blank"
@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import V1 from "@/views/V1.vue";
+import MainPage from "@/views/MainPage.vue";
 export default {
   name: "Home",
   components: {
-    V1,
+    MainPage,
   },
   setup() {},
 };
