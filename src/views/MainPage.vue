@@ -18,7 +18,7 @@ import StarAndMoon from "@/components/StarAndMoon.vue";
 import Border from "@/components/Border.vue";
 import Logo from "@/components/Logo.vue"
 import MenuBtn from "@/components/MenuBtn.vue"
-import MenuPage from "@/views/MenuPage.vue"
+import MenuPage from "@/components/MenuPage.vue"
 export default {
   name: "V1",
   components: {
