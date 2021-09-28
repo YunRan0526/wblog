@@ -1,6 +1,8 @@
 <template>
     <div class="myMenu">
-        <div class="content"></div>
+        <div class="content">
+            <img src="../image/avatar.jpg" class="avatar" />
+        </div>
     </div>
 </template>
 
@@ -34,8 +36,17 @@ $theme-red: #c45c66;
         top: 50%;
         transform: translate(-50%, -50%);
         border: dashed 2px #283c5f;
-        border-radius:20px;
+        border-radius: 20px;
         z-index: 16;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-top: 7px;
+        }
     }
 }
 @media screen and (max-width: 760px) {

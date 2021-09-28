@@ -11,8 +11,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .CircleCloseButton {
-    width: 100px;
-    height: 100px;
     background-color: #fff;
     transition: all 0.6s ease 0s;
     position: relative;
@@ -45,6 +43,19 @@ export default {
         &:nth-of-type(2) {
             transform: rotate(-45deg);
         }
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .CircleCloseButton {
+        width: 75px;
+        height: 75px;
+    }
+}
+@media screen and (min-width: 761px) {
+    .CircleCloseButton {
+        width: 100px;
+        height: 100px;
     }
 }
 </style>
