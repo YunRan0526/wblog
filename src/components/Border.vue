@@ -10,7 +10,7 @@
 </template>
 <script>
 export default {
-  setup() {},
+  setup() { },
 };
 </script>
 <style lang="scss">
@@ -54,7 +54,7 @@ export default {
           left: 0;
           top: 0;
           width: 100%;
-          height: 5px;
+
           background: url("@/image/homePage/line-2.svg");
         }
       }
@@ -66,7 +66,6 @@ export default {
           left: 0;
           bottom: 0;
           width: 100%;
-          height: 5px;
           background: url("@/image/homePage/line-2.svg");
         }
       }
@@ -77,7 +76,7 @@ export default {
           position: absolute;
           right: 0;
           top: 0;
-          width: 5px;
+
           height: 100%;
           background: url("@/image/homePage/line-1.svg");
         }
@@ -89,7 +88,7 @@ export default {
           position: absolute;
           left: 0;
           top: 0;
-          width: 5px;
+
           height: 100%;
           background: url("@/image/homePage/line-1.svg");
         }
@@ -101,11 +100,59 @@ export default {
 @media screen and (min-width: 761px) {
   .container2 {
     padding: 25px;
+    .xx {
+      .border {
+        &:nth-of-type(1) {
+          &::after {
+            height: 5px;
+          }
+        }
+        &:nth-of-type(2) {
+          &::after {
+            height: 5px;
+          }
+        }
+        &:nth-of-type(3) {
+          &::after {
+            width: 5px;
+          }
+        }
+        &:nth-of-type(4) {
+          &::after {
+            width: 5px;
+          }
+        }
+      }
+    }
   }
 }
 @media screen and (max-width: 760px) {
   .container2 {
     padding: 15px;
+    .xx {
+      .border {
+        &:nth-of-type(1) {
+          &::after {
+            height: 3px;
+          }
+        }
+        &:nth-of-type(2) {
+          &::after {
+            height: 3px;
+          }
+        }
+        &:nth-of-type(3) {
+          &::after {
+            width: 3px;
+          }
+        }
+        &:nth-of-type(4) {
+          &::after {
+            width: 3px;
+          }
+        }
+      }
+    }
   }
 }
 </style>
