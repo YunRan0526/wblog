@@ -10,19 +10,19 @@
                 <div class="item">
                     <img src="../image/page/moon.svg" class="icon" />吔包
                 </div>
-                <div class="item" >
-                    <img src="../image/page/dog.svg" class="icon2"/>吔包
+                <div class="item">
+                    <img src="../image/page/dog.svg" class="icon2" />吔包
                 </div>
                 <div class="item">
-                    <img  src="../image/page/mountain.svg" class="icon2"/>吔包
+                    <img src="../image/page/mountain.svg" class="icon2" />吔包
                 </div>
             </div>
             <div class="footer">
                 <div class="colorList">
-                    <span style="background-color"></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    <span style="background-color:#c45c66" class="color"></span>
+                    <span style="background-color:#c3ce5f" class="color"></span>
+                    <span style="background-color:#283c5f" class="color"></span>
+                    <span style="background-color:#4aa9a4" class="color"></span>
                 </div>
             </div>
         </div>
@@ -72,6 +72,19 @@ $theme-red: #c45c66;
         transform: rotateY(-360deg);
     }
 }
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes scale0-1 {
+  from { transform: scale(0); }
+  to   { transform: scale(1); }
+}
+
 .myMenu {
     flex: 1;
     z-index: 15;
@@ -96,7 +109,7 @@ $theme-red: #c45c66;
             border-radius: 50%;
             margin-top: 7px;
             transform: scale(0);
-            animation: showAvatar 0.6s ease 1.5s forwards;
+            animation: showAvatar 0.6s ease 0.6s forwards;
         }
         .cen {
             display: flex;
@@ -114,6 +127,7 @@ $theme-red: #c45c66;
                 font-weight: 900;
                 display: flex;
                 align-items: center;
+                opacity: 0;
                 &:hover {
                     background-color: $theme-blue;
                 }
@@ -124,12 +138,25 @@ $theme-red: #c45c66;
                     transform-style: preserve-3d;
                     animation: menu__rotate-icon 3s linear 0s infinite;
                 }
-                .icon2{
+                .icon2 {
                     width: 28px;
                     height: 20px;
                     margin-right: 7px;
                     transform-style: preserve-3d;
+                    
                     animation: menu__rotate-icon 3s linear 0s infinite;
+                }
+                &:nth-of-type(1) {
+                    animation: fadein 0.7s ease 0.7s forwards;
+                }
+                &:nth-of-type(2) {
+                    animation: fadein 0.7s ease 0.8s forwards;
+                }
+                &:nth-of-type(3) {
+                    animation: fadein 0.7s ease 0.9s forwards;
+                }
+                &:nth-of-type(4) {
+                    animation: fadein 0.7s ease 1s forwards;
                 }
             }
         }
@@ -137,6 +164,34 @@ $theme-red: #c45c66;
         .footer {
             width: 100%;
             height: 80px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .colorList {
+                width: 350px;
+                display: flex;
+                justify-content: center;
+                .color {
+                    display: block;
+                    width: 20px;
+                    height: 20px;
+                    margin: 0 10px;
+                    transform: scale(0);
+                    &:nth-of-type(1) {
+                        animation: scale0-1 0.6s ease 0.7s forwards;
+                    }
+                    &:nth-of-type(2) {
+                        animation: scale0-1 0.6s ease 0.8s forwards;
+                    }
+                    &:nth-of-type(3) {
+                        animation: scale0-1 0.6s ease 0.9s forwards;
+                    }
+                    &:nth-of-type(4) {
+                        animation: scale0-1 0.6s ease 1s forwards;
+                    }
+                }
+            }
         }
     }
 }
