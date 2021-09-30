@@ -4,17 +4,17 @@
             <img src="../image/avatar.jpg" class="avatar" />
 
             <div class="cen">
-                <div class="item">
-                    <img src="../image/page/star.svg" class="icon" />吔包
+                <div class="item" @click="router.push({ path: '/Collections' })">
+                    <img src="../image/page/star.svg" class="icon" />我的收藏
                 </div>
-                <div class="item">
-                    <img src="../image/page/moon.svg" class="icon" />吔包
+                <div class="item" @click="router.push({ path: '/Articles' })">
+                    <img src="../image/page/moon.svg" class="icon" />我的文章
                 </div>
-                <div class="item">
-                    <img src="../image/page/dog.svg" class="icon2" />吔包
+                <div class="item" @click="router.push({ path: '/AboutMe' })">
+                    <img src="../image/page/dog.svg" class="icon2" />关于我
                 </div>
-                <div class="item">
-                    <img src="../image/page/mountain.svg" class="icon2" />吔包
+                <div class="item" @click="router.push({ path: '/Memories' })">
+                    <img src="../image/page/mountain.svg" class="icon2" />一些回忆
                 </div>
             </div>
             <div class="footer">
@@ -31,12 +31,13 @@
 
 <script>
 import { defineComponent } from "vue"
+import { useRouter } from 'vue-router'
 export default defineComponent({
     name: "menu",
     setup() {
-
+        const router = useRouter()
         return {
-
+            router
         }
     }
 })
@@ -81,8 +82,12 @@ $theme-red: #c45c66;
     }
 }
 @keyframes scale0-1 {
-  from { transform: scale(0); }
-  to   { transform: scale(1); }
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
 }
 
 .myMenu {
@@ -128,6 +133,7 @@ $theme-red: #c45c66;
                 display: flex;
                 align-items: center;
                 opacity: 0;
+                cursor: pointer;
                 &:hover {
                     background-color: $theme-blue;
                 }
@@ -143,7 +149,7 @@ $theme-red: #c45c66;
                     height: 20px;
                     margin-right: 7px;
                     transform-style: preserve-3d;
-                    
+
                     animation: menu__rotate-icon 3s linear 0s infinite;
                 }
                 &:nth-of-type(1) {

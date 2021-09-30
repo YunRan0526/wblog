@@ -87,7 +87,7 @@ $theme-red: #c45c66;
         height: 100vmax;
         background-color: $theme-red;
         z-index: 1;
-        animation: left_circle 1s cubic-bezier(0.4, -0.15, 0, 1) 0s 1 normal
+        animation: left_circle 1.1s cubic-bezier(0.4, -0.15, 0, 1) 0s 1 normal
           forwards;
       }
     }
@@ -142,7 +142,7 @@ $theme-red: #c45c66;
         height: 100vmax;
         background-color: $theme-green;
         z-index: 1;
-        animation: right_circle 1s cubic-bezier(0.4, -0.15, 0, 1) 0s 1 normal
+        animation: right_circle 1.1s cubic-bezier(0.4, -0.15, 0, 1) 0s 1 normal
           forwards;
       }
     }
