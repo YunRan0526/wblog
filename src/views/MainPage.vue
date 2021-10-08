@@ -10,36 +10,29 @@
     <Logo />
     <MenuBtn class="MenuBtn_Container" @click="showMenuPage" />
   </div>
-  <MenuPage v-if="menuPage" @closeMenu="closeMenuPage" />
 </template>
 <script>
-import { ref } from "vue"
+
 import StarAndMoon from "@/components/StarAndMoon.vue";
 import Border from "@/components/Border.vue";
 import Logo from "@/components/Logo.vue"
 import MenuBtn from "@/components/MenuBtn.vue"
-import MenuPage from "@/components/MenuPage.vue"
+
 export default {
   name: "V1",
   components: {
     StarAndMoon,
     Border,
     Logo,
-    MenuBtn,
-    MenuPage
+    MenuBtn
   },
-  setup() {
-    let menuPage = ref(false);
+  emits: ["showMenuPage"],
+  setup(_props, { emit: emits }) {
     const showMenuPage = () => {
-      menuPage.value = true;
-    }
-    const closeMenuPage = () => {
-      menuPage.value = false;
+      emits("showMenuPage")
     }
     return {
-      showMenuPage,
-      closeMenuPage,
-      menuPage
+      showMenuPage
     }
   },
   mounted() { },

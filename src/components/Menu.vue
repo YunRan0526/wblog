@@ -1,7 +1,9 @@
 <template>
     <div class="myMenu">
         <div class="content">
-            <img src="../image/avatar.jpg" class="avatar" />
+            <span class="avatar_container">
+                <img src="../image/avatar.jpg" class="avatar" />
+            </span>
 
             <div class="cen">
                 <div class="item" @click="router.push({ path: '/Collections' })">
@@ -108,14 +110,22 @@ $theme-red: #c45c66;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        .avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin-top: 7px;
-            transform: scale(0);
-            animation: showAvatar 0.6s ease 0.6s forwards;
+        .avatar_container {
+            transition: all .9s ease;
+            &:hover{
+                transform: rotate(360deg);
+            }
+            .avatar {
+                display: block;
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                margin-top: 7px;
+                transform: scale(0);
+                animation: showAvatar 0.6s ease 0.6s forwards;
+            }
         }
+
         .cen {
             display: flex;
             flex-direction: column;
@@ -176,14 +186,25 @@ $theme-red: #c45c66;
             align-items: center;
             .colorList {
                 width: 350px;
+                height: 50px;
+                margin-top: -20px;
                 display: flex;
                 justify-content: center;
+                align-items: center;
                 .color {
                     display: block;
-                    width: 20px;
-                    height: 20px;
+                    width: 21px;
+                    height: 21px;
                     margin: 0 10px;
                     transform: scale(0);
+                    border: solid 2px rgba(255, 255, 255, 0.4);
+                    border-radius: 50%;
+                    transition: 0.3s;
+                    cursor: pointer;
+                    &:hover {
+                        width: 40px;
+                        height: 40px;
+                    }
                     &:nth-of-type(1) {
                         animation: scale0-1 0.6s ease 0.7s forwards;
                     }

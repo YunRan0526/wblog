@@ -113,11 +113,18 @@ $theme-red: #c45c66;
         }
     }
     .menuPage {
+        width: 100%;
+        height: 100vh;
+         display: flex;
+  justify-content: center;
+  align-items: center;
+        contain: paint;
         .plotBackground {
             width: 100%;
             height: 100%;
             display: flex;
             position: relative;
+            contain: paint;
             .downItem {
                 background-color: $theme-white;
                 width: 100%;
@@ -160,6 +167,7 @@ $theme-red: #c45c66;
             animation: menu_moveIn 0.6s ease 0s forwards;
             position: relative;
             display: flex;
+            contain: paint;
             .btn {
                 z-index: 999;
                 position: absolute;
@@ -205,14 +213,20 @@ $theme-red: #c45c66;
         }
     }
     .menuPage {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        contain: paint;
         .plotBackground {
             display: none;
+            contain: paint;
         }
         .menu {
             width: 100%;
             height: 100%;
             flex: 1;
-
             transform: translateX(100%);
             animation: menu_moveIn 0.6s ease 0s forwards;
             position: relative;

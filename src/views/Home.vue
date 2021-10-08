@@ -1,23 +1,41 @@
 <template>
   <div class="home">
-    <MainPage />
+    <MainPage  @showMenuPage="showMenuPage"/>
+    <MenuPage v-if="menuPage" @closeMenu="closeMenuPage" />
     <a
       href="http://www.beian.gov.cn/portal/registerSystemInfo?spm=a2cmq.17629970.J_9220772140.114.f0d079feFwsJR2"
       target="_blank"
       class="beian"
-      >鄂ICP备2021000948号</a
-    >
+    >鄂ICP备2021000948号</a>
   </div>
 </template>
 
 <script>
 import MainPage from "@/views/MainPage.vue";
+import MenuPage from "@/components/MenuPage.vue";
+import { ref } from "vue"
 export default {
   name: "Home",
   components: {
     MainPage,
+    MenuPage
   },
-  setup() {},
+  setup() {
+    let menuPage = ref(false);
+    
+    const closeMenuPage = () => {
+      menuPage.value = false;
+    }
+     const showMenuPage = () => {
+      menuPage.value = true;
+      console.log(menuPage.value);
+    }
+    return {
+      showMenuPage,
+      closeMenuPage,
+      menuPage
+    }
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -53,6 +71,7 @@ export default {
 @media screen and (min-width: 761px) {
   .home {
     position: relative;
+    contain: paint;
     .beian {
       font-size: 12px;
       text-decoration: none;
