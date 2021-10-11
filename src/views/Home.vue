@@ -12,7 +12,7 @@
 
 <script>
 import MainPage from "@/views/MainPage.vue";
-import MenuPage from "@/components/MenuPage.vue";
+import MenuPage from "@/views/MenuPage.vue";
 import { ref } from "vue"
 export default {
   name: "Home",

@@ -215,7 +215,10 @@ $theme-red: #c45c66;
         }
         .page_content {
             position: absolute;
-            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
             top: 60px;
             left: 40px;
             width: calc(100% - 80px);
@@ -337,7 +340,9 @@ $theme-red: #c45c66;
         }
         .page_content {
             position: absolute;
-            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             top: 40px;
             left: 20px;
             width: calc(100% - 40px);
