@@ -22,6 +22,7 @@
                     :title="`标题${v}`"
                     :description="`描述${v}`"
                     :date="'2021-10-11'"
+                    :imgUrl="'/yln.jpg'"
                 />
             </div>
         </div>

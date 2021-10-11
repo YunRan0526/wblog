@@ -22,12 +22,14 @@
                     :title="`标题${v}`"
                     :description="`描述${v}`"
                     :date="'2021-10-11'"
+                    :imgUrl="'/yln.jpg'"
                 />
             </div>
         </div>
     </PageDecoration>
 </template>
 <script>
+
 import { defineComponent } from "vue"
 import PageDecoration from "@/components/PageDecoration.vue"
 import DecorationBox from "@/components/DecorationBox.vue"

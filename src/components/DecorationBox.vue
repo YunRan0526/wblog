@@ -10,6 +10,7 @@
 </template>
 <script>
 import { toRefs } from 'vue'
+
 export default {
     props: {
         title: {
@@ -31,16 +32,17 @@ export default {
             }
         },
         imgUrl: {
-            type: String,
+            type:String,
             default: () => {
-                return '/src/image/xx/yln.jpg'
+                return '/yln.jpg'
             }
         }
     },
     setup(props, context) {
-        let { title, description, date, imgUrl } = toRefs(props)
+        let { title, description, date, imgUrl } = toRefs(props);
+
         return {
-            title, description, date, imgUrl
+            title, description, date, imgUrl,
         }
     },
 };
@@ -60,8 +62,8 @@ $theme-red: #c45c66;
         padding: 8px;
         box-sizing: border-box;
         align-self: flex-start;
-        transition: .3s;
-        
+        transition: 0.3s;
+
         &::before {
             content: "";
             display: block;
@@ -92,7 +94,7 @@ $theme-red: #c45c66;
         }
         .inner {
             background-color: $theme-white;
-            background-image: url("@/image/xx/bg.svg");
+            background-image: url("@/assets/xx/bg.svg");
             background-size: 130px;
             padding-top: 10px;
             box-sizing: border-box;
@@ -138,7 +140,7 @@ $theme-red: #c45c66;
                     display: inline-block;
                     width: 18px;
                     height: 18px;
-                    background-image: url("@/image/xx/dog.svg");
+                    background-image: url("@/assets/xx/dog.svg");
                     background-size: contain;
                     background-position: center;
                     background-repeat: no-repeat;
@@ -157,8 +159,8 @@ $theme-red: #c45c66;
         padding: 8px;
         box-sizing: border-box;
         align-self: flex-start;
-        transition: .3s;
-        
+        transition: 0.3s;
+
         &::before {
             content: "";
             display: block;
@@ -189,7 +191,7 @@ $theme-red: #c45c66;
         }
         .inner {
             background-color: $theme-white;
-            background-image: url("@/image/xx/bg.svg");
+            background-image: url("@/assets/xx/bg.svg");
             background-size: 130px;
             padding-top: 10px;
             box-sizing: border-box;
@@ -235,7 +237,7 @@ $theme-red: #c45c66;
                     display: inline-block;
                     width: 18px;
                     height: 18px;
-                    background-image: url("@/image/xx/dog.svg");
+                    background-image: url("@/assets/xx/dog.svg");
                     background-size: contain;
                     background-position: center;
                     background-repeat: no-repeat;
