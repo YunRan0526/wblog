@@ -53,6 +53,7 @@ $theme-white: #faf7d9;
 $theme-green: #c3ce5f;
 $theme-blue: #4aa9a4;
 $theme-red: #c45c66;
+
 @media screen and (min-width: 761px) {
     .DecorationBox {
         width: 300px;
@@ -88,9 +89,9 @@ $theme-red: #c45c66;
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
-
             background-image: url("@/image/page/moon.svg");
             transform: rotateY(180deg);
+            
         }
         .inner {
             background-color: $theme-white;
@@ -185,7 +186,6 @@ $theme-red: #c45c66;
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
-
             background-image: url("@/image/page/moon.svg");
             transform: rotateY(180deg);
         }

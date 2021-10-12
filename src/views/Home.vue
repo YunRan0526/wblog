@@ -28,7 +28,6 @@ export default {
     }
      const showMenuPage = () => {
       menuPage.value = true;
-      console.log(menuPage.value);
     }
     return {
       showMenuPage,

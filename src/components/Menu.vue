@@ -21,10 +21,26 @@
             </div>
             <div class="footer">
                 <div class="colorList">
-                    <span style="background-color:#c45c66" class="color"></span>
-                    <span style="background-color:#c3ce5f" class="color"></span>
-                    <span style="background-color:#283c5f" class="color"></span>
-                    <span style="background-color:#4aa9a4" class="color"></span>
+                    <span
+                        style="background-color:#c45c66"
+                        class="color"
+                        @mouseenter="changeMenuColor('#c45c66')"
+                    ></span>
+                    <span
+                        style="background-color:#c3ce5f"
+                        class="color"
+                        @mouseenter="changeMenuColor('#c3ce5f')"
+                    ></span>
+                    <span
+                        style="background-color:#283c5f"
+                        class="color"
+                        @mouseenter="changeMenuColor('#283c5f')"
+                    ></span>
+                    <span
+                        style="background-color:#4aa9a4"
+                        class="color"
+                        @mouseenter="changeMenuColor('#4aa9a4')"
+                    ></span>
                 </div>
             </div>
         </div>
@@ -32,14 +48,22 @@
 </template>
 
 <script>
-import { defineComponent } from "vue"
+
+import { defineComponent, ref } from "vue"
 import { useRouter } from 'vue-router'
 export default defineComponent({
-    name: "menu",
+    name: "mymenu",
     setup() {
-        const router = useRouter()
+        const router = useRouter();
+        let menuColor = ref('#4aa9a4');
+        const changeMenuColor = (color) => {
+            menuColor.value = color;
+        }
+
         return {
-            router
+            router,
+            menuColor,
+            changeMenuColor
         }
     }
 })
@@ -98,6 +122,14 @@ $theme-red: #c45c66;
     background-color: #ffffff;
     display: flex;
     position: relative;
+    &::before {
+        background-color: v-bind(menuColor);
+        transition: 0.3s;
+    }
+    &::after {
+        background-color: v-bind(menuColor);
+        transition: 0.3s;
+    }
     .content {
         position: absolute;
         left: 50%;
@@ -111,8 +143,8 @@ $theme-red: #c45c66;
         align-items: center;
         justify-content: space-between;
         .avatar_container {
-            transition: all .9s ease;
-            &:hover{
+            transition: all 0.9s ease;
+            &:hover {
                 transform: rotate(360deg);
             }
             .avatar {
@@ -145,7 +177,7 @@ $theme-red: #c45c66;
                 opacity: 0;
                 cursor: pointer;
                 &:hover {
-                    background-color: $theme-blue;
+                    background-color: v-bind(menuColor);
                 }
                 .icon {
                     width: 20px;
@@ -236,7 +268,6 @@ $theme-red: #c45c66;
             height: 80px;
             left: 0;
             top: 0;
-            background-color: $theme-blue;
         }
         &::after {
             content: "";
@@ -246,7 +277,6 @@ $theme-red: #c45c66;
             height: 20px;
             left: 0;
             bottom: 0;
-            background-color: $theme-blue;
         }
     }
 }
@@ -264,7 +294,6 @@ $theme-red: #c45c66;
             height: 120px;
             left: 0;
             top: 0;
-            background-color: $theme-blue;
         }
         &::after {
             content: "";
@@ -274,7 +303,6 @@ $theme-red: #c45c66;
             height: 40px;
             left: 0;
             bottom: 0;
-            background-color: $theme-blue;
         }
     }
 }

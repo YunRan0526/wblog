@@ -34,6 +34,7 @@ import { defineComponent } from "vue"
 import PageDecoration from "@/components/PageDecoration.vue"
 import DecorationBox from "@/components/DecorationBox.vue"
 import { useRouter } from 'vue-router'
+
 export default defineComponent({
     components: {
         PageDecoration,
@@ -45,6 +46,7 @@ export default defineComponent({
         const close = () => {
             router.push({ path: "/" })
         }
+        
         return {
             close,
             router

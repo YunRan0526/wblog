@@ -53,36 +53,73 @@ export default {
     background-repeat: no-repeat;
   }
 }
-.flower_border_bottom {
-  border-bottom: dashed 1px #283c5f;
-  position: relative;
-  &::after {
-    content: "";
-    display: block;
-    position: absolute;
-    right: -7.5px;
-    bottom: -7.5px;
-    width: 15px;
-    height: 15px;
-    animation: flowerRoater 4s linear 0s infinite;
-    background-image: url("@/image/page/flower.svg");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
+
+@media screen and (max-width: 760px) {
+  .flower_border_bottom {
+    border-bottom: dashed 1px #283c5f;
+    position: relative;
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      right: -10px;
+      bottom: -10px;
+      width: 20px;
+      height: 20px;
+      animation: flowerRoater 4s linear 0s infinite;
+      background-image: url("@/image/page/flower.svg");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      left: -10px;
+      bottom: -10px;
+      width: 20px;
+      height: 20px;
+      animation: flowerRoatel 4s linear 0s infinite;
+      background-image: url("@/image/page/flower.svg");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
   }
-  &::before {
-    content: "";
-    display: block;
-    position: absolute;
-    left: -7.5px;
-    bottom: -7.5px;
-    width: 15px;
-    height: 15px;
-    animation: flowerRoatel 4s linear 0s infinite;
-    background-image: url("@/image/page/flower.svg");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
+}
+@media screen and (min-width: 761px) {
+  .flower_border_bottom {
+    border-bottom: dashed 1px #283c5f;
+    position: relative;
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      right: -15px;
+      bottom: -15px;
+      width: 30px;
+      height: 30px;
+      animation: flowerRoater 4s linear 0s infinite;
+      background-image: url("@/image/page/flower.svg");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      left: -15px;
+      bottom: -15px;
+      width: 30px;
+      height: 30px;
+      animation: flowerRoatel 4s linear 0s infinite;
+      background-image: url("@/image/page/flower.svg");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
   }
 }
 </style>

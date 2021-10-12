@@ -96,7 +96,10 @@ $theme-red: #c45c66;
         transform: translateY(0);
     }
 }
-
+@keyframes star_rotate {
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(-360deg); }
+}
 @media screen and (min-width: 761px) {
     .PageDecoration {
         width: 100%;
@@ -187,6 +190,7 @@ $theme-red: #c45c66;
                     background-position: center top;
                     background-size: contain;
                     background-repeat: no-repeat;
+                    animation: star_rotate 6s linear 0s infinite;
                 }
                 &:nth-of-type(1) {
                     left: 10%;
@@ -312,6 +316,7 @@ $theme-red: #c45c66;
                     background-position: center top;
                     background-size: contain;
                     background-repeat: no-repeat;
+                    animation: star_rotate 6s linear 0s infinite;
                 }
                 &:nth-of-type(1) {
                     left: 6%;
