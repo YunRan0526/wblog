@@ -126,6 +126,7 @@ $theme-red: #c45c66;
     .page_project {
         opacity: 0;
         transition: 0.3s;
+        white-space: nowrap;
         animation: page__show-project 1s ease 0.5s forwards;
     }
 }
