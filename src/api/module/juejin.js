@@ -5,10 +5,10 @@ import axios from "@/api/axios.js"
  *
  * @author YBW
  */
-let url = '/api/interact_api/v1/collectionSet/get'
-if (process.env.NODE_ENV === 'production') {
-    url = 'https://api.juejin.cn/interact_api/v1/collectionSet/get'
-}
+let url = '/interact_api/v1/collectionSet/get'
+// if (process.env.NODE_ENV === 'production') {
+//     url = 'https://api.juejin.cn/interact_api/v1/collectionSet/get'
+// }
 console.log("当前环境", process.env.NODE_ENV,url);
 export function getMyCollection() {
     return axios({
