@@ -11,18 +11,19 @@
             </div>
             <div style="width:100%;display: flex;justify-content: center;">
                 <div class="flower_border_bottom section_title">
-                    <h1>小节</h1>
+                    <h1>@YBW</h1>
                 </div>
             </div>
             <div class="content">
                 <DecorationBox
                     style="z-index:30"
-                    v-for="v in 10"
-                    :key="v"
-                    :title="`标题${v}`"
-                    :description="`描述${v}`"
+                    v-for="item in collections.list"
+                    :key="item.article_id"
+                    :title="item.article_info.title"
+                    :description="item.article_info.brief_content"
                     :date="'2021-10-11'"
-                    :imgUrl="'/yln.jpg'"
+                    :imgUrl="'/yln2.png'"
+                    @click="getTarget(item)"
                 />
             </div>
         </div>
@@ -30,11 +31,11 @@
 </template>
 <script>
 
-import { defineComponent } from "vue"
+import { defineComponent, onMounted, reactive } from "vue"
 import PageDecoration from "@/components/PageDecoration.vue"
 import DecorationBox from "@/components/DecorationBox.vue"
 import { useRouter } from 'vue-router'
-
+import { getMyCollection } from "../api/module/juejin"
 export default defineComponent({
     components: {
         PageDecoration,
@@ -46,9 +47,21 @@ export default defineComponent({
         const close = () => {
             router.push({ path: "/" })
         }
-        
+        let collections = reactive({ list: null })
+        onMounted(() => {
+            getMyCollection().then(res => {
+                collections.list = res.data.data.article_list
+                console.log(collections);
+            })
+        });
+        const getTarget = (item) => {
+            console.log(item.article_info);
+            window.open("https://juejin.im/post/" + item.article_info.article_id)
+        }
         return {
             close,
+            collections,
+            getTarget,
             router
         }
     }

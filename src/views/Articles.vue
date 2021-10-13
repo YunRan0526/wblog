@@ -11,7 +11,7 @@
             </div>
             <div style="width:100%;display: flex;justify-content: center;">
                 <div class="flower_border_bottom section_title">
-                    <h1>小节</h1>
+                    <h1>@YBW</h1>
                 </div>
             </div>
             <div class="content">

@@ -11,7 +11,14 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0',
-    port: 3366
+    port: 3366,
+    proxy:{
+      '/api': {
+        target: 'https://api.juejin.cn',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
   },
   build: {
     compress: {
@@ -23,7 +30,7 @@ export default defineConfig({
   //   preprocessorOptions: {
   //     scss: {
   //       additionalData: `@import "./src/style/gobal.scss";`
-        
+
   //     },
   //   }
   // },

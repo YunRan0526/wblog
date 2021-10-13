@@ -1,6 +1,6 @@
 <template>
   <div class="Logo">
-    <img src="../image/yebaoc.svg" />
+    <img :src="'/yebaoc.svg'" />
   </div>
 </template>
 <script>

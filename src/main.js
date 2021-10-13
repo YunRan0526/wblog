@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from "/src/router/index"
 import store from "/src/vuex/index"
 import './index.css'
+import 'element-plus/dist/index.css';
 
 
 const app = createApp(App)

@@ -2,7 +2,7 @@
     <div class="myMenu">
         <div class="content">
             <span class="avatar_container">
-                <img src="../image/avatar.jpg" class="avatar" />
+                <img src="../image/avatar.jpg" class="avatar" @dblclick="login" />
             </span>
 
             <div class="cen">
@@ -59,9 +59,26 @@ export default defineComponent({
         const changeMenuColor = (color) => {
             menuColor.value = color;
         }
-
+        const login = () => {
+            console.log("login");
+            switch (menuColor.value) {
+                case "#c45c66":
+                    changeMenuColor("#c3ce5f")
+                    break;
+                case "#c3ce5f":
+                    changeMenuColor("#283c5f")
+                    break;
+                case "#283c5f":
+                    changeMenuColor("#4aa9a4")
+                    break;
+                case "#4aa9a4":
+                    changeMenuColor("#c45c66")
+                    break;
+            }
+        }
         return {
             router,
+            login,
             menuColor,
             changeMenuColor
         }
@@ -143,9 +160,10 @@ $theme-red: #c45c66;
         align-items: center;
         justify-content: space-between;
         .avatar_container {
-            transition: all 0.9s ease;
+            cursor: pointer;
+            transition: all 0.4s ease;
             &:hover {
-                transform: rotate(360deg);
+                transform: scale(1.3);
             }
             .avatar {
                 display: block;

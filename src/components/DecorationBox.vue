@@ -1,17 +1,37 @@
 <template>
     <div class="DecorationBox">
         <div class="inner">
-            <img :src="imgUrl" />
-            <h4 class="title">{{ title }}</h4>
+            <ElImage class="img" :src="imgUrl" :fit="contain">
+                <template #placeholder>
+                    <div class="image-slot">
+                        <i class="el-icon-picture-outline"></i>
+                    </div>
+                </template>
+                <template #error>
+                    <div class="image-slot">
+                        <i class="el-icon-picture-outline"></i>
+                    </div>
+                </template>
+            </ElImage>
+            <ElPopover placement="top" :width="180" trigger="hover" :content="title">
+                <template #reference>
+                    <div class="title">{{ title }}</div>
+                </template>
+            </ElPopover>
             <p class="description">{{ description }}</p>
+
             <div class="date">{{ date }}</div>
         </div>
     </div>
 </template>
 <script>
 import { toRefs } from 'vue'
-
+import { ElPopover, ElImage } from 'element-plus'
 export default {
+    components: {
+        ElPopover,
+        ElImage
+    },
     props: {
         title: {
             type: String,
@@ -32,9 +52,9 @@ export default {
             }
         },
         imgUrl: {
-            type:String,
+            type: String,
             default: () => {
-                return '/yln.jpg'
+                return '/yln2.png'
             }
         }
     },
@@ -53,7 +73,14 @@ $theme-white: #faf7d9;
 $theme-green: #c3ce5f;
 $theme-blue: #4aa9a4;
 $theme-red: #c45c66;
-
+.el-popper__arrow {
+    display: none !important;
+}
+.el-popover {
+    background: $theme-white !important;
+    border-color: $theme-white !important;
+    font-size: 17px !important;
+}
 @media screen and (min-width: 761px) {
     .DecorationBox {
         width: 300px;
@@ -91,7 +118,6 @@ $theme-red: #c45c66;
             background-repeat: no-repeat;
             background-image: url("@/image/page/moon.svg");
             transform: rotateY(180deg);
-            
         }
         .inner {
             background-color: $theme-white;
@@ -104,7 +130,7 @@ $theme-red: #c45c66;
             &:hover {
                 background-color: $theme-blue;
             }
-            img {
+            .img {
                 display: block;
                 width: calc(100% - 20px);
                 margin: 0 10px;
@@ -116,6 +142,9 @@ $theme-red: #c45c66;
                 color: #283c5f;
                 padding: 10px;
                 box-sizing: border-box;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
             .description {
                 text-align: start;
@@ -126,6 +155,9 @@ $theme-red: #c45c66;
                 height: 100px;
                 padding: 0 20px;
                 box-sizing: border-box;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
             .date {
                 width: 100%;
@@ -212,6 +244,9 @@ $theme-red: #c45c66;
                 color: #283c5f;
                 padding: 10px;
                 box-sizing: border-box;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
             .description {
                 text-align: start;
@@ -222,6 +257,9 @@ $theme-red: #c45c66;
                 height: 100px;
                 padding: 0 20px;
                 box-sizing: border-box;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
             .date {
                 width: 100%;

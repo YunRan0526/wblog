@@ -106,6 +106,7 @@ $theme-red: #c45c66;
         height: 100vh;
         contain: paint;
         position: relative;
+        overflow: hidden;
         .btn {
             z-index: 999;
             position: absolute;
@@ -237,6 +238,7 @@ $theme-red: #c45c66;
         height: 100vh;
         contain: paint;
         position: relative;
+        
         .btn {
             z-index: 999;
             position: absolute;
