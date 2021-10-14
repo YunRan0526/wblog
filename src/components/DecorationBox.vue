@@ -13,6 +13,7 @@
                     </div>
                 </template>
             </ElImage>
+  
             <ElPopover placement="top" :width="180" trigger="hover" :content="title">
                 <template #reference>
                     <div class="title">{{ title }}</div>
@@ -25,7 +26,7 @@
     </div>
 </template>
 <script>
-import { toRefs } from 'vue'
+import { toRefs,ref,onMounted} from 'vue'
 import { ElPopover, ElImage } from 'element-plus'
 export default {
     components: {
@@ -62,7 +63,7 @@ export default {
         let { title, description, date, imgUrl } = toRefs(props);
 
         return {
-            title, description, date, imgUrl,
+            title, description, date, imgUrl
         }
     },
 };
@@ -131,10 +132,17 @@ $theme-red: #c45c66;
                 background-color: $theme-blue;
             }
             .img {
-                display: block;
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 width: calc(100% - 20px);
+                height: auto;
+                aspect-ratio: 3/2;
                 margin: 0 10px;
                 border-radius: 5px;
+                .el-image__inner {
+                    height: auto !important;
+                }
             }
             .title {
                 text-align: start;
@@ -232,11 +240,18 @@ $theme-red: #c45c66;
             &:hover {
                 background-color: $theme-blue;
             }
-            img {
-                display: block;
+            .img {
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 width: calc(100% - 20px);
+                height: auto;
+                aspect-ratio: 3/2;
                 margin: 0 10px;
                 border-radius: 5px;
+                .el-image__inner {
+                    height: auto !important;
+                }
             }
             .title {
                 text-align: start;

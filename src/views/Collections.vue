@@ -22,7 +22,7 @@
                     :title="item.article_info.title"
                     :description="item.article_info.brief_content"
                     :date="'2021-10-11'"
-                    :imgUrl="'/yln2.png'"
+                    :imgUrl="getSrc('/src/assets/yln.jpg')"
                     @click="getTarget(item)"
                 />
             </div>
@@ -54,6 +54,13 @@ export default defineComponent({
                 console.log(collections);
             })
         });
+        const getSrc = (path) => {
+            if (process.env.NODE_ENV === 'development') {
+                return path
+            }
+            const modules = import.meta.globEager("/src/assets/*.*");
+            return modules[path].default;
+        };
         const getTarget = (item) => {
             console.log(item.article_info);
             window.open("https://juejin.im/post/" + item.article_info.article_id)
@@ -62,6 +69,7 @@ export default defineComponent({
             close,
             collections,
             getTarget,
+            getSrc,
             router
         }
     }
