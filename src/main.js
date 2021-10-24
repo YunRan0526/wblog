@@ -4,7 +4,7 @@ import router from "/src/router/index"
 import store from "/src/vuex/index"
 import './index.css'
 import 'element-plus/dist/index.css';
-
+import '@/assets/font.css'
 
 const app = createApp(App)
 //确保 _use_ 路由实例使

@@ -1,19 +1,7 @@
 <template>
     <div class="DecorationBox">
         <div class="inner">
-            <ElImage class="img" :src="imgUrl" :fit="contain">
-                <template #placeholder>
-                    <div class="image-slot">
-                        <i class="el-icon-picture-outline"></i>
-                    </div>
-                </template>
-                <template #error>
-                    <div class="image-slot">
-                        <i class="el-icon-picture-outline"></i>
-                    </div>
-                </template>
-            </ElImage>
-  
+            <YBIMG  class="img" :src="imgUrl"/>
             <ElPopover placement="top" :width="180" trigger="hover" :content="title">
                 <template #reference>
                     <div class="title">{{ title }}</div>
@@ -28,10 +16,12 @@
 <script>
 import { toRefs,ref,onMounted} from 'vue'
 import { ElPopover, ElImage } from 'element-plus'
+import YBIMG from '@/components/YBIMG.vue'
 export default {
     components: {
         ElPopover,
-        ElImage
+        ElImage,
+        YBIMG
     },
     props: {
         title: {
@@ -139,7 +129,7 @@ $theme-red: #c45c66;
                 height: auto;
                 aspect-ratio: 3/2;
                 margin: 0 10px;
-                border-radius: 5px;
+                overflow: hidden;
                 .el-image__inner {
                     height: auto !important;
                 }
@@ -248,7 +238,7 @@ $theme-red: #c45c66;
                 height: auto;
                 aspect-ratio: 3/2;
                 margin: 0 10px;
-                border-radius: 5px;
+                overflow: hidden;
                 .el-image__inner {
                     height: auto !important;
                 }

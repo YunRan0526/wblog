@@ -1,6 +1,6 @@
 <template>
     <PageDecoration @close="close">
-        <div class="container">
+        <!-- <div class="container">
             <div style="width:100%;display: flex;justify-content: center;">
                 <div class="page_title">我的文章</div>
             </div>
@@ -25,18 +25,22 @@
                     :imgUrl="'/yln.jpg'"
                 />
             </div>
-        </div>
+        </div>-->
+        <VueMarkdown :source="source" />
     </PageDecoration>
 </template>
 <script>
-import { defineComponent } from "vue"
+import { defineComponent, ref, onMounted } from "vue"
 import PageDecoration from "@/components/PageDecoration.vue"
 import DecorationBox from "@/components/DecorationBox.vue"
 import { useRouter } from 'vue-router'
+import VueMarkdown from 'vue-markdown'
+
 export default defineComponent({
     components: {
         PageDecoration,
-        DecorationBox
+        DecorationBox,
+        VueMarkdown
     },
     name: "Collections",
     setup() {
@@ -44,9 +48,10 @@ export default defineComponent({
         const close = () => {
             router.push({ path: "/" })
         }
+        let source = ref("")
         return {
             close,
-            router
+            source
         }
     }
 })
@@ -95,6 +100,7 @@ $theme-red: #c45c66;
         opacity: 1;
     }
 }
+
 .container {
     width: 100%;
     height: 100%;
