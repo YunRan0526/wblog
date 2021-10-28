@@ -10,17 +10,24 @@ export default defineComponent({
     },
     emits: ["closeMenu"],
     setup() {
+        // direction: 'top-to-bottom',
+        //     sideSpeed:-0.3,
+        //     delay: 2500,
+        //     size:40,
+        //     mainSpeed:0.4
         const Star = (canvas, ctx, options) => {
+
+
             function Star(canvas, ctx, options) {
                 this.timer = null;
                 this.colors = ['#C45C66', '#C3CE5F', '#00ACA5', '#F19923', '#B493F3'];
                 this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
-                this.size = Math.random() * 60 + 10;
+                this.size = Math.random() * options.size + 10;
                 this.radius = this.size / 2;
                 this.shortRadius = this.radius * 0.5;
                 this.num = 5;
                 this.split = 360 / this.num;
-                this.speed = Math.random() * 0.4 + 0.1;
+                this.speed = Math.random() * options.mainSpeed + 0.1;
                 this.add = 0;
                 //方向设置
                 switch (options.direction) {
@@ -38,12 +45,12 @@ export default defineComponent({
                     case 'top-to-bottom':
                         this.y = -this.size;
                         this.x = Math.random() * (canvas.width - this.size);
-                        if(options.xSpeed){
-                            if(options.xSpeed>0){
-                                this.x = Math.random() * canvas.width-50;
+                        if (options.sideSpeed) {
+                            if (options.sideSpeed > 0) {
+                                this.x = Math.random() * canvas.width - 50;
                             }
-                            if(options.xSpeed<0){
-                                this.x = Math.random() * canvas.width+50;
+                            if (options.sideSpeed < 0) {
+                                this.x = Math.random() * canvas.width + 50;
                             }
                         }
                 }
@@ -68,8 +75,8 @@ export default defineComponent({
                             break;
                         case 'top-to-bottom':
                             this.y += this.add;
-                            if(options.xSpeed){
-                                this.x+=options.xSpeed*this.add
+                            if (options.sideSpeed) {
+                                this.x += options.sideSpeed * this.add
                             }
                     }
                     //
@@ -104,14 +111,15 @@ export default defineComponent({
             return new Star(canvas, ctx, options)
         }
         const Box = (canvas, ctx, options) => {
+
             function Box(canvas, ctx, options) {
                 this.timer = null;
                 this.colors = ['#C45C66', '#C3CE5F', '#00ACA5', '#F19923', '#B493F3'];
                 this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
-                this.size = Math.random() * 60 + 10;
+                this.size = Math.random() * options.size + 10;
                 this.px = canvas.width / 2 - this.size / 2;
                 this.py = canvas.height / 2 - this.size / 2;
-                this.speed = Math.random() * 0.4 + 0.1;
+                this.speed = Math.random() * options.mainSpeed + 0.1;
                 this.add = 0;
                 //方向设置
                 switch (options.direction) {
@@ -130,12 +138,12 @@ export default defineComponent({
                     case 'top-to-bottom':
                         this.y = -this.size;
                         this.x = Math.random() * (canvas.width - this.size);
-                        if(options.xSpeed){
-                            if(options.xSpeed>0){
-                                this.x = Math.random() * canvas.width-50;
+                        if (options.sideSpeed) {
+                            if (options.sideSpeed > 0) {
+                                this.x = Math.random() * canvas.width - 50;
                             }
-                            if(options.xSpeed<0){
-                                this.x = Math.random() * canvas.width+50;
+                            if (options.sideSpeed < 0) {
+                                this.x = Math.random() * canvas.width + 50;
                             }
                         }
                         break;
@@ -161,8 +169,8 @@ export default defineComponent({
                             break;
                         case 'top-to-bottom':
                             this.y += this.add;
-                            if(options.xSpeed){
-                                this.x+=options.xSpeed*this.add
+                            if (options.sideSpeed) {
+                                this.x += options.sideSpeed * this.add
                             }
                             break;
                     }
@@ -185,11 +193,12 @@ export default defineComponent({
             return new Box(canvas, ctx, options)
         }
         const tick = () => {
+
             const canvas = document.getElementById('moveStar');
             const ctx = canvas.getContext('2d');
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             let particle = null;
-            if (Math.random() > 0.75) {
+            if (Math.random() > (1 - options.num)) {
                 const num = Math.round(Math.random() * 1);
                 switch (num) {
                     case 0:
@@ -210,8 +219,11 @@ export default defineComponent({
         const collection = reactive([]);
         const options = reactive({
             direction: 'top-to-bottom',
-            xSpeed:-0.3,
-            delay: 2500
+            sideSpeed: -0.3,
+            delay: 2500,
+            size: 40,
+            mainSpeed: 0.4,
+            num: 0.25
         })
         onMounted(() => {
             {
@@ -224,6 +236,11 @@ export default defineComponent({
                     canvas.height = innerHeight;
                 });
                 function initAnimation() {
+                    !options.direction ? options.direction = 'left-to-right' : '';
+                    !options.delay ? options.delay = 2500 : '';
+                    !options.size ? options.size = 40 : '';
+                    !options.mainSpeed ? options.mainSpeed = 0.4 : '';
+                    !options.num ? options.num = 0.25 : '';
                     console.log("OPTIONS:", options);
                     setTimeout(() => {
                         tick();
