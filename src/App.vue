@@ -1,19 +1,51 @@
-<template>
-  <router-view />
+<template >
+  <div id="app">
+    <router-view @click="clickToEffects" />
+    <ClickEffects
+      v-for="item in effectsArr "
+      :key="item.id"
+      :style="{ position: 'absolute', left: item.left, top: item.top }"
+      class="ClickEffects"
+    />
+  </div>
 </template>
 
 <script>
-
-import { onMounted } from "@vue/runtime-core";
+import { onMounted, reactive } from "@vue/runtime-core";
+import ClickEffects from "./components/ClickEffects.vue";
 export default {
   name: "App",
-  components: {},
+  components: {
+    ClickEffects
+  },
   setup() {
-    onMounted(()=>{
-     
-    })
+    const effectsArr = reactive([]);
+    let clearTimer = reactive(null);
+    const clickToEffects = (e) => {
+      let left = `${e.pageX - 50}px`;
+      let top = `${e.pageY - 50}px`;
+      let obj = {
+        id: Math.random().toString(16).slice(2),
+        left, top,
+        show: true
+      }
+      console.log(obj);
+      effectsArr.push(obj);
+      if (clearTimer) {
+        clearTimeout(clearTimer);
+        clearTimer = null;
+      }
+      clearTimer = setTimeout(() => {
+        effectsArr.length = 0;
+        clearTimeout(clearTimer);
+        clearTimer = null;
+        console.log("点击之后清空数组", effectsArr);
+      }, 1000)
+    }
     return {
-
+      clickToEffects,
+      effectsArr,
+      clearTimer
     }
   }
 };
@@ -46,6 +78,7 @@ export default {
   margin: 0;
   padding: 0;
 }
+
 .left_top_flower {
   &::after {
     content: "";
@@ -129,6 +162,80 @@ export default {
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
+    }
+  }
+}
+@keyframes show-type {
+  from {
+    transform: translateY(30px);
+  }
+  to {
+    transform: translateY(-18px);
+  }
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#app {
+  contain: paint;
+}
+.ClickEffects {
+  pointer-events: none;
+  section {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 999;
+    position: relative;
+    div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      &:nth-child(1) {
+        transform: rotate(0deg);
+      }
+      &:nth-child(2) {
+        transform: rotate(45deg);
+      }
+      &:nth-child(3) {
+        transform: rotate(90deg);
+      }
+      &:nth-child(4) {
+        transform: rotate(135deg);
+      }
+      &:nth-child(5) {
+        transform: rotate(180deg);
+      }
+      &:nth-child(6) {
+        transform: rotate(225deg);
+      }
+      &:nth-child(7) {
+        transform: rotate(270deg);
+      }
+      &:nth-child(8) {
+        transform: rotate(315deg);
+      }
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 1.25px;
+        left: calc(50% - 5px);
+        border-left: solid 5px transparent;
+        border-right: solid 5px transparent;
+        transform: translateY(130px);
+        opacity: 0;
+        animation: fadein 0.3s ease 0s forwards, show-type 0.6s ease 0s forwards;
+      }
     }
   }
 }

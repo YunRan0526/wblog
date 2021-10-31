@@ -10,14 +10,8 @@ export default defineComponent({
     },
     emits: ["closeMenu"],
     setup() {
-        // direction: 'top-to-bottom',
-        //     sideSpeed:-0.3,
-        //     delay: 2500,
-        //     size:40,
-        //     mainSpeed:0.4
+
         const Star = (canvas, ctx, options) => {
-
-
             function Star(canvas, ctx, options) {
                 this.timer = null;
                 this.colors = ['#C45C66', '#C3CE5F', '#00ACA5', '#F19923', '#B493F3'];
@@ -54,7 +48,6 @@ export default defineComponent({
                             }
                         }
                 }
-
                 //
                 this.getAngle = (angle) => {
                     return angle * Math.PI / 180;
@@ -208,6 +201,10 @@ export default defineComponent({
                     case 1:
                         particle = Star(canvas, ctx, options);
                         break;
+                }
+                //删除不需要的节点
+                if (collection.length > 99) {
+                    collection.shift()
                 }
                 collection.push(particle);
             }
