@@ -4,9 +4,30 @@
         <div></div>
     </div>
 </template>
-<script>
+<script>import { reactive } from "@vue/reactivity";
+
 export default {
-    setup() { },
+    props: {
+        smallSize: {
+            type: String,
+            default: () => {
+                return '75px'
+            }
+        },
+        normalSize: {
+            type: String,
+            default: () => {
+                return '100px'
+            }
+        }
+    },
+    setup(props, ctx) {
+        let { smallSize, normalSize } = reactive(props)
+        return {
+            smallSize,
+            normalSize
+        }
+    },
 };
 </script>
 <style lang="scss" scoped>
@@ -32,8 +53,8 @@ export default {
     div {
         position: absolute;
         top: calc(50% - 1px);
-        left: 25px;
-        width: calc(100% - 50px);
+        left: 15px;
+        width: calc(100% - 30px);
         height: 2px;
         background-color: #283c5f;
         border-radius: 10px;
@@ -48,14 +69,15 @@ export default {
 
 @media screen and (max-width: 760px) {
     .CircleCloseButton {
-        width: 75px;
-        height: 75px;
+        width: v-bind(smallSize);
+        height: v-bind(smallSize);
     }
+    
 }
 @media screen and (min-width: 761px) {
     .CircleCloseButton {
-        width: 100px;
-        height: 100px;
+        width: v-bind(normalSize);
+        height: v-bind(normalSize);
     }
 }
 </style>

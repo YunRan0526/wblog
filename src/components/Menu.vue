@@ -5,7 +5,7 @@
                 <img src="../image/avatar.jpg" class="avatar" @dblclick="login" />
             </span>
 
-            <div class="cen">
+            <!-- <div class="cen">
                 <div class="item" @click="router.push({ path: '/Collections' })">
                     <img src="../image/page/star.svg" class="icon" />我的收藏
                 </div>
@@ -18,7 +18,23 @@
                 <div class="item" @click="router.push({ path: '/Memories' })">
                     <img src="../image/page/mountain.svg" class="icon2" />一些回忆
                 </div>
+            </div> -->
+
+            <div class="cen">
+                <div class="item" @click="router.push({ path: '/Collections' })">
+                    <img src="../image/page/star.svg" class="icon" />我的收藏
+                </div>
+                <div class="item" @click="$message.error('没有权限')">
+                    <img src="../image/page/moon.svg" class="icon" />我的文章
+                </div>
+                <div class="item" @click="$message.error('没有权限')">
+                    <img src="../image/page/dog.svg" class="icon2" />关于我
+                </div>
+                <div class="item" @click="$message.error('没有权限')">
+                    <img src="../image/page/mountain.svg" class="icon2" />一些回忆
+                </div>
             </div>
+
             <div class="footer">
                 <div class="colorList">
                     <span

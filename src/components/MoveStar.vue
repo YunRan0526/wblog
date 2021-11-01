@@ -251,7 +251,6 @@ export default defineComponent({
             const ctx = canvas.getContext('2d');
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             console.log("清空画布", 0, 0, canvas.width, canvas.height);
-            console.log(tick);
             window.cancelAnimationFrame(tick)
         })
         return {

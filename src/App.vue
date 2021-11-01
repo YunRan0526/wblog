@@ -7,12 +7,14 @@
       :style="{ position: 'absolute', left: item.left, top: item.top }"
       class="ClickEffects"
     />
+    
   </div>
 </template>
 
 <script>
 import { onMounted, reactive } from "@vue/runtime-core";
 import ClickEffects from "./components/ClickEffects.vue";
+
 export default {
   name: "App",
   components: {
@@ -20,7 +22,7 @@ export default {
   },
   setup() {
     const effectsArr = reactive([]);
-    let clearTimer = reactive(null);
+    let clearTimer = reactive({});
     const clickToEffects = (e) => {
       let left = `${e.pageX - 50}px`;
       let top = `${e.pageY - 50}px`;
@@ -47,6 +49,9 @@ export default {
       effectsArr,
       clearTimer
     }
+  },
+  methods:{
+
   }
 };
 </script>
