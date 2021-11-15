@@ -1,30 +1,34 @@
 <template>
     <PageDecoration @close="close">
-        <div class="container">
-            <div style="width:100%;display: flex;justify-content: center;">
-                <div class="page_title">我的文章</div>
+        <div style="width:100%;display: flex;justify-content: center;">
+            <div class="page_title">我的文章</div>
+        </div>
+        <div style="width:100%;display: flex;justify-content: center;">
+            <div class="page_project">
+                <span class="project_text">My Articles</span>
             </div>
-            <div style="width:100%;display: flex;justify-content: center;">
-                <div class="page_project">
-                    <span class="project_text">My Articles</span>
-                </div>
+        </div>
+        <div style="width:100%;display: flex;justify-content: center;">
+            <div class="flower_border_bottom section_title">
+                <h1>@YBW</h1>
             </div>
-            <div style="width:100%;display: flex;justify-content: center;">
-                <div class="flower_border_bottom section_title">
-                    <h1>@YBW</h1>
-                </div>
-            </div>
-            <div class="content">
-                <DecorationBox
-                    style="z-index:30"
-                    v-for="v in 10"
-                    :key="v"
-                    :title="`标题${v}`"
-                    :description="`描述${v}`"
-                    :date="'2021-10-11'"
-                    :imgUrl="'/yln.jpg'"
-                />
-            </div>
+        </div>
+        <div class="content" v-if="showMenu">
+            <DecorationBox
+                style="z-index:30"
+                v-for="v in 10"
+                :key="v"
+                :title="`标题${v}`"
+                :description="`描述${v}`"
+                :date="'2021-10-11'"
+                :imgUrl="'/yln.jpg'"
+                @click="toggleMenu"
+            />
+        </div>
+        <div class="content markdown-body" v-else>
+            <MarkDownWarper>
+                <md />
+            </MarkDownWarper>
         </div>
     </PageDecoration>
 </template>
@@ -33,21 +37,29 @@ import { defineComponent, ref, onMounted } from "vue"
 import PageDecoration from "@/components/PageDecoration.vue"
 import DecorationBox from "@/components/DecorationBox.vue"
 import { useRouter } from 'vue-router'
-
+import md from '/src/article/notes.md'
+import MarkDownWarper from '/src/components/MarkDownWarper.vue'
 export default defineComponent({
     components: {
         PageDecoration,
-        DecorationBox
+        DecorationBox,
+        md,
+        MarkDownWarper
     },
     name: "Collections",
     setup() {
         const router = useRouter();
+        let showMenu = ref(true);
+        const toggleMenu = () => {
+            showMenu.value = !showMenu.value
+        }
         const close = () => {
             router.push({ path: "/" })
         }
         return {
             close,
-
+            showMenu,
+            toggleMenu
         }
     }
 })
@@ -97,39 +109,30 @@ $theme-red: #c45c66;
     }
 }
 
-.container {
+.content {
+    opacity: 0;
     width: 100%;
-    height: 100%;
     display: flex;
     justify-content: center;
+    margin-top: 15px;
     flex-wrap: wrap;
-    overflow: scroll;
-    z-index: 31;
-    overflow-x: hidden;
-    .content {
-        opacity: 0;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        animation: fadein 1s ease 0.7s forwards;
-    }
-    .page_title {
-        opacity: 0;
-        transition: 0.3s;
-        animation: page__show-title 1s ease 0.4s forwards;
-    }
-    .section_title {
-        transform: translateY(30%);
-        opacity: 0;
-        animation: page__show-section-title 1s ease 0.6s forwards;
-    }
-    .page_project {
-        opacity: 0;
-        transition: 0.3s;
-        white-space: nowrap;
-        animation: page__show-project 1s ease 0.5s forwards;
-    }
+    animation: fadein 1s ease 0.7s forwards;
+}
+.page_title {
+    opacity: 0;
+    transition: 0.3s;
+    animation: page__show-title 1s ease 0.4s forwards;
+}
+.section_title {
+    transform: translateY(30%);
+    opacity: 0;
+    animation: page__show-section-title 1s ease 0.6s forwards;
+}
+.page_project {
+    opacity: 0;
+    transition: 0.3s;
+    white-space: nowrap;
+    animation: page__show-project 1s ease 0.5s forwards;
 }
 @media screen and (min-width: 761px) {
     .section_title {

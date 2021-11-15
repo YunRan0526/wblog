@@ -22,22 +22,17 @@ const close = (id) => {
         instances[i].vm.component.props.offset = pos
         instances[i].vm.component.props.offset -= 1;
     }
-    return {
-
-        close: () =>
-            ((vm.component.proxy).visible = false),
-    }
+    vm.component.proxy.visible = false
 }
 const $message = (options) => {
     let verticalOffset = options.offset || 20
     instances.forEach(({ vm }) => {
-        verticalOffset += (vm.el?.offsetHeight || 0) + 16
+        verticalOffset += (vm.el?.offsetHeight || 0) + 20
     })
-    verticalOffset += 16
+    verticalOffset += 20
     const id = `message_${seed++}`
     options.delay ? "" : options.delay = 1500;
     const wraper = document.createElement('div');
-    wraper.classList.add('yb-message-wraper');
     let props = {
         id,
         ...options,
@@ -47,9 +42,13 @@ const $message = (options) => {
         }
     }
     props.onDestroy = () => {
+        console.log("onDestroy");
+        //在这里销毁组件
         render(null, wraper)
     }
+    //createVNode 即 h() 将参数渲染成Vnode
     const vm = createVNode(MessageBox, props);
+    //将vnode挂载到wraper
     render(vm, wraper);
     instances.push({ vm });
     document.body.appendChild(wraper.firstElementChild);

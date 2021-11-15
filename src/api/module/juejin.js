@@ -5,11 +5,7 @@ import axios from "@/api/axios.js"
  *
  * @author YBW
  */
-let url = '/interact_api/v1/collectionSet/get'
-// if (process.env.NODE_ENV === 'production') {
-//     url = 'https://api.juejin.cn/interact_api/v1/collectionSet/get'
-// }
-console.log("当前环境", process.env.NODE_ENV,url);
+
 export function getMyCollection() {
     return axios({
         headers: {
@@ -21,7 +17,7 @@ export function getMyCollection() {
             "x-tt-trace-host": "011bd03b640dc925ec00cb57bbf176e81472ca8f7211b1a6a63f9d71e00c9fc4ee530251cfdd8b75f13e557004efabcaf588c096e6b1e1889e3c349d4f959ce5791d58b41d51f7c08e4b376137259399348505d20d2ade74091613d2e86483bc02",
 
         },
-        url: url,
+        url: '/juejin_api/interact_api/v1/collectionSet/get',
         method: 'get',
         params: {
             aid: '2608',

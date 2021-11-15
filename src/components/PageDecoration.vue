@@ -8,9 +8,9 @@
             <div></div>
             <div></div>
         </div>
-        <div class="page_content">
+        <ElScrollbar class="page_content">
             <slot></slot>
-        </div>
+        </ElScrollbar>
 
         <CircleCloseButton class="btn" @click="close" />
     </div>
@@ -18,9 +18,10 @@
 <script>
 import { defineComponent } from "vue"
 import CircleCloseButton from "@/components/CircleCloseButton.vue"
+import { ElScrollbar } from "element-plus"
 export default defineComponent({
     components: {
-        CircleCloseButton
+        CircleCloseButton, ElScrollbar
     },
     emits: ["close"],
     name: "Articles",
@@ -97,8 +98,12 @@ $theme-red: #c45c66;
     }
 }
 @keyframes star_rotate {
-  from { transform: rotateY(0deg); }
-  to   { transform: rotateY(-360deg); }
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(-360deg);
+    }
 }
 @media screen and (min-width: 761px) {
     .PageDecoration {
@@ -120,7 +125,6 @@ $theme-red: #c45c66;
                 forwards;
         }
         .decoration {
-             
             &::before {
                 display: block;
                 content: "";
@@ -151,7 +155,7 @@ $theme-red: #c45c66;
             }
         }
         .pageBorder {
-             z-index: 30;
+            z-index: 30;
             top: 30px;
             left: 30px;
             width: calc(100% - 60px);
@@ -220,14 +224,20 @@ $theme-red: #c45c66;
         }
         .page_content {
             position: absolute;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            
             top: 60px;
             left: 40px;
             width: calc(100% - 80px);
             height: calc(100% - 120px);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            overflow: scroll;
+            z-index: 31;
+            overflow-x: hidden;
+            &::-webkit-scrollbar {
+                width: 0;
+                height: 0;
+            }
         }
     }
 }
@@ -238,7 +248,7 @@ $theme-red: #c45c66;
         height: 100vh;
         contain: paint;
         position: relative;
-        
+
         .btn {
             z-index: 999;
             position: absolute;

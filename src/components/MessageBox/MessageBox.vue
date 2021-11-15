@@ -1,6 +1,12 @@
 <template>
     <transition name="yb-message-fade" @after-leave="$emit('destroy')" @before-leave="onClose">
-        <div class="yb-message-error yb-message" v-show="visible" :style="customStyle">
+        <div :class="{
+            'yb-message':true,
+            'yb-message-error':isError,
+            'yb-message-success':isSuccess,
+            'yb-message-info':isInfo,
+            'yb-message-warning':isWarning
+        }" v-show="visible" :style="customStyle">
             <img
                 :src="getSrc('/src/assets/MessageBox/error.svg')"
                 class="yb-icon-error"
@@ -12,7 +18,7 @@
     </transition>
 </template>
 <script>
-import { defineComponent, reactive, onMounted, computed, ref, onBeforeUnmount } from 'vue'
+import { defineComponent, onMounted, computed, ref, onBeforeUnmount } from 'vue'
 import CircleCloseButton from "/src/components/CircleCloseButton.vue"
 export default defineComponent({
     name: "MessageBox",
@@ -58,11 +64,14 @@ export default defineComponent({
         destroy: () => true,
     },
     setup(props, ctx) {
-        let { type, offset, delay, message, onDestroy } = reactive(props);
         const customStyle = computed(() => ({
             top: `${props.offset}px`,
             zIndex: props.zIndex,
         }))
+        const isSuccess=computed(()=> props.type==='success');
+        const isError=computed(()=> props.type==='error');
+        const isInfo=computed(()=> props.type==='info');
+        const isWarning=computed(()=> props.type==='warning');
         let visible = ref(true);
         let timer = ref(null)
         const close = () => {
@@ -78,19 +87,18 @@ export default defineComponent({
         onMounted(() => {
             timer.value = setTimeout(() => {
                 close()
-            }, delay);
+            }, props.delay);
         })
         return {
             getSrc,
             visible,
             close,
-            type,
-            offset,
-            delay,
-            message,
             customStyle,
-            onDestroy,
-            timer
+            timer,
+            isSuccess,
+            isError,
+            isInfo,
+            isWarning
         }
     },
 })

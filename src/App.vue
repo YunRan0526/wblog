@@ -1,13 +1,13 @@
 <template >
   <div id="app">
     <router-view @click="clickToEffects" />
+    <!-- <button @click="$message.error('没有权限')">tips</button> -->
     <ClickEffects
       v-for="item in effectsArr "
       :key="item.id"
       :style="{ position: 'absolute', left: item.left, top: item.top }"
       class="ClickEffects"
     />
-    
   </div>
 </template>
 
@@ -31,7 +31,6 @@ export default {
         left, top,
         show: true
       }
-      console.log(obj);
       effectsArr.push(obj);
       if (clearTimer) {
         clearTimeout(clearTimer);
@@ -41,7 +40,7 @@ export default {
         effectsArr.length = 0;
         clearTimeout(clearTimer);
         clearTimer = null;
-        console.log("点击之后清空数组", effectsArr);
+
       }, 1000)
     }
     return {
@@ -50,7 +49,7 @@ export default {
       clearTimer
     }
   },
-  methods:{
+  methods: {
 
   }
 };
@@ -83,7 +82,16 @@ export default {
   margin: 0;
   padding: 0;
 }
-
+//markdown样式
+.markdown-body {
+  box-sizing: border-box;
+  height: 100vh;
+  text-align: left;
+  .md2vue-wrapper {
+    padding: 0 50px;
+  }
+}
+//markdown样式
 .left_top_flower {
   &::after {
     content: "";

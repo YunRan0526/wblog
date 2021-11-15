@@ -1,30 +1,28 @@
 <template>
     <PageDecoration @close="close">
-        <div class="container">
-            <div style="width:100%;display: flex;justify-content: center;">
-                <div class="page_title">关于我</div>
+        <div style="width:100%;display: flex;justify-content: center;">
+            <div class="page_title">关于我</div>
+        </div>
+        <div style="width:100%;display: flex;justify-content: center;">
+            <div class="page_project">
+                <span class="project_text">About Me</span>
             </div>
-            <div style="width:100%;display: flex;justify-content: center;">
-                <div class="page_project">
-                    <span class="project_text">About Me</span>
-                </div>
+        </div>
+        <div style="width:100%;display: flex;justify-content: center;">
+            <div class="flower_border_bottom section_title">
+                <h1>@YBW</h1>
             </div>
-            <div style="width:100%;display: flex;justify-content: center;">
-                <div class="flower_border_bottom section_title">
-                    <h1>@YBW</h1>
-                </div>
-            </div>
-            <div class="content">
-                <DecorationBox
-                    style="z-index:30"
-                    v-for="v in 10"
-                    :key="v"
-                    :title="`标题${v}`"
-                    :description="`描述${v}`"
-                    :date="'2021-10-11'"
-                    :imgUrl="'/yln.jpg'"
-                />
-            </div>
+        </div>
+        <div class="content">
+            <DecorationBox
+                style="z-index:30"
+                v-for="v in 10"
+                :key="v"
+                :title="`标题${v}`"
+                :description="`描述${v}`"
+                :date="'2021-10-11'"
+                :imgUrl="'/yln.jpg'"
+            />
         </div>
     </PageDecoration>
 </template>
@@ -95,39 +93,29 @@ $theme-red: #c45c66;
         opacity: 1;
     }
 }
-.container {
+.content {
+    opacity: 0;
     width: 100%;
-    height: 100%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    overflow: scroll;
-    z-index: 31;
-    overflow-x: hidden;
-    .content {
-        opacity: 0;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        animation: fadein 1s ease 0.7s forwards;
-    }
-    .page_title {
-        opacity: 0;
-        transition: 0.3s;
-        animation: page__show-title 1s ease 0.4s forwards;
-    }
-    .section_title {
-        transform: translateY(30%);
-        opacity: 0;
-        animation: page__show-section-title 1s ease 0.6s forwards;
-    }
-    .page_project {
-        opacity: 0;
-        transition: 0.3s;
-        white-space: nowrap;
-        animation: page__show-project 1s ease 0.5s forwards;
-    }
+    animation: fadein 1s ease 0.7s forwards;
+}
+.page_title {
+    opacity: 0;
+    transition: 0.3s;
+    animation: page__show-title 1s ease 0.4s forwards;
+}
+.section_title {
+    transform: translateY(30%);
+    opacity: 0;
+    animation: page__show-section-title 1s ease 0.6s forwards;
+}
+.page_project {
+    opacity: 0;
+    transition: 0.3s;
+    white-space: nowrap;
+    animation: page__show-project 1s ease 0.5s forwards;
 }
 @media screen and (min-width: 761px) {
     .section_title {
@@ -165,7 +153,7 @@ $theme-red: #c45c66;
             z-index: 31;
         }
         &::after {
-            content: "关于我";
+            content: "我的收藏";
             display: block;
             position: absolute;
             top: 0;
