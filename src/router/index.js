@@ -13,7 +13,23 @@ const router = createRouter({
 const routes =
     [
         {
+            path: '/test',
+            meta: {
+                requireAuth: false
+            },
+            component: () => import('/src/views/Test.vue'),
+            redirect:"/Home"
+        },
+        {
             path: '/',
+            meta: {
+                requireAuth: false
+            },
+            component: () => import('/src/views/Login.vue'),
+            redirect:"/Home"
+        },
+        {
+            path: '/Home',
             meta: {
                 requireAuth: false
             },

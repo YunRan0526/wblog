@@ -1,10 +1,9 @@
 <template>
     <div class="imgContainer">
-        
         <span class="poster" v-if="show">
             <i class="el-icon-picture-outline"></i>
         </span>
-        <img :src="src" @load="imgLoad($event)" v-show="!show"/>
+        <img :src="src" @load="imgLoad($event)" v-show="!show" />
     </div>
 </template>
 <script>
@@ -37,10 +36,18 @@ export default defineComponent({
 <style scoped lang="scss">
 @keyframes toogle {
     0% {
-        transform: rotateX(180deg);
+        transform: rotate(-90deg);
     }
+    60%,
+    80%,
     100% {
-        transform: rotateX(0);
+        transform: rotate(0deg);
+    }
+    70% {
+        transform: rotate(-6deg);
+    }
+    90% {
+        transform: rotate(-3deg);
     }
 }
 .imgContainer {
@@ -50,12 +57,11 @@ export default defineComponent({
         width: 100%;
         height: 100%;
         border-radius: 5px;
-        transform-origin: center bottom;
-        transform: rotateX(90deg);
-        animation: toogle 1.1s cubic-bezier(0.79, 0.01, 0.27, 0.99) 0s forwards;
+        transform-origin: left bottom;
+        animation: toogle 0.4s cubic-bezier(0.88, 0, 1, 1.01) 0s forwards;
     }
     .poster {
-        background-color: #EEEEEE;
+        background-color: #eeeeee;
         position: absolute;
         width: 100%;
         height: 100%;
