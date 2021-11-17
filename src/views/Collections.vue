@@ -58,7 +58,7 @@ export default defineComponent({
             }
             const modules = import.meta.globEager("/src/assets/*.*");
             return modules[path].default;
-        };
+        }
         const getTarget = (item) => {
             console.log(item.article_info);
             window.open("https://juejin.im/post/" + item.article_info.article_id)

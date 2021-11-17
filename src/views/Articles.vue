@@ -21,7 +21,7 @@
                 :title="`标题${v}`"
                 :description="`描述${v}`"
                 :date="'2021-10-11'"
-                :imgUrl="'/yln.jpg'"
+                :imgUrl="getSrc('/src/assets/yln.jpg')"
                 @click="toggleMenu"
             />
         </div>
@@ -53,13 +53,21 @@ export default defineComponent({
         const toggleMenu = () => {
             showMenu.value = !showMenu.value
         }
+        const getSrc = (path) => {
+            if (process.env.NODE_ENV === 'development') {
+                return path
+            }
+            const modules = import.meta.globEager("/src/assets/*.*");
+            return modules[path].default;
+        }
         const close = () => {
             router.push({ path: "/" })
         }
         return {
             close,
             showMenu,
-            toggleMenu
+            toggleMenu,
+            getSrc
         }
     }
 })

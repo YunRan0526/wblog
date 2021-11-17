@@ -1,11 +1,22 @@
 <template>
   <div class="Logo">
-    <img :src="'/yebaoc.svg'" />
+    <img :src="getSrc('/src/assets/yebaoc.svg')" />
   </div>
 </template>
 <script>
 export default {
-  setup() {},
+  setup() {
+    const getSrc = (path) => {
+      if (process.env.NODE_ENV === 'development') {
+        return path
+      }
+      const modules = import.meta.globEager("/src/assets/*.*");
+      return modules[path].default;
+    }
+    return {
+      getSrc
+    }
+  },
 };
 </script>
 <style lang="scss">
