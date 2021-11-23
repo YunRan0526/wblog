@@ -238,6 +238,9 @@ $theme-red: #c45c66;
                 width: 0;
                 height: 0;
             }
+            :deep(.el-scrollbar__wrap) {
+                width: 100% !important;
+            }
         }
     }
 }
@@ -364,6 +367,9 @@ $theme-red: #c45c66;
             left: 20px;
             width: calc(100% - 40px);
             height: calc(100% - 80px);
+            :deep(.el-scrollbar__wrap) {
+                width: 100% !important;
+            }
         }
     }
 }
