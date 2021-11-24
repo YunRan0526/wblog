@@ -1,5 +1,9 @@
+@font-face {
+  font-family: 'myfont';
+  src: url('/src/assets/font/Boku.ttf') format('truetype');
+  src: url('/src/assets/font/Boku.otf') format('opentype');
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

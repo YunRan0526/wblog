@@ -1,7 +1,7 @@
 <template >
   <div id="app">
     <router-view @click="clickToEffects" />
-    <!-- <button @click="$message.error('没有权限')">tips</button> -->
+    <!-- <YbButton @click="confirm">tips</YbButton> -->
     <ClickEffects
       v-for="item in effectsArr "
       :key="item.id"
@@ -14,11 +14,11 @@
 <script>
 import { onMounted, reactive } from "@vue/runtime-core";
 import ClickEffects from "./components/ClickEffects.vue";
-
+import YbButton from "/src/components/Button/Button.vue"
 export default {
   name: "App",
   components: {
-    ClickEffects
+    ClickEffects, YbButton
   },
   setup() {
     const effectsArr = reactive([]);
@@ -50,7 +50,11 @@ export default {
     }
   },
   methods: {
-
+    confirm() {
+      this.$confirm('确定删除？').then(() => {
+        console.log('666');
+      })
+    }
   }
 };
 </script>
@@ -76,7 +80,7 @@ export default {
   }
 }
 * {
-  font-family: tbchibirgothicplusk-pro, sans-serif;
+  font-family: myfont, Sans-serif;
   font-weight: 400;
   font-style: normal;
   margin: 0;

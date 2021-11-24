@@ -125,6 +125,10 @@ $theme-red: #c45c66;
     margin-top: 15px;
     flex-wrap: wrap;
     animation: fadein 1s ease 0.7s forwards;
+    :deep(.md2vue-wrapper){
+        width: 100% !important;
+        margin: 0 20px;
+    }
 }
 .page_title {
     opacity: 0;

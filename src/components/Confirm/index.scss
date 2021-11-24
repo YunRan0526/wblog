@@ -1,0 +1,72 @@
+$theme-black: #283c5f;
+$theme-white: #faf7d9;
+$theme-green: #c3ce5f;
+$theme-blue: #4aa9a4;
+$theme-red: #c45c66;
+
+
+
+.yb-confirm-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.3);
+
+    .yb-confirm-fade-enter-from,
+    .yb-confirm-fade-leave-to {
+        opacity: 0;
+        transform: translate(-50%, -100%);
+    }
+
+
+    .yb-confirm {
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        min-width: 300px;
+        overflow: hidden;
+        margin-top: -30vh;
+        border-radius: 2px;
+        transition: .3s ease;
+
+        .yb-confirm-header {
+            width: 100%;
+            height: 40px;
+            padding: 5px 0;
+            text-indent: 25px;
+            font-size: 22px;
+            font-weight: 500;
+            border-bottom: solid 2px $theme-blue;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+
+        }
+
+        .yb-confirm-content {
+            width: 100%;
+            padding: 25px 15px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .yb-confirm-footer {
+            width: 100%;
+            height: 40px;
+            padding: 5px 0;
+            border-top: solid 2px $theme-blue;
+            display: flex;
+            align-items: center;
+            justify-content: end;
+
+            .yb-button {
+                margin-right: 20px;
+            }
+        }
+    }
+}
