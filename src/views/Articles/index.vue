@@ -13,7 +13,7 @@
                 <h1>@YBW</h1>
             </div>
         </div>
-        <div class="content" v-if="showMenu">
+        <div class="content">
             <DecorationBox
                 style="z-index:30"
                 v-for="v in articles"
@@ -22,13 +22,8 @@
                 :description="`描述${v}`"
                 :date="'2021-10-11'"
                 :imgUrl="getSrc('/src/assets/yln.jpg')"
-                @click="toggleMenu"
+                @click="getDeatil"
             />
-        </div>
-        <div class="content markdown-body" v-else>
-            <MarkDownWarper>
-                <md />
-            </MarkDownWarper>
         </div>
     </PageDecoration>
 </template>
@@ -37,22 +32,19 @@ import { defineComponent, ref, onMounted } from "vue"
 import PageDecoration from "@/components/PageDecoration.vue"
 import DecorationBox from "@/components/DecorationBox.vue"
 import { useRouter } from 'vue-router'
-import md from '/src/article/notes.md'
-import MarkDownWarper from '/src/components/MarkDownWarper.vue'
+
+
 export default defineComponent({
     components: {
         PageDecoration,
         DecorationBox,
-        md,
-        MarkDownWarper
     },
     name: "Articles",
     setup() {
         const router = useRouter();
-        let showMenu = ref(true);
-        let articles=ref(0)
-        const toggleMenu = () => {
-            showMenu.value = !showMenu.value
+        let articles = ref(0)
+        const getDeatil = () => {
+            router.push({ path: '/MarkDownViewer' })
         }
         const getSrc = (path) => {
             if (process.env.NODE_ENV === 'development') {
@@ -64,13 +56,12 @@ export default defineComponent({
         const close = () => {
             router.push({ path: "/" })
         }
-        onMounted(()=>{
-            articles.value=10
+        onMounted(() => {
+            articles.value = 10
         })
         return {
             close,
-            showMenu,
-            toggleMenu,
+            getDeatil,
             getSrc,
             articles
         }
@@ -130,7 +121,7 @@ $theme-red: #c45c66;
     margin-top: 15px;
     flex-wrap: wrap;
     animation: fadein 1s ease 0.7s forwards;
-    :deep(.md2vue-wrapper){
+    :deep(.md2vue-wrapper) {
         width: 100% !important;
         margin: 0 20px;
     }

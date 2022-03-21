@@ -4,15 +4,15 @@ import {
 import path from "path"
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import vitePluginMd2Vue from "vite-plugin-md2vue";
+
 
 // https://vitejs.dev/config/
 export default defineConfig({
   // base:"./",
   plugins: [
     vue(),
-    vitePluginMd2Vue(),
     vueJsx()
+
   ],
   alias: {
     "@": path.resolve(__dirname, "src"),

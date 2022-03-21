@@ -1,11 +1,11 @@
 <template>
     <PageDecoration @close="close">
         <div style="width:100%;display: flex;justify-content: center;">
-            <div class="page_title">关于我</div>
+            <div class="page_title"></div>
         </div>
         <div style="width:100%;display: flex;justify-content: center;">
             <div class="page_project">
-                <span class="project_text">About Me</span>
+                <span class="project_text">My WorkSpace</span>
             </div>
         </div>
         <div style="width:100%;display: flex;justify-content: center;">
@@ -14,50 +14,47 @@
             </div>
         </div>
         <div class="content">
-            <DecorationBox
-                style="z-index:30"
-                v-for="v in 10"
-                :key="v"
-                :title="`标题${v}`"
-                :description="`描述${v}`"
-                :date="'2021-10-11'"
-                :imgUrl="getSrc('/src/assets/yln.jpg')"
-            />
+            <div class="editor-container">
+                <MarkDownEditor :id="articleId" :editorHandle="editorHandle" />
+            </div>
         </div>
     </PageDecoration>
 </template>
-<script>
-import { defineComponent } from "vue"
+
+<script setup>
+import MarkDownEditor from '/src/components/MarkDownEditor.vue';
 import PageDecoration from "@/components/PageDecoration.vue"
-import DecorationBox from "@/components/DecorationBox.vue"
-import { useRouter } from 'vue-router'
-export default defineComponent({
-    components: {
-        PageDecoration,
-        DecorationBox
-    },
-    name: "Collections",
-    setup() {
-        const router = useRouter();
-        const close = () => {
-            router.push({ path: "/" })
-        }
-        const getSrc = (path) => {
-            if (process.env.NODE_ENV === 'development') {
-                return path
-            }
-            const modules = import.meta.globEager("/src/assets/*.*");
-            return modules[path].default;
-        }
-        return {
-            close,
-            getSrc,
-            router
-        }
+import { ref, computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router';
+const router = useRouter()
+const route = useRoute()
+const articleId = ref(NaN)
+//回到工作台
+const close = () => {
+    router.push({ path: '/WorkSpace' })
+}
+
+const editorHandle = computed(() => {
+    let fn = (v) => {
+        console.log('新增文章', v);
     }
+    if (route.query.id) {
+        fn = (v) => { console.log('编辑文章', v) }
+    }
+    return fn
 })
+
 </script>
-<style lang="scss" scoped>
+
+<style lang='scss' scoped>
+.editor-container {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30px 100px;
+    background: #ffffff;
+    margin-top: 30px;
+}
+
 $theme-black: #283c5f;
 $theme-white: #faf7d9;
 $theme-green: #c3ce5f;
@@ -130,7 +127,7 @@ $theme-red: #c45c66;
         width: 550px;
         padding: 5px 0;
         font-size: 16px;
-        margin-top: 140px;
+        margin-top: 15px;
         transition: 0.3s;
     }
     .page_title {
@@ -161,7 +158,7 @@ $theme-red: #c45c66;
             z-index: 31;
         }
         &::after {
-            content: "我的收藏";
+            content: "文章编辑";
             display: block;
             position: absolute;
             top: 0;
@@ -236,7 +233,7 @@ $theme-red: #c45c66;
             z-index: 31;
         }
         &::after {
-            content: "我的收藏";
+            content: "文章编辑";
             display: block;
             position: absolute;
             top: 0;

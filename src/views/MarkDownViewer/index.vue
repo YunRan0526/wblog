@@ -1,11 +1,11 @@
 <template>
     <PageDecoration @close="close">
         <div style="width:100%;display: flex;justify-content: center;">
-            <div class="page_title">我的收藏</div>
+            <div class="page_title"></div>
         </div>
         <div style="width:100%;display: flex;justify-content: center;">
             <div class="page_project">
-                <span class="project_text">My Collections</span>
+                <span class="project_text">Article Detail</span>
             </div>
         </div>
         <div style="width:100%;display: flex;justify-content: center;">
@@ -14,66 +14,39 @@
             </div>
         </div>
         <div class="content">
-            <DecorationBox
-                style="z-index:30"
-                v-for="item in collections.list"
-                :key="item.article_id"
-                :title="item.article_info.title"
-                :description="item.article_info.brief_content"
-                :date="'2021-10-11'"
-                :imgUrl="getSrc('/src/assets/yln.jpg')"
-                @click="getTarget(item)"
-            />
+            <div class="viewer-container">
+                <MdEditor v-model="markdown" :previewOnly="true" />
+            </div>
         </div>
     </PageDecoration>
 </template>
-<script>
 
-import { defineComponent, onMounted, reactive } from "vue"
+<script setup>
+import MdEditor from 'md-editor-v3';
+import 'md-editor-v3/lib/style.css';
 import PageDecoration from "@/components/PageDecoration.vue"
-import DecorationBox from "@/components/DecorationBox.vue"
-import { useRouter } from 'vue-router'
-import { getMyCollection } from "../api/module/juejin"
-export default defineComponent({
-    components: {
-        PageDecoration,
-        DecorationBox
-    },
-    name: "Collections",
-    setup() {
-        const router = useRouter();
-        const close = () => {
-            router.push({ path: "/" })
-        }
-        let collections = reactive({ list: null })
-        onMounted(() => {
-            getMyCollection().then(res => {
-                collections.list = res.data.data.article_list
-                console.log(collections);
-            })
-        });
-        const getSrc = (path) => {
-            if (process.env.NODE_ENV === 'development') {
-                return path
-            }
-            const modules = import.meta.globEager("/src/assets/*.*");
-            return modules[path].default;
-        }
-        const getTarget = (item) => {
-            console.log(item.article_info);
-            window.open("https://juejin.im/post/" + item.article_info.article_id)
-        }
-        return {
-            close,
-            collections,
-            getTarget,
-            getSrc,
-            router
-        }
-    }
+import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
+const router = useRouter()
+const markdown = ref('')
+const close = () => {
+    router.push({ path: '/Articles' })
+}
+onMounted(() => {
+    markdown.value = localStorage.getItem('markdown')
+    console.log(markdown.value)
 })
 </script>
 <style lang="scss" scoped>
+.viewer-container {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30px 100px;
+    background: #ffffff;
+    margin-top: 30px;
+    text-align: left;
+}
+
 $theme-black: #283c5f;
 $theme-white: #faf7d9;
 $theme-green: #c3ce5f;
@@ -146,7 +119,7 @@ $theme-red: #c45c66;
         width: 550px;
         padding: 5px 0;
         font-size: 16px;
-        margin-top: 140px;
+        margin-top: 15px;
         transition: 0.3s;
     }
     .page_title {
@@ -177,7 +150,7 @@ $theme-red: #c45c66;
             z-index: 31;
         }
         &::after {
-            content: "我的收藏";
+            content: "文章详情";
             display: block;
             position: absolute;
             top: 0;
@@ -252,7 +225,7 @@ $theme-red: #c45c66;
             z-index: 31;
         }
         &::after {
-            content: "我的收藏";
+            content: "文章详情";
             display: block;
             position: absolute;
             top: 0;

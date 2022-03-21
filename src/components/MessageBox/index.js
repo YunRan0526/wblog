@@ -18,9 +18,9 @@ const close = (id) => {
     if (len < 1) return
     for (let i = idx; i < len; i++) {
         const pos =
-            parseInt(instances[i].vm.el.style['top'], 10) - removedHeight
-        instances[i].vm.component.props.offset = pos
-        instances[i].vm.component.props.offset -= 1;
+      parseInt(instances[i].vm.el.style['top'], 10) - removedHeight - 20
+
+    instances[i].vm.component.props.offset = pos
     }
     vm.component.proxy.visible = false
 }
@@ -52,7 +52,11 @@ const $message = (options) => {
     render(vm, wraper);
     instances.push({ vm });
     document.body.appendChild(wraper.firstElementChild);
-    return
+    return {
+        close:()=>((
+            vm.component.proxy.visible=false
+        ))
+    }
 }
 //拓展方法
 ['success', 'error', 'info', 'warning'].forEach(type => {

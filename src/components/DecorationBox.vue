@@ -1,7 +1,7 @@
 <template>
     <div class="DecorationBox">
-        <div class="inner">
-            <YBIMG  class="img" :src="imgUrl"/>
+        <div class="inner" >
+            <YBIMG  class="img" :src="imgUrl" v-lazyBox  />
             <ElPopover placement="top" :width="180" trigger="hover" :content="title">
                 <template #reference>
                     <div class="title">{{ title }}</div>

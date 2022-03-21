@@ -1,6 +1,6 @@
 <template>
     <div :class="btnClass">
-        <span>
+        <span class="text">
             <slot></slot>
         </span>
     </div>

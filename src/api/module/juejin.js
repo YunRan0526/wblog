@@ -6,6 +6,7 @@ import axios from "@/api/axios.js"
  * @author YBW
  */
 
+
 export function getMyCollection() {
     return axios({
         headers: {
@@ -23,7 +24,7 @@ export function getMyCollection() {
             aid: '2608',
             uuid: '7017970918502041119',
             tag_id: '7018169117521739790',
-            cursor: '0'
+            cursor: 0
         }
     })
 }

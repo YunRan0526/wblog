@@ -3,14 +3,12 @@ $theme-white: #faf7d9;
 $theme-green: #c3ce5f;
 $theme-blue: #4aa9a4;
 $theme-red: #c45c66;
-body{
+
+body {
     overflow: hidden;
 }
-.yb-message-fade-enter-from,
-.yb-message-fade-leave-to {
-    opacity: 0;
-    transform: translate(-50%, -100%);
-}
+
+
 
 .yb-message {
     position: absolute;
@@ -76,3 +74,10 @@ body{
         border: dashed 2px #c3ce5f;
     }
 }
+
+.yb-message-fade-enter-from,
+.yb-message-fade-leave-to {
+    opacity: 0;
+    transform: translate(-50%, -100%);
+}
+

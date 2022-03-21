@@ -13,7 +13,7 @@ const $confirm = (str) => {
             callBackObj.resolve()
             render(null, wraper)
         },
-        content:str
+        content: str
     }
     //createVNode 即 h() 将参数渲染成Vnode
     const vm = createVNode(Confirm, props);

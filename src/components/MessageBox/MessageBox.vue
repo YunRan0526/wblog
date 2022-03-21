@@ -1,19 +1,29 @@
 <template>
     <transition name="yb-message-fade" @after-leave="$emit('destroy')" @before-leave="onClose">
-        <div :class="{
-            'yb-message':true,
-            'yb-message-error':isError,
-            'yb-message-success':isSuccess,
-            'yb-message-info':isInfo,
-            'yb-message-warning':isWarning
-        }" v-show="visible" :style="customStyle">
+        <div
+            v-show="visible"
+            :class="{
+                'yb-message': true,
+                'yb-message-error': isError,
+                'yb-message-success': isSuccess,
+                'yb-message-info': isInfo,
+                'yb-message-warning': isWarning
+            }"
+            :style="customStyle"
+        >
             <img
                 :src="getSrc('/src/assets/MessageBox/error.svg')"
                 class="yb-icon-error"
                 v-if="type === 'error'"
             />
             <div class="yb-message-content">{{ message }}</div>
-            <CircleCloseButton class="yb-mesage-close" @click.stop="close" v-if="showClose" :smallSize="'50px'" :normalSize="'60px'"/>
+            <CircleCloseButton
+                class="yb-mesage-close"
+                @click.stop="close"
+                v-if="showClose"
+                :smallSize="'50px'"
+                :normalSize="'60px'"
+            />
         </div>
     </transition>
 </template>
@@ -22,8 +32,8 @@ import { defineComponent, onMounted, computed, ref, onBeforeUnmount } from 'vue'
 import CircleCloseButton from "/src/components/CircleCloseButton.vue"
 export default defineComponent({
     name: "MessageBox",
-     components:{
-       CircleCloseButton
+    components: {
+        CircleCloseButton
     },
     props: {
         id: {
@@ -68,11 +78,11 @@ export default defineComponent({
             top: `${props.offset}px`,
             zIndex: props.zIndex,
         }))
-        const isSuccess=computed(()=> props.type==='success');
-        const isError=computed(()=> props.type==='error');
-        const isInfo=computed(()=> props.type==='info');
-        const isWarning=computed(()=> props.type==='warning');
-        let visible = ref(true);
+        const isSuccess = computed(() => props.type === 'success');
+        const isError = computed(() => props.type === 'error');
+        const isInfo = computed(() => props.type === 'info');
+        const isWarning = computed(() => props.type === 'warning');
+        let visible = ref(false);
         let timer = ref(null)
         const close = () => {
             visible.value = false;
@@ -85,9 +95,11 @@ export default defineComponent({
             return modules[path].default;
         };
         onMounted(() => {
+            visible.value = true
             timer.value = setTimeout(() => {
                 close()
             }, props.delay);
+
         })
         return {
             getSrc,

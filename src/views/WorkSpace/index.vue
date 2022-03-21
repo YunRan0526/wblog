@@ -1,11 +1,11 @@
 <template>
     <PageDecoration @close="close">
         <div style="width:100%;display: flex;justify-content: center;">
-            <div class="page_title">我的文章</div>
+            <div class="page_title">工作台</div>
         </div>
         <div style="width:100%;display: flex;justify-content: center;">
             <div class="page_project">
-                <span class="project_text">My Articles</span>
+                <span class="project_text">My WorkSpace</span>
             </div>
         </div>
         <div style="width:100%;display: flex;justify-content: center;">
@@ -13,46 +13,40 @@
                 <h1>@YBW</h1>
             </div>
         </div>
-        <div class="content" v-if="showMenu">
+        <div class="content">
             <DecorationBox
                 style="z-index:30"
-                v-for="v in 10"
-                :key="v"
-                :title="`标题${v}`"
-                :description="`描述${v}`"
-                :date="'2021-10-11'"
+                :title="'文章编辑器'"
+                :description="'文章编辑器'"
+                :date="'????-??-??'"
                 :imgUrl="getSrc('/src/assets/yln.jpg')"
-                @click="toggleMenu"
+                @click="goEditor"
             />
-        </div>
-        <div class="content markdown-body" v-else>
-            <MarkDownWarper>
-                <md />
-            </MarkDownWarper>
         </div>
     </PageDecoration>
 </template>
 <script>
-import { defineComponent, ref, onMounted } from "vue"
+
+import { defineComponent, onMounted, reactive } from "vue"
 import PageDecoration from "@/components/PageDecoration.vue"
 import DecorationBox from "@/components/DecorationBox.vue"
 import { useRouter } from 'vue-router'
-import md from '/src/article/notes.md'
-import MarkDownWarper from '/src/components/MarkDownWarper.vue'
+
 export default defineComponent({
     components: {
         PageDecoration,
-        DecorationBox,
-        md,
-        MarkDownWarper
+        DecorationBox
     },
-    name: "Collections",
+    name: "WorkSpace",
     setup() {
         const router = useRouter();
-        let showMenu = ref(true);
-        const toggleMenu = () => {
-            showMenu.value = !showMenu.value
+        const close = () => {
+            router.push({ path: "/" })
         }
+        let collections = reactive({ list: null })
+        onMounted(() => {
+
+        });
         const getSrc = (path) => {
             if (process.env.NODE_ENV === 'development') {
                 return path
@@ -60,14 +54,15 @@ export default defineComponent({
             const modules = import.meta.globEager("/src/assets/*.*");
             return modules[path].default;
         }
-        const close = () => {
-            router.push({ path: "/" })
+        const goEditor = () => {
+            router.push({ path: '/MarkDownEditor',query:{type:'新增文章'} })
         }
         return {
             close,
-            showMenu,
-            toggleMenu,
-            getSrc
+            collections,
+            goEditor,
+            getSrc,
+            router
         }
     }
 })
@@ -116,19 +111,13 @@ $theme-red: #c45c66;
         opacity: 1;
     }
 }
-
 .content {
     opacity: 0;
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 15px;
     flex-wrap: wrap;
     animation: fadein 1s ease 0.7s forwards;
-    :deep(.md2vue-wrapper){
-        width: 100% !important;
-        margin: 0 20px;
-    }
 }
 .page_title {
     opacity: 0;
@@ -182,7 +171,7 @@ $theme-red: #c45c66;
             z-index: 31;
         }
         &::after {
-            content: "我的文章";
+            content: "工作台";
             display: block;
             position: absolute;
             top: 0;
@@ -257,7 +246,7 @@ $theme-red: #c45c66;
             z-index: 31;
         }
         &::after {
-            content: "我的收藏";
+            content: "工作台";
             display: block;
             position: absolute;
             top: 0;

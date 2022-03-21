@@ -1,5 +1,5 @@
 <template>
-    <div class="CircleCloseButton">
+    <div class="CircleCloseButton" >
         <div></div>
         <div></div>
     </div>

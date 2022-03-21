@@ -1,9 +1,9 @@
 <template>
     <div class="imgContainer">
-        <span class="poster" v-if="show">
+        <span class="poster">
             <i class="el-icon-picture-outline"></i>
         </span>
-        <img :src="src" @load="imgLoad($event)" v-show="!show" />
+        <img :src="src" @load="imgLoad($event)" />
     </div>
 </template>
 <script>
@@ -58,7 +58,8 @@ export default defineComponent({
         height: 100%;
         border-radius: 5px;
         transform-origin: left bottom;
-        animation: toogle 0.4s cubic-bezier(0.88, 0, 1, 1.01) 0s forwards;
+        transform: rotate(-90deg);
+        animation: toogle 0.4s cubic-bezier(0.88, 0, 1, 1.01) 0.1s forwards;
     }
     .poster {
         background-color: #eeeeee;

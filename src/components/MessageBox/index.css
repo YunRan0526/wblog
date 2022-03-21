@@ -2,12 +2,6 @@ body {
   overflow: hidden;
 }
 
-.yb-message-fade-enter-from,
-.yb-message-fade-leave-to {
-  opacity: 0;
-  transform: translate(-50%, -100%);
-}
-
 .yb-message {
   position: absolute;
   left: 50%;
@@ -65,4 +59,10 @@ body {
 
 .yb-message-info::before {
   border: dashed 2px #c3ce5f;
+}
+
+.yb-message-fade-enter-from,
+.yb-message-fade-leave-to {
+  opacity: 0;
+  transform: translate(-50%, -100%);
 }

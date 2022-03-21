@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { onMounted, reactive } from "@vue/runtime-core";
+import { onMounted, reactive, inject } from "@vue/runtime-core";
 import ClickEffects from "./components/ClickEffects.vue";
 import YbButton from "/src/components/Button/Button.vue"
 export default {
@@ -21,6 +21,7 @@ export default {
     ClickEffects, YbButton
   },
   setup() {
+    const $confirm = inject('$confirm')
     const effectsArr = reactive([]);
     let clearTimer = reactive({});
     const clickToEffects = (e) => {
@@ -43,18 +44,21 @@ export default {
 
       }, 1000)
     }
-    return {
-      clickToEffects,
-      effectsArr,
-      clearTimer
-    }
-  },
-  methods: {
-    confirm() {
-      this.$confirm('确定删除？').then(() => {
+
+    const confirm = () => {
+      $confirm('确定删除？').then(() => {
         console.log('666');
       })
     }
+    return {
+      clickToEffects,
+      effectsArr,
+      clearTimer,
+      confirm
+    }
+  },
+  methods: {
+
   }
 };
 </script>
@@ -80,9 +84,6 @@ export default {
   }
 }
 * {
-  font-family: myfont, Sans-serif;
-  font-weight: 400;
-  font-style: normal;
   margin: 0;
   padding: 0;
 }
