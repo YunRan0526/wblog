@@ -9,10 +9,10 @@
         <div class="item">
             <span class="label">简介：</span>
             <div class="content">
-                <el-input v-model="article.desc" type="textarea"></el-input>
+                <el-input v-model="article.description" type="textarea"></el-input>
             </div>
         </div>
-        <MdEditor v-model="article.markdown" @save="save" />
+        <MdEditor v-model="article.content" @save="save" />
         <div class="operation">
             <el-button @click="submit">提交</el-button>
         </div>
@@ -24,6 +24,7 @@ import MdEditor from 'md-editor-v3';
 import { ElInput, ElButton } from 'element-plus'
 import 'md-editor-v3/lib/style.css';
 import { onMounted, reactive, defineProps } from 'vue';
+
 const props = defineProps({
     id: {
         type: [String, Number],
@@ -39,13 +40,14 @@ const props = defineProps({
 const article = reactive({
     id: props.id,
     title: '',
-    desc: '',
-    markdown: ''
+    poster:'',
+    description: '',
+    content: ''
 })
 
 //编辑器内容部保存
 const save = (value) => {
-    localStorage.setItem('markdown', value)
+
 }
 //提交文章
 const submit = () => {

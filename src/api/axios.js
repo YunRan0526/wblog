@@ -1,28 +1,47 @@
 import axios from 'axios'
-import { BASE_URL, timeout } from './axios.config.js'
+import $message from '/src/components/MessageBox/index.js'
+const queue = []
+export class Request {
+    constructor(baseURL = '/api', timeout = 5000) {
+        this.instance = axios.create({
+            baseURL,
+            withCredentials: true, // 跨域携带 cookie
+            headers: {
+                'Content-Type': 'application/json', // json 格式
+            },
+            timeout
+        })
+        this.useInterceptors();
+        this.queue = queue
+    }
+    //拦截器初始化
+    useInterceptors() {
+        // 请求拦截器
+        this.instance.interceptors.request.use(config => {
+            let token = localStorage.getItem('yebaoc_token')
+            if (token) {
+                config.headers.Authorization = `Bearer ${token}`
+            }
+            return config
+        }, error => {
+            $message.error(error)
+            Promise.reject(error)
+        })
 
-// 创建公共实例
-const request = axios.create({
-    baseURL: BASE_URL,
-    timeout
-})
+        // 响应拦截器
+        this.instance.interceptors.response.use(
+            response => {
+                if (!response.data.success) {
+                    $message.error(JSON.stringify(response.data.message))
+                }
+                return response.data
+            },
+            error => {
+                $message.error(error)
+                Promise.reject(error)
+            }
+        )
+    }
+}
 
-request.interceptors.request.use(
-    config => {
-        config.withCredentials = true;
-        return config
-    },
-    err => {
-        return Promise.reject(err)
-    })
-
-// 添加响应拦截器
-request.interceptors.response.use(function (response) {
-    // 对响应数据做点什么
-
-    return response.data;
-}, function (error) {
-    // 对响应错误做点什么
-    return Promise.reject(error);
-});
-export default request
+export default new Request()

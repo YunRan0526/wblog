@@ -1,7 +1,7 @@
-import request from "@/api/axios.js"
-
+import request from "/src/api/axios.js"
+const instance = request.instance
 export function login(obj) {
-    return request({
+    return instance({
         url: '/user/login',
         method: 'post',
         data: obj

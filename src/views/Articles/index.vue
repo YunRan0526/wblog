@@ -17,55 +17,44 @@
             <DecorationBox
                 style="z-index:30"
                 v-for="v in articles"
-                :key="v"
-                :title="`标题${v}`"
-                :description="`描述${v}`"
-                :date="'2021-10-11'"
+                :key="v.id"
+                :title="v.title"
+                :description="v.description"
+                :date="v.create_time"
                 :imgUrl="getSrc('/src/assets/yln.jpg')"
-                @click="getDeatil"
+                @click="getDeatil(v)"
             />
         </div>
     </PageDecoration>
 </template>
-<script>
-import { defineComponent, ref, onMounted } from "vue"
+<script setup>
+import { ref, onMounted } from "vue"
 import PageDecoration from "@/components/PageDecoration.vue"
 import DecorationBox from "@/components/DecorationBox.vue"
 import { useRouter } from 'vue-router'
-
-
-export default defineComponent({
-    components: {
-        PageDecoration,
-        DecorationBox,
-    },
-    name: "Articles",
-    setup() {
-        const router = useRouter();
-        let articles = ref(0)
-        const getDeatil = () => {
-            router.push({ path: '/MarkDownViewer' })
-        }
-        const getSrc = (path) => {
-            if (process.env.NODE_ENV === 'development') {
-                return path
-            }
-            const modules = import.meta.globEager("/src/assets/*.*");
-            return modules[path].default;
-        }
-        const close = () => {
-            router.push({ path: "/" })
-        }
-        onMounted(() => {
-            articles.value = 10
-        })
-        return {
-            close,
-            getDeatil,
-            getSrc,
-            articles
-        }
+import { getAllArticle } from '../../api/module/ybw/article';
+const router = useRouter();
+let articles = ref(0)
+const getDeatil = (v) => {
+    let { content } = v
+    router.push({ path: '/MarkDownViewer', query: { content } })
+}
+const getSrc = (path) => {
+    if (process.env.NODE_ENV === 'development') {
+        return path
     }
+    const modules = import.meta.globEager("/src/assets/*.*");
+    return modules[path].default;
+}
+const close = () => {
+    router.push({ path: "/" })
+}
+onMounted(() => {
+    getAllArticle().then(res => {
+        if (res.success) {
+            articles.value = res.results
+        }
+    })
 })
 </script>
 <style lang="scss" scoped>

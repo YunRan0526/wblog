@@ -21,6 +21,7 @@ router.beforeEach(async (to, from, next) => {
                     if (e.success) {
                         $message.success('验证成功')
                         sessionStorage.setItem('yebaoc_password', res)
+                        localStorage.setItem('yebaoc_token',e.token)
                         next()
                     } else {
                         $message.error('验证失败')

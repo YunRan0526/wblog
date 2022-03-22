@@ -15,7 +15,7 @@
         </div>
         <div class="content">
             <div class="viewer-container">
-                <MdEditor v-model="markdown" :previewOnly="true" />
+                <MdEditor v-model="content" :previewOnly="true" />
             </div>
         </div>
     </PageDecoration>
@@ -26,27 +26,19 @@ import MdEditor from 'md-editor-v3';
 import 'md-editor-v3/lib/style.css';
 import PageDecoration from "@/components/PageDecoration.vue"
 import { onMounted, ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 const router = useRouter()
-const markdown = ref('')
+const route = useRoute()
+const content = ref('')
 const close = () => {
     router.push({ path: '/Articles' })
 }
 onMounted(() => {
-    markdown.value = localStorage.getItem('markdown')
-    console.log(markdown.value)
+    content.value = route.query.content
+
 })
 </script>
 <style lang="scss" scoped>
-.viewer-container {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 30px 100px;
-    background: #ffffff;
-    margin-top: 30px;
-    text-align: left;
-}
-
 $theme-black: #283c5f;
 $theme-white: #faf7d9;
 $theme-green: #c3ce5f;
@@ -95,8 +87,17 @@ $theme-red: #c45c66;
     width: 100%;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    align-items: center;
     animation: fadein 1s ease 0.7s forwards;
+    .viewer-container {
+        width: calc(100% - 200px);
+        box-sizing: border-box;
+        min-height: 500px;
+        padding:0 0 30px 0;
+        background: #ffffff;
+        margin-top: 60px;
+        text-align: left;
+    }
 }
 .page_title {
     opacity: 0;

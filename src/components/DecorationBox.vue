@@ -1,7 +1,7 @@
 <template>
     <div class="DecorationBox">
-        <div class="inner" >
-            <YBIMG  class="img" :src="imgUrl" v-lazyBox  />
+        <div class="inner">
+            <YBIMG class="img" :src="imgUrl" v-lazyBox />
             <ElPopover placement="top" :width="180" trigger="hover" :content="title">
                 <template #reference>
                     <div class="title">{{ title }}</div>
@@ -9,54 +9,43 @@
             </ElPopover>
             <p class="description">{{ description }}</p>
 
-            <div class="date">{{ date }}</div>
+            <div class="date">{{ $dealtime(date) }}</div>
         </div>
     </div>
 </template>
-<script>
-import { toRefs,ref,onMounted} from 'vue'
+<script setup>
+import { toRefs, ref, onMounted } from 'vue'
 import { ElPopover, ElImage } from 'element-plus'
 import YBIMG from '@/components/YBIMG.vue'
-export default {
-    components: {
-        ElPopover,
-        ElImage,
-        YBIMG
-    },
-    props: {
-        title: {
-            type: String,
-            default: () => {
-                return "请输入标题"
-            }
-        },
-        description: {
-            type: String,
-            default: () => {
-                return "请输入描述"
-            }
-        },
-        date: {
-            type: String,
-            default: () => {
-                return "yyyy-mm-dd"
-            }
-        },
-        imgUrl: {
-            type: String,
-            default: () => {
-                return '/yln2.png'
-            }
-        }
-    },
-    setup(props, context) {
-        let { title, description, date, imgUrl } = toRefs(props);
+import { $dealtime } from '/src/utils/dealtime.js'
 
-        return {
-            title, description, date, imgUrl
+const props = defineProps({
+    title: {
+        type: String,
+        default: () => {
+            return "请输入标题"
         }
     },
-};
+    description: {
+        type: String,
+        default: () => {
+            return "请输入描述"
+        }
+    },
+    date: {
+        type: String,
+        default: () => {
+            return "yyyy-mm-dd"
+        }
+    },
+    imgUrl: {
+        type: String,
+        default: () => {
+            return '/yln2.png'
+        }
+    }
+})
+let { title, description, date, imgUrl } = toRefs(props);
 </script>
 <style lang="scss">
 $theme-black: #283c5f;
