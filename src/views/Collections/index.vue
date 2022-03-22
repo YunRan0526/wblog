@@ -22,7 +22,6 @@
                 :description="item.article_info.brief_content"
                 :date="'2021-10-11'"
                 :imgUrl="getSrc('/src/assets/yln.jpg')"
-                @click="getTarget(item)"
             />
         </div>
     </PageDecoration>
@@ -33,7 +32,7 @@ import { defineComponent, onMounted, reactive } from "vue"
 import PageDecoration from "@/components/PageDecoration.vue"
 import DecorationBox from "@/components/DecorationBox.vue"
 import { useRouter } from 'vue-router'
-import { getMyCollection } from "/src/api/module/juejin"
+
 export default defineComponent({
     components: {
         PageDecoration,
@@ -47,10 +46,7 @@ export default defineComponent({
         }
         let collections = reactive({ list: null })
         onMounted(() => {
-            getMyCollection().then(res => {
-                collections.list = res.data.data.article_list
-                console.log(collections);
-            })
+            
         });
         const getSrc = (path) => {
             if (process.env.NODE_ENV === 'development') {
@@ -59,10 +55,7 @@ export default defineComponent({
             const modules = import.meta.globEager("/src/assets/*.*");
             return modules[path].default;
         }
-        const getTarget = (item) => {
-            console.log(item.article_info);
-            window.open("https://juejin.im/post/" + item.article_info.article_id)
-        }
+ 
         return {
             close,
             collections,

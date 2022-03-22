@@ -6,7 +6,9 @@
 
                 </div>
                 <div class="yb-confirm-content">
-                    {{ content }}
+                    <div style="box-sizing:border-box;:100%;padding:0 20px;display:flex;align-items:center">
+                        <label style="font-size: 20px;font-weight: 900;margin-right: 15px;">Password:</label><ElInput v-model="password" @keydown.enter="confirm()"></ElInput>
+                    </div>
                 </div>
                 <div class="yb-confirm-footer">
                     <div class="cancel-box" @click.stop="cancel()">
@@ -31,8 +33,9 @@
     </div>
 </template>
 <script>
-import { defineComponent, onMounted ,ref} from 'vue'
+import { defineComponent, onMounted ,ref,onUnmounted} from 'vue'
 import YbButton from "/src/components/Button/Button.vue"
+import { ElInput } from 'element-plus'
 export default defineComponent({
     props: {
         title: {
@@ -50,15 +53,17 @@ export default defineComponent({
     },
     emits: ["cancel", "confirm"],
     components: {
-        YbButton
+        YbButton,
+        ElInput
     },
     setup(props, { emit: emits }) {
         let visible=ref(false)
+        let password = ref('')
         const cancel = () => {
             emits('cancel')
         }
         const confirm = () => {
-            emits('confirm')
+            emits('confirm',password.value)
         }
         const layClick = () => {
             emits('cancel')
@@ -67,14 +72,18 @@ export default defineComponent({
 
         }
         onMounted(()=>{
-            visible.value=true
+            visible.value=true;
+        })
+        onUnmounted(()=>{
+            
         })
         return {
             cancel,
             confirm,
             layClick,
             contentClick,
-            visible
+            visible,
+            password
         }
     },
 })

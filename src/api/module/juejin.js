@@ -1,4 +1,4 @@
-import axios from "@/api/axios.js"
+import request from "@/api/axios.js"
 
 /**
  * xxxxx
@@ -8,7 +8,7 @@ import axios from "@/api/axios.js"
 
 
 export function getMyCollection() {
-    return axios({
+    return request({
         headers: {
             "Server": "Tengine",
             "Timing-Allow-Origin": "*",

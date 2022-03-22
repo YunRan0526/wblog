@@ -11,11 +11,7 @@
             }"
             :style="customStyle"
         >
-            <img
-                :src="getSrc('/src/assets/MessageBox/error.svg')"
-                class="yb-icon-error"
-                v-if="type === 'error'"
-            />
+            <img :src="getSrc(`/src/assets/MessageBox/${type}.svg`)" :class="{'yb-icon':true,'yb-icon-transform':isSuccess||isInfo}" />
             <div class="yb-message-content">{{ message }}</div>
             <CircleCloseButton
                 class="yb-mesage-close"
@@ -78,10 +74,12 @@ export default defineComponent({
             top: `${props.offset}px`,
             zIndex: props.zIndex,
         }))
+
         const isSuccess = computed(() => props.type === 'success');
         const isError = computed(() => props.type === 'error');
         const isInfo = computed(() => props.type === 'info');
         const isWarning = computed(() => props.type === 'warning');
+
         let visible = ref(false);
         let timer = ref(null)
         const close = () => {
@@ -110,7 +108,8 @@ export default defineComponent({
             isSuccess,
             isError,
             isInfo,
-            isWarning
+            isWarning,
+            type: props.type
         }
     },
 })

@@ -27,17 +27,10 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/juejin_api/, '')
       },
-      '/passport_api': {
-        target: 'https://passport.bilibili.com',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/passport_api/, ''),
-        cookieDomainRewrite: '192.168.0.122'
-      },
-      '/bili_api': {
-        target: 'https://api.bilibili.com',
+      '/api': {
+        target: 'https://www.yebaoc.com',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/bili_api/, ''),
-        cookieDomainRewrite: '192.168.0.122'
       }
     }
   },

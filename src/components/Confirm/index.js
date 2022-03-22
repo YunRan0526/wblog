@@ -9,8 +9,8 @@ const $confirm = (str) => {
             callBackObj.reject()
             render(null, wraper)
         },
-        onConfirm: () => {
-            callBackObj.resolve()
+        onConfirm: (password) => {
+            callBackObj.resolve(password)
             render(null, wraper)
         },
         content: str
