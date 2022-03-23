@@ -1,5 +1,5 @@
 <template>
-    <PageDecoration @close="close">
+    <PageDecoration @close="close" @click="bodyClick">
         <div style="width:100%;display: flex;justify-content: center;">
             <div class="page_title">我的文章</div>
         </div>
@@ -15,6 +15,7 @@
         </div>
         <div class="content">
             <DecorationBox
+                @contextmenu="showContextMenu($event, v)"
                 style="z-index:30"
                 v-for="v in articles"
                 :key="v.id"
@@ -33,8 +34,10 @@ import PageDecoration from "@/components/PageDecoration.vue"
 import DecorationBox from "@/components/DecorationBox.vue"
 import { useRouter } from 'vue-router'
 import { getAllArticle } from '../../api/module/ybw/article';
+import $contextMenu from '/src/components/ContextMenu/index.js'
 const router = useRouter();
-let articles = ref(0)
+let articles = ref(0);
+const contextMenuTarget = ref(null)
 const getDeatil = (v) => {
     let { content } = v
     router.push({ path: '/MarkDownViewer', query: { content } })
@@ -48,6 +51,16 @@ const getSrc = (path) => {
 }
 const close = () => {
     router.push({ path: "/" })
+}
+const showContextMenu = (e, v) => {
+    e.preventDefault();
+    console.log(v)
+    contextMenuTarget.value = $contextMenu(e.x, e.y)
+}
+const bodyClick = (e) => {
+    if (contextMenuTarget.value) contextMenuTarget.value.close()
+    contextMenuTarget.value = null
+
 }
 onMounted(() => {
     getAllArticle().then(res => {

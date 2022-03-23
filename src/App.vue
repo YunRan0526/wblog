@@ -1,7 +1,6 @@
 <template >
   <div id="app">
     <router-view @click="clickToEffects" />
-    <!-- <YbButton @click="confirm">tips</YbButton> -->
     <ClickEffects
       v-for="item in effectsArr "
       :key="item.id"
@@ -12,6 +11,7 @@
 </template>
 
 <script>
+
 import { onMounted, reactive, inject } from "@vue/runtime-core";
 import ClickEffects from "./components/ClickEffects.vue";
 import YbButton from "/src/components/Button/Button.vue"
@@ -21,7 +21,6 @@ export default {
     ClickEffects, YbButton
   },
   setup() {
-    const $confirm = inject('$confirm')
     const effectsArr = reactive([]);
     let clearTimer = reactive({});
     const clickToEffects = (e) => {
@@ -45,16 +44,11 @@ export default {
       }, 1000)
     }
 
-    const confirm = () => {
-      $confirm('确定删除？').then(() => {
-        console.log('666');
-      })
-    }
+
     return {
       clickToEffects,
       effectsArr,
-      clearTimer,
-      confirm
+      clearTimer
     }
   },
   methods: {
@@ -63,26 +57,11 @@ export default {
 };
 </script>
 <style lang="scss">
-@keyframes flowerRoatel {
-  from {
-    transform-origin: center center;
-    transform: rotateZ(0deg);
-  }
-  to {
-    transform-origin: center center;
-    transform: rotateZ(-360deg);
-  }
-}
-@keyframes flowerRoater {
-  from {
-    transform-origin: center center;
-    transform: rotateZ(0deg);
-  }
-  to {
-    transform-origin: center center;
-    transform: rotateZ(360deg);
-  }
-}
+$theme-black: #283c5f;
+$theme-white: #faf7d9;
+$theme-green: #c3ce5f;
+$theme-blue: #4aa9a4;
+$theme-red: #c45c66;
 * {
   margin: 0;
   padding: 0;

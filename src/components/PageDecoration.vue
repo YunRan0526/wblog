@@ -15,26 +15,15 @@
         <CircleCloseButton class="btn" @click="close" />
     </div>
 </template>
-<script>
-import { defineComponent } from "vue"
+<script setup>
+import { defineEmits } from 'vue'
 import CircleCloseButton from "@/components/CircleCloseButton.vue"
 import { ElScrollbar } from "element-plus"
-export default defineComponent({
-    components: {
-        CircleCloseButton, ElScrollbar
-    },
-    emits: ["close"],
-    name: "Articles",
-    setup(_props, { emit: emits }) {
-        const close = () => {
-            emits("close")
-        }
-        return {
-            emits,
-            close
-        }
-    }
-})
+const emit = defineEmits(["close"])
+const close = () => {
+    emit("close")
+}
+
 </script>
 <style lang="scss" scoped>
 $theme-black: #283c5f;

@@ -8,10 +8,8 @@
     </div>
   </div>
 </template>
-<script>
-export default {
-  setup() { },
-};
+<script setup>
+
 </script>
 <style lang="scss">
 @keyframes border {

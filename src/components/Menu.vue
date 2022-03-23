@@ -6,20 +6,16 @@
             </span>
 
             <div class="cen">
-                <div class="item" @click="router.push({ path: '/WorkSpace' })">
-                    <img src="../image/page/star.svg" class="icon" />工作台
-                </div>
-                <div class="item" @click="router.push({ path: '/Articles' })">
-                    <img src="../image/page/moon.svg" class="icon" />我的文章
-                </div>
-                <div class="item" @click="router.push({ path: '/AboutMe' })">
-                    <img src="../image/page/dog.svg" class="icon2" />关于我
-                </div>
-                <div class="item" @click="router.push({ path: '/Memories' })">
-                    <img src="../image/page/mountain.svg" class="icon2" />一些回忆
+                <div
+                    class="item"
+                    @click="router.push({ path: item.path })"
+                    v-for="item in props.menu"
+                    :key="item.path"
+                >
+                    <img :src="getSrc(item.src)" class="icon" />
+                    {{ item.name }}
                 </div>
             </div>
-
 
             <div class="footer">
                 <div class="colorList">
@@ -49,43 +45,68 @@
     </div>
 </template>
 
-<script>
+<script setup>
 
-import { defineComponent, ref } from "vue"
+import { ref,defineProps } from "vue"
 import { useRouter } from 'vue-router'
-export default defineComponent({
-    name: "mymenu",
-    setup() {
-        const router = useRouter();
-        let menuColor = ref('#4aa9a4');
-        const changeMenuColor = (color) => {
-            menuColor.value = color;
-        }
-        const login = () => {
-            console.log("login");
-            switch (menuColor.value) {
-                case "#c45c66":
-                    changeMenuColor("#c3ce5f")
-                    break;
-                case "#c3ce5f":
-                    changeMenuColor("#283c5f")
-                    break;
-                case "#283c5f":
-                    changeMenuColor("#4aa9a4")
-                    break;
-                case "#4aa9a4":
-                    changeMenuColor("#c45c66")
-                    break;
-            }
-        }
-        return {
-            router,
-            login,
-            menuColor,
-            changeMenuColor
+const router = useRouter();
+let menuColor = ref('#4aa9a4');
+const props = defineProps({
+    menu: {
+        type: Array,
+        default: () => {
+            return [
+                {
+                    name: '工作台',
+                    path: '/WorkSpace',
+                    src: '/src/image/page/star.svg'
+                },
+                {
+                    name: '我的文章',
+                    path: '/Articles',
+                    src: '/src/image/page/moon.svg'
+                },
+                {
+                    name: '我的作品',
+                    path: '/Memories',
+                    src: '/src/image/page/mountain.svg'
+                },
+                {
+                    name: '关于我',
+                    path: '/AboutMe',
+                    src: '/src/image/page/dog.svg'
+                }
+            ]
         }
     }
 })
+const getSrc = (path) => {
+    if (process.env.NODE_ENV === 'development') {
+        return path
+    }
+    const modules = import.meta.globEager("/src/image/page/*.*");
+    return modules[path].default;
+}
+const changeMenuColor = (color) => {
+    menuColor.value = color;
+}
+const login = () => {
+    console.log("login");
+    switch (menuColor.value) {
+        case "#c45c66":
+            changeMenuColor("#c3ce5f")
+            break;
+        case "#c3ce5f":
+            changeMenuColor("#283c5f")
+            break;
+        case "#283c5f":
+            changeMenuColor("#4aa9a4")
+            break;
+        case "#4aa9a4":
+            changeMenuColor("#c45c66")
+            break;
+    }
+}
 </script>
 <style lang="scss" scoped>
 $theme-black: #283c5f;

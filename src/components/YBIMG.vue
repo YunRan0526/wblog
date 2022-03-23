@@ -6,32 +6,23 @@
         <img :src="src" @load="imgLoad($event)" />
     </div>
 </template>
-<script>
-import { defineComponent, ref, toRefs } from "vue"
-
-
-export default defineComponent({
-    props: {
-        src: {
-            type: String,
-            default: () => {
-                return '/yln2.png'
-            }
+<script setup>
+import {  ref, toRefs,defineProps } from "vue"
+const props = defineProps({
+    src: {
+        type: String,
+        default: () => {
+            return '/yln2.png'
         }
-    },
-    name: "yb-img",
-    setup(props, context) {
-        let { src } = toRefs(props);
-        let show = ref(true);
-
-        const imgLoad = (e) => {
-            show.value = false;
-        }
-        return {
-            src, show, imgLoad
-        }
-    },
+    }
 })
+
+let { src } = toRefs(props);
+let show = ref(true);
+
+const imgLoad = (e) => {
+    show.value = false;
+}
 </script>
 <style scoped lang="scss">
 @keyframes toogle {

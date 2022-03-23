@@ -3,21 +3,14 @@
     <img :src="getSrc('/src/assets/yebaoc.svg')" />
   </div>
 </template>
-<script>
-export default {
-  setup() {
-    const getSrc = (path) => {
-      if (process.env.NODE_ENV === 'development') {
-        return path
-      }
-      const modules = import.meta.globEager("/src/assets/*.*");
-      return modules[path].default;
-    }
-    return {
-      getSrc
-    }
-  },
-};
+<script setup>
+const getSrc = (path) => {
+  if (process.env.NODE_ENV === 'development') {
+    return path
+  }
+  const modules = import.meta.globEager("/src/assets/*.*");
+  return modules[path].default;
+}
 </script>
 <style lang="scss">
 @keyframes showLogo {

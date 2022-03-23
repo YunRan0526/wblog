@@ -5,14 +5,8 @@
         <div></div>
     </div>
 </template>
-<script>
-export default ({
-    setup() {
+<script setup>
 
-        return {
-        };
-    },
-});
 </script>
 <style lang="scss" scoped>
 $theme-black: #283c5f;
@@ -46,7 +40,7 @@ $theme-red: #c45c66;
     overflow: hidden;
     transform: scale(0);
     animation: showMenuBtn 0.6s ease 1.5s forwards;
-    transition: .1s;
+    transition: 0.1s;
     &:hover::before {
         transform: scale(1);
     }

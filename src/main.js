@@ -8,12 +8,9 @@ import './index.css'
 import 'element-plus/dist/index.css';
 //$message全局提示
 import $message from "/src/components/MessageBox/index.js"
-import "/src/components/MessageBox/index.scss"
 //$confirm 
 import $confirm from "/src/components/Confirm/index.js"
-import "/src/components/Confirm/index.scss"
 //
-import "/src/components/Button/index.scss"
 const app = createApp(App);
 // 注册自定义指令
 import directives from '/src/directive/index.js'

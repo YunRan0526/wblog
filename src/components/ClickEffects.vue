@@ -12,20 +12,11 @@
         </section>
     </div>
 </template>
-<script>
-import { defineComponent, reactive } from 'vue'
+<script setup>
+import { reactive } from 'vue'
 
-export default defineComponent({
-    setup() {
-        const colorList = reactive(["#283c5f", "#2ecc71", "#c3ce5f", "#4aa9a4", "#c45c66","#8e44ad","#c0392b","#f39c12"]);
-        const borderColor = colorList[Math.floor(Math.random() * (colorList.length - 1) * 1.1)];
-
-        return {
-        
-            borderColor,
-        }
-    },
-})
+const colorList = reactive(["#283c5f", "#2ecc71", "#c3ce5f", "#4aa9a4", "#c45c66", "#8e44ad", "#c0392b", "#f39c12"]);
+const borderColor = colorList[Math.floor(Math.random() * (colorList.length - 1) * 1.1)];
 </script>
 <style lang="scss" scoped>
 .ClickEffects {

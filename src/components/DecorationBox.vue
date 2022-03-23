@@ -14,7 +14,7 @@
     </div>
 </template>
 <script setup>
-import { toRefs, ref, onMounted } from 'vue'
+import { toRefs, ref, onMounted,defineProps } from 'vue'
 import { ElPopover, ElImage } from 'element-plus'
 import YBIMG from '@/components/YBIMG.vue'
 import { $dealtime } from '/src/utils/dealtime.js'

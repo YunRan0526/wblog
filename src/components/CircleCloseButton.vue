@@ -1,34 +1,27 @@
 <template>
-    <div class="CircleCloseButton" >
+    <div class="CircleCloseButton">
         <div></div>
         <div></div>
     </div>
 </template>
-<script>import { reactive } from "@vue/reactivity";
+<script setup>
+import { reactive,defineProps} from "vue";
 
-export default {
-    props: {
-        smallSize: {
-            type: String,
-            default: () => {
-                return '75px'
-            }
-        },
-        normalSize: {
-            type: String,
-            default: () => {
-                return '100px'
-            }
+const props = defineProps({
+    smallSize: {
+        type: String,
+        default: () => {
+            return '75px'
         }
     },
-    setup(props, ctx) {
-        let { smallSize, normalSize } = reactive(props)
-        return {
-            smallSize,
-            normalSize
+    normalSize: {
+        type: String,
+        default: () => {
+            return '100px'
         }
-    },
-};
+    }
+})
+let { smallSize, normalSize } = reactive(props)
 </script>
 <style lang="scss" scoped>
 .CircleCloseButton {
@@ -72,7 +65,6 @@ export default {
         width: v-bind(smallSize);
         height: v-bind(smallSize);
     }
-    
 }
 @media screen and (min-width: 761px) {
     .CircleCloseButton {
