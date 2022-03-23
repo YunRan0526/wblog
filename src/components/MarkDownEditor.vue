@@ -23,7 +23,7 @@
 import MdEditor from 'md-editor-v3';
 import { ElInput, ElButton } from 'element-plus'
 import 'md-editor-v3/lib/style.css';
-import { onMounted, reactive, defineProps } from 'vue';
+import { onMounted, reactive } from 'vue';
 
 const props = defineProps({
     id: {

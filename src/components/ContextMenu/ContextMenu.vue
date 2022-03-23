@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { toRefs, reactive, defineProps, defineEmits, ref, onMounted } from 'vue';
+import { toRefs, reactive,  ref, onMounted } from 'vue';
 const emit = defineEmits(['close', 'destroy'])
 const props = defineProps({
     x: {

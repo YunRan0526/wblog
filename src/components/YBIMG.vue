@@ -7,7 +7,7 @@
     </div>
 </template>
 <script setup>
-import {  ref, toRefs,defineProps } from "vue"
+import {  ref, toRefs} from "vue"
 const props = defineProps({
     src: {
         type: String,

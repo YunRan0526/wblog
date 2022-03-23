@@ -1,5 +1,5 @@
 <template>
-    <PageDecoration @close="close" @click="bodyClick">
+    <PageDecoration @close="close">
         <div style="width:100%;display: flex;justify-content: center;">
             <div class="page_title">我的文章</div>
         </div>
@@ -29,7 +29,7 @@
     </PageDecoration>
 </template>
 <script setup>
-import { ref, onMounted } from "vue"
+import { ref, onMounted, onBeforeUnmount } from "vue"
 import PageDecoration from "@/components/PageDecoration.vue"
 import DecorationBox from "@/components/DecorationBox.vue"
 import { useRouter } from 'vue-router'
@@ -54,15 +54,20 @@ const close = () => {
 }
 const showContextMenu = (e, v) => {
     e.preventDefault();
-    console.log(v)
     contextMenuTarget.value = $contextMenu(e.x, e.y)
 }
-const bodyClick = (e) => {
-    if (contextMenuTarget.value) contextMenuTarget.value.close()
-    contextMenuTarget.value = null
-
+const removeContextMenu = () => {
+    if (contextMenuTarget.value) {
+        contextMenuTarget.value.clear()
+        contextMenuTarget.value = null;
+    }
 }
+onBeforeUnmount(() => {
+    removeContextMenu()
+    document.body.removeEventListener('click', removeContextMenu)
+})
 onMounted(() => {
+    document.body.addEventListener('click', removeContextMenu)
     getAllArticle().then(res => {
         if (res.success) {
             articles.value = res.results

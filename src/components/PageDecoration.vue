@@ -16,7 +16,7 @@
     </div>
 </template>
 <script setup>
-import { defineEmits } from 'vue'
+
 import CircleCloseButton from "@/components/CircleCloseButton.vue"
 import { ElScrollbar } from "element-plus"
 const emit = defineEmits(["close"])

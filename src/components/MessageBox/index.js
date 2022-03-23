@@ -4,13 +4,13 @@ let seed = 1;
 const instances = [];
 const close = (id) => {
     console.log('close', id);
-    const idx = instances.findIndex(({ vm }) => id === vm.component.props.id);
+    const idx = instances.findIndex(({ vNode }) => id === vNode.component.props.id);
     if (idx === -1) return
 
-    const { vm } = instances[idx]
-    if (!vm) return
+    const { vNode } = instances[idx]
+    if (!vNode) return
 
-    const removedHeight = vm.el.offsetHeight
+    const removedHeight = vNode.el.offsetHeight
     instances.splice(idx, 1)
 
     //调整其他messageBox的高度
@@ -18,21 +18,21 @@ const close = (id) => {
     if (len < 1) return
     for (let i = idx; i < len; i++) {
         const pos =
-      parseInt(instances[i].vm.el.style['top'], 10) - removedHeight - 20
+            parseInt(instances[i].vNode.el.style['top'], 10) - removedHeight - 20
 
-    instances[i].vm.component.props.offset = pos
+        instances[i].vNode.component.props.offset = pos
     }
-    vm.component.proxy.visible = false
+    vNode.component.proxy.visible = false
 }
 const $message = (options) => {
     let verticalOffset = options.offset || 20
-    instances.forEach(({ vm }) => {
-        verticalOffset += (vm.el?.offsetHeight || 0) + 20
+    instances.forEach(({ vNode }) => {
+        verticalOffset += (vNode.el?.offsetHeight || 0) + 20
     })
     verticalOffset += 20
     const id = `message_${seed++}`
     options.delay ? "" : options.delay = 1500;
-    const wraper = document.createElement('div');
+    const el = document.createElement('div');
     let props = {
         id,
         ...options,
@@ -44,19 +44,19 @@ const $message = (options) => {
     props.onDestroy = () => {
         console.log("onDestroy");
         //在这里销毁组件
-        render(null, wraper)
+        render(null, el)
     }
     //createVNode 即 h() 将参数渲染成Vnode
-    const vm = createVNode(MessageBox, props);
-    //将vnode挂载到wraper
-    render(vm, wraper);
-    instances.push({ vm });
-    document.body.appendChild(wraper.firstElementChild);
-    return {
-        close:()=>((
-            vm.component.proxy.visible=false
-        ))
-    }
+    const vNode = createVNode(MessageBox, props);
+    //将vnode挂载到el
+    render(vNode, el);
+    instances.push({ vNode });
+    document.body.appendChild(el.firstElementChild);
+    // return {
+    //     close:()=>((
+    //         vNode.component.proxy.visible=false
+    //     ))
+    // }
 }
 //拓展方法
 ['success', 'error', 'info', 'warning'].forEach(type => {

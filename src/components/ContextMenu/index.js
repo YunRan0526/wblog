@@ -2,12 +2,15 @@ import ContextMenu from './ContextMenu.vue'
 import { render, createVNode } from "vue";
 import yb from '/src/utils/YbManager.js'
 //用于渲染菜单的el
-let cache = null
-
+const instance = []
+instance.clear = () => {
+    for (let i = 0; i <= instance.length; i++) {
+        instance.pop().component.proxy.visible = false
+    }
+}
 const $contextMenu = (x, y) => {
-    if (cache) {
-        cache.clear()
-        cache = null
+    if (instance.length) {
+        instance.clear()
     }
     let zIndex = yb.nextIndex()
     const menu = [
@@ -20,32 +23,29 @@ const $contextMenu = (x, y) => {
         zIndex,
         menu,
         onDestroy: () => {
-            console.log("onDestroy");
+            console.log('destroy')
+            if (el) {
+                render(null, el)
+                el = null
+                vNode = null
+            }
             //在这里销毁组件
-            render(null, wraper)
         },
         onClose: () => {
-            console.log("onClsoe");
-            vm.component.proxy.visible = false
+            console.log('close')
+            vNode.component.proxy.visible = false
         }
     }
-    let wraper = document.createElement('div');
+    let el = document.createElement('div');
     //createVNode 即 h() 将参数渲染成Vnode
-    const vm = createVNode(ContextMenu, props);
-    cache = vm
-    cache.clear = () => {
-        render(null, wraper);
-        wraper = null
-    }
-    //将vnode挂载到wraper vm => dom
-    render(vm, wraper);
+    let vNode = createVNode(ContextMenu, props);
+    instance.push(vNode)
+    //将vnode挂载到el vNode => dom
+    render(vNode, el);
+
     //将真实dom挂载到页面
-    document.body.appendChild(wraper.firstElementChild);
-    return {
-        close: () => {
-            vm.component.proxy.visible = false
-        }
-    }
+    document.body.appendChild(el.firstElementChild);
+    return instance
 }
 
 

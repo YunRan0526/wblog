@@ -47,7 +47,7 @@
 
 <script setup>
 
-import { ref,defineProps } from "vue"
+import { ref } from "vue"
 import { useRouter } from 'vue-router'
 const router = useRouter();
 let menuColor = ref('#4aa9a4');
