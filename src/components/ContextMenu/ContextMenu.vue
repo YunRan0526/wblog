@@ -1,5 +1,5 @@
 <template>
-    <transition name="context-menu" @after-leave="emit('destroy')" @before-leave="emit('close')">
+    <transition name="context-menu" @after-leave="emit('destroy')">
         <ul
             v-show="visible"
             :class="{
@@ -23,8 +23,8 @@
 </template>
 
 <script setup>
-import { toRefs, reactive,  ref, onMounted } from 'vue';
-const emit = defineEmits(['close', 'destroy'])
+import { toRefs, reactive, ref, onMounted } from 'vue';
+const emit = defineEmits(['clear', 'destroy'])
 const props = defineProps({
     x: {
         type: Number
@@ -39,29 +39,36 @@ const props = defineProps({
         type: Array
     }
 })
-const visible = ref(false)
+let visible = ref(false)
 const menuHandle = reactive({
     'getDetail': () => {
         console.log('查看')
-        visible.value = false
+        hide()
     },
     'edit': () => {
         console.log('编辑')
-        visible.value = false
+        hide()
     },
     'delete': () => {
         console.log('删除')
-        visible.value = false
+        hide()
     }
 })
-
+const show = () => {
+    visible.value = true
+}
+const hide = () => {
+    visible.value = false
+}
 
 let { x, y, zIndex, menu } = toRefs(props)
-
+defineExpose({
+  hide
+})
 const height = ref('');
 height.value = `${menu.value.length * 41 - (menu.value.length - 1) * 5}px`
 onMounted(() => {
-    visible.value = true
+    show()
 })
 </script>
 

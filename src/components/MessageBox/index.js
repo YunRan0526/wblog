@@ -31,7 +31,7 @@ const $message = (options) => {
     })
     verticalOffset += 20
     const id = `message_${seed++}`
-    options.delay ? "" : options.delay = 1500;
+    options.delay ? "" : options.delay = 100000;
     const el = document.createElement('div');
     let props = {
         id,

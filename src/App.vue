@@ -1,13 +1,11 @@
 <template >
-  <div id="app">
-    <router-view @click="clickToEffects" />
-    <ClickEffects
-      v-for="item in effectsArr "
-      :key="item.id"
-      :style="{ position: 'absolute', left: item.left, top: item.top }"
-      class="ClickEffects"
-    />
-  </div>
+  <router-view @click="clickToEffects" />
+  <ClickEffects
+    v-for="item in effectsArr "
+    :key="item.id"
+    :style="{ position: 'absolute', left: item.left, top: item.top }"
+    class="ClickEffects"
+  />
 </template>
 
 <script>

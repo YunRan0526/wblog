@@ -1,21 +1,32 @@
 <template>
     <div class="editor">
-        <div class="item">
-            <span class="label">标题：</span>
-            <div class="content">
-                <el-input v-model="article.title"></el-input>
+        <div class="topContainer">
+            <div class="title">
+                <div class="item">
+                    <span class="label">标题：</span>
+                    <div class="content">
+                        <el-input v-model="article.title" placeholder="输入文章标题"></el-input>
+                    </div>
+                </div>
+                <div class="operation">
+                    <el-button @click="submit">提交</el-button>
+                </div>
             </div>
-        </div>
-        <div class="item">
-            <span class="label">简介：</span>
-            <div class="content">
-                <el-input v-model="article.description" type="textarea"></el-input>
+            <div class="desc">
+                <div class="item">
+                    <span class="label">简介：</span>
+                    <div class="content">
+                        <el-input
+                            v-model="article.description"
+                            type="textarea"
+                            placeholder="输入文章简介"
+                        ></el-input>
+                    </div>
+                </div>
+                <div class="operation"></div>
             </div>
         </div>
         <MdEditor v-model="article.content" @save="save" />
-        <div class="operation">
-            <el-button @click="submit">提交</el-button>
-        </div>
     </div>
 </template>
 
@@ -40,7 +51,7 @@ const props = defineProps({
 const article = reactive({
     id: props.id,
     title: '',
-    poster:'',
+    poster: '',
     description: '',
     content: ''
 })
@@ -65,22 +76,56 @@ onMounted(() => {
 <style lang="scss" scoped>
 .editor {
     text-align: start;
-    .item {
+    .topContainer {
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-bottom: 30px;
-        .label {
-            width: 120px;
+        flex-direction: column;
+        box-sizing: border-box;
+        padding: 15px;
+        .title {
+            width: 100%;
             display: flex;
-            justify-content: center;
             align-items: center;
-            font-size: 24px;
-            font-weight: 900;
+            .item {
+                width: calc(100% - 120px);
+                display: flex;
+                align-items: center;
+                .content {
+                    flex: 1;
+                }
+            }
+            .operation {
+                width: 120px;
+                height: 100%;
+                box-sizing: border-box;
+                padding: 15px;
+            }
         }
-        .content {
-            flex: 1;
+        .desc {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            .item {
+                width: calc(100% - 120px);
+                display: flex;
+                align-items: center;
+                .content {
+                    flex: 1;
+                }
+            }
+
+            .operation {
+                width: 120px;
+                height: 100%;
+                box-sizing: border-box;
+                padding: 15px;
+            }
         }
+    }
+    #md-editor-v3 {
+        height: calc(100vh - 200px);
     }
 }
 </style>

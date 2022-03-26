@@ -35,9 +35,9 @@ import DecorationBox from "@/components/DecorationBox.vue"
 import { useRouter } from 'vue-router'
 import { getAllArticle } from '../../api/module/ybw/article';
 import $contextMenu from '/src/components/ContextMenu/index.js'
+import { clear } from '/src/components/ContextMenu/index.js'
 const router = useRouter();
 let articles = ref(0);
-const contextMenuTarget = ref(null)
 const getDeatil = (v) => {
     let { content } = v
     router.push({ path: '/MarkDownViewer', query: { content } })
@@ -54,13 +54,10 @@ const close = () => {
 }
 const showContextMenu = (e, v) => {
     e.preventDefault();
-    contextMenuTarget.value = $contextMenu(e.x, e.y)
+    $contextMenu(e.x, e.y)
 }
 const removeContextMenu = () => {
-    if (contextMenuTarget.value) {
-        contextMenuTarget.value.clear()
-        contextMenuTarget.value = null;
-    }
+    clear()
 }
 onBeforeUnmount(() => {
     removeContextMenu()

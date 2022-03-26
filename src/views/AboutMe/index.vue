@@ -14,15 +14,7 @@
             </div>
         </div>
         <div class="content">
-            <DecorationBox
-                style="z-index:30"
-                v-for="v in 10"
-                :key="v"
-                :title="`标题${v}`"
-                :description="`描述${v}`"
-                :date="'2021-10-11'"
-                :imgUrl="getSrc('/src/assets/yln.jpg')"
-            />
+            000
         </div>
     </PageDecoration>
 </template>
@@ -106,7 +98,7 @@ $theme-red: #c45c66;
     width: 100%;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    align-items: center;
     animation: fadein 1s ease 0.7s forwards;
 }
 .page_title {
