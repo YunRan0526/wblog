@@ -5,27 +5,17 @@
         </span>
     </div>
 </template>
-<script>
-
-import { defineComponent, } from 'vue'
-
-export default defineComponent({
-    name: "yb-button",
-    data() {
-        return {
-            btnClass: ''
-        }
-    },
-    render() {
-
-    },
-    created() {
-        let type, size
-        this.$attrs?.type ? type = this.$attrs.type : type = "primary"
-        this.$attrs?.size ? type = this.$attrs.size : size = "normal"
-        this.btnClass = `yb-button ${type}-button ${size}-button`
-    }
+<script setup>
+import { onMounted, useAttrs, ref } from 'vue';
+const btnClass = ref('')
+const attrs = useAttrs()
+onMounted(() => {
+    let type, size
+    attrs?.type ? type = attrs.type : type = "primary"
+    attrs?.size ? type = attrs.size : size = "normal"
+    btnClass.value = `yb-button ${type}-button ${size}-button`
 })
+
 
 </script>
 <style lang="scss" scoped>
@@ -36,19 +26,28 @@ $theme-blue: #4aa9a4;
 $theme-red: #c45c66;
 
 .yb-button {
+    box-sizing: border-box;
     display: inline-block;
-    border-radius: 2px;
+    border-radius: 5px;
     color: #fff;
     text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
     -webkit-box-shadow: 0 2px 0 rgb(0 0 0 / 5%);
     box-shadow: 0 2px 0 rgb(0 0 0 / 5%);
     cursor: pointer;
+    transition: filter .1s;
+    user-select: none;
 
     .text {
         display: inline-block;
         min-width: 40px;
         text-align: justify;
         text-align-last: justify;
+    }
+    &:hover {
+        filter: contrast(120%);
+    }
+    &:active {
+        filter: saturate(80%);
     }
 }
 
@@ -74,13 +73,13 @@ $theme-red: #c45c66;
 }
 
 .normal-button {
-    padding: 0px 15px;
+    padding: 3px 15px;
     line-height: 200%;
     letter-spacing: 1px;
 }
 
 .big-button {
-    padding: 0px 25px;
+    padding: 5px 25px;
     line-height: 200%;
     letter-spacing: 1px;
 }

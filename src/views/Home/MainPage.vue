@@ -12,11 +12,10 @@
   </div>
 </template>
 <script>
-
-import StarAndMoon from "@/components/StarAndMoon.vue";
-import Border from "@/components/Border.vue";
-import Logo from "@/components/Logo.vue"
-import MenuBtn from "@/components/MenuBtn.vue"
+import StarAndMoon from "/src/components/StarAndMoon.vue";
+import Border from "/src/components/Border.vue";
+import Logo from "/src/components/Logo.vue";
+import MenuBtn from "/src/components/MenuBtn.vue";
 
 export default {
   name: "V1",
@@ -24,18 +23,18 @@ export default {
     StarAndMoon,
     Border,
     Logo,
-    MenuBtn
+    MenuBtn,
   },
   emits: ["showMenuPage"],
   setup(_props, { emit: emits }) {
     const showMenuPage = () => {
-      emits("showMenuPage")
-    }
+      emits("showMenuPage");
+    };
     return {
-      showMenuPage
-    }
+      showMenuPage,
+    };
   },
-  mounted() { },
+  mounted() {},
 };
 </script>
 

@@ -37,7 +37,7 @@
 </template>
 <script>
 import { defineComponent, onMounted, ref, onUnmounted } from 'vue'
-import YbButton from "/src/components/Button/Button.vue"
+
 import { ElInput } from 'element-plus'
 export default defineComponent({
     props: {
@@ -56,7 +56,6 @@ export default defineComponent({
     },
     emits: ["cancel", "confirm"],
     components: {
-        YbButton,
         ElInput
     },
     setup(props, { emit: emits }) {

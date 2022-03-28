@@ -1,57 +1,41 @@
-<template >
+<template>
   <router-view @click="clickToEffects" />
   <ClickEffects
-    v-for="item in effectsArr "
+    v-for="item in effectsArr"
     :key="item.id"
     :style="{ position: 'absolute', left: item.left, top: item.top }"
     class="ClickEffects"
   />
+  <!-- <div style="display: flex;">
+    <Loading />
+  </div> -->
 </template>
 
-<script>
-
-import { onMounted, reactive, inject } from "@vue/runtime-core";
+<script setup>
+import { reactive } from "@vue/runtime-core";
 import ClickEffects from "./components/ClickEffects.vue";
-import YbButton from "/src/components/Button/Button.vue"
-export default {
-  name: "App",
-  components: {
-    ClickEffects, YbButton
-  },
-  setup() {
-    const effectsArr = reactive([]);
-    let clearTimer = reactive({});
-    const clickToEffects = (e) => {
-      let left = `${e.pageX - 50}px`;
-      let top = `${e.pageY - 50}px`;
-      let obj = {
-        id: Math.random().toString(16).slice(2),
-        left, top,
-        show: true
-      }
-      effectsArr.push(obj);
-      if (clearTimer) {
-        clearTimeout(clearTimer);
-        clearTimer = null;
-      }
-      clearTimer = setTimeout(() => {
-        effectsArr.length = 0;
-        clearTimeout(clearTimer);
-        clearTimer = null;
-
-      }, 1000)
-    }
-
-
-    return {
-      clickToEffects,
-      effectsArr,
-      clearTimer
-    }
-  },
-  methods: {
-
+import Loading from "/src/components/Loading/Loading.vue";
+const effectsArr = reactive([]);
+let clearTimer = reactive({});
+const clickToEffects = (e) => {
+  let left = `${e.pageX - 50}px`;
+  let top = `${e.pageY - 50}px`;
+  let obj = {
+    id: Math.random().toString(16).slice(2),
+    left,
+    top,
+    show: true,
+  };
+  effectsArr.push(obj);
+  if (clearTimer) {
+    clearTimeout(clearTimer);
+    clearTimer = null;
   }
+  clearTimer = setTimeout(() => {
+    effectsArr.length = 0;
+    clearTimeout(clearTimer);
+    clearTimer = null;
+  }, 1000);
 };
 </script>
 <style lang="scss">

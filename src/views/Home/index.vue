@@ -6,34 +6,35 @@
       href="http://www.beian.gov.cn/portal/registerSystemInfo?spm=a2cmq.17629970.J_9220772140.114.f0d079feFwsJR2"
       target="_blank"
       class="beian"
-    >鄂ICP备2021000948号</a>
+      >鄂ICP备2021000948号</a
+    >
   </div>
 </template>
 
 <script>
-import MainPage from "@/views/Home/MainPage.vue";
-import MenuPage from "@/views/Home/MenuPage.vue";
-import { ref } from "vue"
+import MainPage from "/src/views/Home/MainPage.vue";
+import MenuPage from "/src/views/Home/MenuPage.vue";
+import { ref } from "vue";
 export default {
   name: "Home",
   components: {
     MainPage,
-    MenuPage
+    MenuPage,
   },
   setup() {
     let menuPage = ref(false);
 
     const closeMenuPage = () => {
       menuPage.value = false;
-    }
+    };
     const showMenuPage = () => {
       menuPage.value = true;
-    }
+    };
     return {
       showMenuPage,
       closeMenuPage,
-      menuPage
-    }
+      menuPage,
+    };
   },
 };
 </script>
