@@ -18,9 +18,17 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { ElIcon, ElUpload } from "element-plus";
 import { Plus } from "@element-plus/icons-vue";
+const props = defineProps({
+  file: {
+    type: Object,
+    default: () => {
+      return null;
+    },
+  },
+});
 const emit = defineEmits(["selectFile"]);
 const fileList = ref([]);
 const selectFile = (file, files) => {
@@ -31,9 +39,15 @@ const selectFile = (file, files) => {
   emit("selectFile", file);
 };
 let showIcon = ref(true);
+onMounted(() => {
+  if (!!props.file) {
+    fileList.value = [props.file];
+  }
+});
 </script>
 <style lang="scss" scoped>
 .upload-container {
+  display: inline-block;
   width: 148px;
   height: 148px;
   position: relative;

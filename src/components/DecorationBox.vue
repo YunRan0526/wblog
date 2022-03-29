@@ -83,7 +83,7 @@ $theme-red: #c45c66;
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
-      background-image: url("@/image/page/star.svg");
+      background-image: url("/src/image/page/star.svg");
     }
     &::after {
       content: "";
@@ -96,12 +96,12 @@ $theme-red: #c45c66;
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
-      background-image: url("@/image/page/moon.svg");
+      background-image: url("/src/image/page/moon.svg");
       transform: rotateY(180deg);
     }
     .inner {
       background-color: $theme-white;
-      background-image: url("@/assets/xx/bg.svg");
+      background-image: url("/src/assets/xx/bg.svg");
       background-size: 130px;
       padding-top: 10px;
       box-sizing: border-box;
@@ -160,7 +160,7 @@ $theme-red: #c45c66;
           display: inline-block;
           width: 18px;
           height: 18px;
-          background-image: url("@/assets/xx/dog.svg");
+          background-image: url("/src/assets/xx/dog.svg");
           background-size: contain;
           background-position: center;
           background-repeat: no-repeat;
@@ -192,7 +192,7 @@ $theme-red: #c45c66;
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
-      background-image: url("@/image/page/star.svg");
+      background-image: url("/src/image/page/star.svg");
     }
     &::after {
       content: "";
@@ -205,12 +205,12 @@ $theme-red: #c45c66;
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
-      background-image: url("@/image/page/moon.svg");
+      background-image: url("/src/image/page/moon.svg");
       transform: rotateY(180deg);
     }
     .inner {
       background-color: $theme-white;
-      background-image: url("@/assets/xx/bg.svg");
+      background-image: url("/src/assets/xx/bg.svg");
       background-size: 130px;
       padding-top: 10px;
       box-sizing: border-box;
@@ -269,7 +269,7 @@ $theme-red: #c45c66;
           display: inline-block;
           width: 18px;
           height: 18px;
-          background-image: url("@/assets/xx/dog.svg");
+          background-image: url("/src/assets/xx/dog.svg");
           background-size: contain;
           background-position: center;
           background-repeat: no-repeat;

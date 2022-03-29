@@ -20,7 +20,7 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: 3366,
-    https: true,
+    // https: true,
     proxy: {
       '/juejin_api': {
         target: 'https://api.juejin.cn',
@@ -28,9 +28,10 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/juejin_api/, '')
       },
       '/api': {
-        target: 'https://www.yebaoc.com',
+        // target: 'https://www.yebaoc.com',
+        target: 'http://localhost:3000',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/bili_api/, ''),
+        rewrite: (path) => path.replace(/^\/api/, ''),
       }
     }
   },

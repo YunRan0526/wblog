@@ -1,4 +1,4 @@
-import request from "@/api/axios.js"
+import request from "/src/api/axios.js"
 
 /**
  * xxxxx

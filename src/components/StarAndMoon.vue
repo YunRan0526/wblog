@@ -70,7 +70,7 @@ $theme-red: #c45c66;
         width: 20px;
         height: 20px;
       }
-      background-image: url("@/image/homePage/star.svg");
+      background-image: url("/src/image/homePage/star.svg");
       background-size: 100% auto;
       background-position: center top;
       background-repeat: no-repeat;
@@ -118,7 +118,7 @@ $theme-red: #c45c66;
   .moon {
     position: absolute;
     top: 0;
-     transform: translateY(-100%);
+    transform: translateY(-100%);
     @include pc-layout {
       right: 25%;
     }
@@ -154,17 +154,17 @@ $theme-red: #c45c66;
         width: 20px;
         height: 20px;
       }
-      background-image: url("@/image/homePage/moon.svg");
+      background-image: url("/src/image/homePage/moon.svg");
       background-size: auto 100%;
       background-position: center top;
       background-repeat: no-repeat;
     }
   }
 }
-@media screen and (min-width: 761px){
-  .container3{
-    .star{
-      &::after{
+@media screen and (min-width: 761px) {
+  .container3 {
+    .star {
+      &::after {
         position: absolute;
         bottom: 0;
         left: -17.5px;
@@ -172,10 +172,10 @@ $theme-red: #c45c66;
     }
   }
 }
-@media screen and (max-width: 760px){
-  .container3{
-    .star{
-      &::after{
+@media screen and (max-width: 760px) {
+  .container3 {
+    .star {
+      &::after {
         position: absolute;
         bottom: 0;
         left: -10px;
@@ -184,15 +184,29 @@ $theme-red: #c45c66;
   }
 }
 @keyframes showStar {
-  0%   { transform: translateY(-100%) ; }
-  40%  { transform: translateY(0%); }
-  60%  { transform: translateY(-5%); }
-  80%  { transform: translateY(-3%); }
-  100% { transform: translateY(-5%); }
+  0% {
+    transform: translateY(-100%);
+  }
+  40% {
+    transform: translateY(0%);
+  }
+  60% {
+    transform: translateY(-5%);
+  }
+  80% {
+    transform: translateY(-3%);
+  }
+  100% {
+    transform: translateY(-5%);
+  }
 }
 @keyframes starRoate {
-  from { transform: rotateY(0deg) }
-  to   { transform: rotateY(-360deg) }
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(-360deg);
+  }
 }
 .container3 {
   .star::after {

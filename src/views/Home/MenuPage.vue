@@ -204,7 +204,7 @@ $theme-red: #c45c66;
         width: 100%;
         height: 100%;
         background-position: center;
-        background-image: url("@/image/menu/bg.svg");
+        background-image: url("/src/image/menu/bg.svg");
         // background-color: $theme-white;
         background-size: 90px;
         opacity: 0;

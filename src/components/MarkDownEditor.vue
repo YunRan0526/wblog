@@ -30,7 +30,9 @@
         </div>
         <div class="operation"></div>
       </div>
+      <!--  -->
       <div class="poster-upload">
+        <span class="label">封面：</span>
         <UpLoad @selectFile="selectFile"></UpLoad>
       </div>
     </div>
@@ -76,7 +78,7 @@ const initArticle = () => {
 };
 //选取图片
 const selectFile = (file) => {
-  console.log(file);
+  article.poster = file;
 };
 onMounted(() => {
   props.id ? initArticle() : "";
@@ -116,6 +118,7 @@ onMounted(() => {
       width: 100%;
       display: flex;
       align-items: center;
+      margin-bottom: 15px;
       .item {
         width: calc(100% - 120px);
         display: flex;
@@ -133,8 +136,8 @@ onMounted(() => {
       }
     }
     .poster-upload {
+      width: 100%;
       display: flex;
-      justify-content: center;
       align-items: center;
     }
   }

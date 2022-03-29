@@ -8,9 +8,7 @@
     </div>
   </div>
 </template>
-<script setup>
-
-</script>
+<script setup></script>
 <style lang="scss">
 @keyframes border {
   0% {
@@ -53,7 +51,7 @@
           top: 0;
           width: 100%;
 
-          background: url("@/image/homePage/line-2.svg");
+          background: url("/src/image/homePage/line-2.svg");
         }
       }
       &:nth-of-type(2) {
@@ -64,7 +62,7 @@
           left: 0;
           bottom: 0;
           width: 100%;
-          background: url("@/image/homePage/line-2.svg");
+          background: url("/src/image/homePage/line-2.svg");
         }
       }
       &:nth-of-type(3) {
@@ -76,7 +74,7 @@
           top: 0;
 
           height: 100%;
-          background: url("@/image/homePage/line-1.svg");
+          background: url("/src/image/homePage/line-1.svg");
         }
       }
       &:nth-of-type(4) {
@@ -88,7 +86,7 @@
           top: 0;
 
           height: 100%;
-          background: url("@/image/homePage/line-1.svg");
+          background: url("/src/image/homePage/line-1.svg");
         }
       }
     }
