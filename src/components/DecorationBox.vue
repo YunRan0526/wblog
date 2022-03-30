@@ -1,7 +1,7 @@
 <template>
   <div class="DecorationBox">
     <div class="inner">
-      <YBIMG class="img" :src="imgUrl" v-lazyBox />
+      <YBIMG class="img" :src="props.src ? props.src : imgUrl" v-lazyBox />
       <ElPopover placement="top" :width="180" trigger="hover" :content="title">
         <template #reference>
           <div class="title">{{ title }}</div>
@@ -43,6 +43,9 @@ const props = defineProps({
     default: () => {
       return "/yln2.png";
     },
+  },
+  src: {
+    type: String,
   },
 });
 let { title, description, date, imgUrl } = toRefs(props);

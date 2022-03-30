@@ -1,11 +1,9 @@
 import {
   defineConfig
 } from 'vite'
-import path from "path"
+
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-
-
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -28,10 +26,10 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/juejin_api/, '')
       },
       '/api': {
-        // target: 'https://www.yebaoc.com',
-        target: 'http://localhost:3000',
+        target: 'https://www.yebaoc.com',
+        // target: 'www.yebaoc.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        // rewrite: (path) => path.replace(/^\/api/, ''),
       }
     }
   },

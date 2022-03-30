@@ -21,6 +21,7 @@
 import { ref, onMounted } from "vue";
 import { ElIcon, ElUpload } from "element-plus";
 import { Plus } from "@element-plus/icons-vue";
+import $message from "/src/components/MessageBox/index.js";
 const props = defineProps({
   file: {
     type: Object,
@@ -28,10 +29,28 @@ const props = defineProps({
       return null;
     },
   },
+  maxSize: {
+    type: Number,
+    default: () => {
+      return 2048;
+    },
+  },
 });
 const emit = defineEmits(["selectFile"]);
 const fileList = ref([]);
 const selectFile = (file, files) => {
+  const ext = file.name.split(".")[1];
+  if (!["png", "jpg", "jpeg", "svg", "webgp"].includes(ext)) {
+    fileList.value = [];
+    $message.error("只支持图片类型文件");
+    return;
+  }
+  const size = Math.floor(file.size / 1000);
+  if (size >= props.maxSize) {
+    fileList.value = [];
+    $message.error("图片文件最大不能超过2MB!");
+    return;
+  }
   fileList.value = [file];
   if (fileList.value.length) {
     showIcon.value = false;

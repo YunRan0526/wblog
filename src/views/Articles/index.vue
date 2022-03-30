@@ -22,14 +22,14 @@
         :title="v.title"
         :description="v.description"
         :date="v.create_time"
-        :imgUrl="getSrc('/src/assets/yln.jpg')"
+        :src="`${baseHost}${v.poster}`"
         @click="getDeatil(v)"
       />
     </div>
   </PageDecoration>
 </template>
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ref, onMounted, onBeforeUnmount, computed } from "vue";
 import PageDecoration from "/src/components/PageDecoration.vue";
 import DecorationBox from "/src/components/DecorationBox.vue";
 import { useRouter } from "vue-router";
@@ -50,6 +50,10 @@ const getSrc = (path) => {
   const modules = import.meta.globEager("/src/assets/*.*");
   return modules[path].default;
 };
+const baseHost = computed(() => {
+  if (import.meta.env.MODE === "development") return "http://localhost:3000";
+  return "http://yebaoc.com/api";
+});
 const close = () => {
   router.push({ path: "/" });
 };
