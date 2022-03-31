@@ -23,3 +23,11 @@ export function getAllArticle(obj = {}) {
         params: obj
     })
 }
+
+export function getArticle(obj = {}) {
+    return instance({
+        url: '/article/getArticle',
+        method: 'get',
+        params: obj
+    })
+}

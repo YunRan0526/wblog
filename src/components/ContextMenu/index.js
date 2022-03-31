@@ -21,21 +21,23 @@ export const clear = () => {
     })
 }
 
-const $contextMenu = (x, y) => {
+const $contextMenu = (
+    x, y,
+    menu = [
+        { key: 'getDetail', value: '查看', handler: () => { console.log('查看') } },
+        { key: 'edit', value: '编辑', handler: () => { console.log('编辑') } },
+        { key: 'delete', value: '删除', handler: () => { console.log('删除') } },
+    ],
+    v
+) => {
     if (instance) {
         clear()
     }
     let zIndex = yb.nextIndex()
-    const menu = [
-        { key: 'getDetail', value: '查看' },
-        { key: 'edit', value: '编辑' },
-        { key: 'delete', value: '删除' },
-    ]
     let id = uuid++
-
     let props = {
         id,
-        x, y,
+        x, y, v,
         zIndex,
         menu,
         onDestroy: () => {

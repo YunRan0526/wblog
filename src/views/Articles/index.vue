@@ -23,7 +23,7 @@
         :description="v.description"
         :date="v.create_time"
         :src="`${baseHost}${v.poster}`"
-        @click="getDeatil(v)"
+        @click="getDeatil(v.id)"
       />
     </div>
   </PageDecoration>
@@ -33,36 +33,64 @@ import { ref, onMounted, onBeforeUnmount, computed } from "vue";
 import PageDecoration from "/src/components/PageDecoration.vue";
 import DecorationBox from "/src/components/DecorationBox.vue";
 import { useRouter } from "vue-router";
-import { getAllArticle } from "../../api/module/ybw/article";
+import { getAllArticle, deleteArticle } from "../../api/module/ybw/article";
 import $contextMenu from "/src/components/ContextMenu/index.js";
+import $message from "/src/components/MessageBox/index.js";
 import { clear } from "/src/components/ContextMenu/index.js";
 const router = useRouter();
 let articles = ref(0);
-const getDeatil = (v) => {
-  let { content } = v;
-  router.push({ path: "/MarkDownViewer", query: { content } });
+const getDeatil = (id) => {
+  router.push({ path: "/MarkDownViewer", query: { id } });
 };
+const contextMenu = [
+  {
+    key: "getDetail",
+    value: "查看",
+    handler: (v) => {
+      getDeatil(v);
+    },
+  },
+  {
+    key: "edit",
+    value: "编辑",
+    handler: (v) => {
+      console.log("编辑", v);
+    },
+  },
+  {
+    key: "delete",
+    value: "删除",
+    handler: (v) => {
+      deleteArticle({ id: v }).then((res) => {
+        if (res.success) {
+          $message.success("删除成功");
+          initList();
+        }
+      });
+    },
+  },
+];
 
-const getSrc = (path) => {
-  if (process.env.NODE_ENV === "development") {
-    return path;
-  }
-  const modules = import.meta.globEager("/src/assets/*.*");
-  return modules[path].default;
-};
 const baseHost = computed(() => {
-  if (import.meta.env.MODE === "development") return "http://localhost:3000";
-  return "http://yebaoc.com/api";
+  // if (import.meta.env.MODE === "development") return "http://localhost:3000";
+  return "https://yebaoc.com/api";
 });
 const close = () => {
   router.push({ path: "/" });
 };
 const showContextMenu = (e, v) => {
   e.preventDefault();
-  $contextMenu(e.x, e.y);
+  $contextMenu(e.x, e.y, contextMenu, v.id);
 };
 const removeContextMenu = () => {
   clear();
+};
+const initList = () => {
+  getAllArticle().then((res) => {
+    if (res.success) {
+      articles.value = res.results;
+    }
+  });
 };
 onBeforeUnmount(() => {
   removeContextMenu();
@@ -70,11 +98,7 @@ onBeforeUnmount(() => {
 });
 onMounted(() => {
   document.body.addEventListener("click", removeContextMenu);
-  getAllArticle().then((res) => {
-    if (res.success) {
-      articles.value = res.results;
-    }
-  });
+  initList();
 });
 </script>
 <style lang="scss" scoped>

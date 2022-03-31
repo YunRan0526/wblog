@@ -16,7 +16,7 @@
       <li
         v-for="item in menu"
         :key="item.key"
-        @click="menuHandle[item.key]"
+        @click="menuHandle(item.key)"
         :class="{ 'context-menu-item': true }"
       >
         {{ item.value }}
@@ -27,6 +27,7 @@
 
 <script setup>
 import { toRefs, reactive, ref, onMounted } from "vue";
+
 const emit = defineEmits(["clear", "destroy"]);
 const props = defineProps({
   x: {
@@ -35,6 +36,7 @@ const props = defineProps({
   y: {
     type: Number,
   },
+  v: {},
   zIndex: {
     type: Number,
   },
@@ -43,20 +45,12 @@ const props = defineProps({
   },
 });
 let visible = ref(false);
-const menuHandle = reactive({
-  getDetail: () => {
-    console.log("查看");
-    hide();
-  },
-  edit: () => {
-    console.log("编辑");
-    hide();
-  },
-  delete: () => {
-    console.log("删除");
-    hide();
-  },
-});
+const menuHandle = (key) => {
+  let idx = props.menu.findIndex((item) => item.key === key);
+  if (idx < 0) return;
+  props.menu[idx].handler(props.v);
+  hide();
+};
 const contextmenu = (e) => {
   e.preventDefault();
 };

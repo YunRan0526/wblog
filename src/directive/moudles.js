@@ -2,10 +2,24 @@ import hasPerm from '/src/utils/hasPerm.js'
 export const lazyBox = {
     name: 'lazyBox',
     mounted(el, binding) {
-        el.childNodes[1].style.display = 'none'
+        let cache = false
+        const img = el.childNodes[1]
+        img.style.display = 'none'
+        img.onload = function () {
+            if (cache) {
+                img.style.display = 'block'
+            } else {
+                cache = true
+            }
+        }
         let watcher = new IntersectionObserver(function (e) {
             if (e[0].isIntersecting) {
-                el.childNodes[1].style.display = 'block'
+                if (cache) {
+                    img.style.display = 'block'
+                } else {
+                    cache = true
+                }
+
                 watcher.unobserve(el)
                 watcher.disconnect()
                 watcher = null;

@@ -27,14 +27,23 @@ import "md-editor-v3/lib/style.css";
 import PageDecoration from "/src/components/PageDecoration.vue";
 import { onMounted, ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
+import { getArticle } from "/src/api/module/ybw/article.js";
 const router = useRouter();
 const route = useRoute();
 const content = ref("");
 const close = () => {
   router.push({ path: "/Articles" });
 };
+const initArticle = () => {
+  let id = route.query.id;
+  getArticle({ id }).then((res) => {
+    if (res.success) {
+      content.value = res.results[0].content;
+    }
+  });
+};
 onMounted(() => {
-  content.value = route.query.content;
+  initArticle();
 });
 </script>
 <style lang="scss" scoped>
@@ -107,7 +116,7 @@ $theme-red: #c45c66;
 }
 @media screen and (min-width: 761px) {
   .viewer-container {
-    width: calc(100% - 200px);
+    width: calc(100% - 300px);
     box-sizing: border-box;
     min-height: 500px;
     padding: 0 0 30px 0;
