@@ -100,25 +100,25 @@ const drawEnd = (e, v) => {
   ) {
     lineQueue.value.pop();
   }
-  requestTimer = setTimeout(() => {
+  requestTimer = setTimeout(async () => {
     if (password.value.length > 0) {
-      login({
+      const res = await login({
         account: "136518847@qq.com",
         password: password.value,
-      }).then((res) => {
-        if (res.success) {
-          emit("confirm", { type: true, message: "登录成功" });
-          sessionStorage.setItem("yebaoc_password", "1234567");
-          init();
-        } else {
-          isError.value = true;
-          errorTimer = setTimeout(() => {
-            init();
-            clearTimeout(errorTimer);
-          }, 1000);
-        }
-        clearTimeout(requestTimer);
       });
+      if (res.success) {
+        emit("confirm", { type: true, message: "登录成功" });
+        sessionStorage.setItem("yebaoc_password", password.value);
+        localStorage.setItem("yebaoc_token", res.token);
+        init();
+      } else {
+        isError.value = true;
+        errorTimer = setTimeout(() => {
+          init();
+          clearTimeout(errorTimer);
+        }, 1000);
+      }
+      clearTimeout(requestTimer);
     } else {
       init();
     }
