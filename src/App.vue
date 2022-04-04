@@ -1,15 +1,25 @@
 <template>
-  <!-- <router-view @click="clickToEffects" />
+  <router-view @click="clickToEffects" />
   <ClickEffects
     v-for="item in effectsArr"
     :key="item.id"
     :style="{ position: 'absolute', left: item.left, top: item.top }"
     class="ClickEffects"
-  /> -->
+  />
   <!-- <div style="display: flex;">
     <Loading />
   </div> -->
-  <UnLock />
+  <!-- <div
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100vh;
+    "
+  >
+    <UnLock style="width: 900px" />
+  </div> -->
 </template>
 
 <script setup>

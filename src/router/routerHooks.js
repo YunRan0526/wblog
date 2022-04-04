@@ -2,6 +2,7 @@ import router from './createRouter.js'
 import $message from "/src/components/MessageBox/index.js";
 import $confirm from "/src/components/Confirm/index.js";
 import { login } from '../api/module/ybw/user.js'
+import $unlock from "/src/components/UnLock/index.js"
 //全局前置守卫 鉴权
 router.beforeEach(async (to, from, next) => {
     if (to.path == '/WorkSpace') {
@@ -16,21 +17,15 @@ router.beforeEach(async (to, from, next) => {
                 }
             })
         } else {
-            await $confirm().then(async res => {
-                await login({ account: '136518847@qq.com', password: res }).then(e => {
-                    if (e.success) {
-                        $message.success('验证成功')
-                        sessionStorage.setItem('yebaoc_password', res)
-                        localStorage.setItem('yebaoc_token', e.token)
-                        next()
-                    } else {
-                        $message.error('验证失败')
-                        next('/Home')
-                    }
-                })
+            await $unlock().then(res => {
+                if (res.type) {
+                    $message.success('验证成功')
+                    next()
+                } else {
+                    next('/Home')
+                }
             })
         }
-
 
     } else if (to.meta.requireAuth) {
         $message.error('没有权限')

@@ -9,6 +9,7 @@
     @mouseenter="enter"
     @mouseleave="leave"
     @mousedown="down"
+    ref="CIRCLE"
   >
     <div
       :class="{
@@ -30,8 +31,12 @@ const props = defineProps({
   caEdit: {
     type: Boolean,
   },
+  Error: {
+    type: Boolean,
+  },
 });
-const emit = defineEmits(["checkCircle"]);
+const emit = defineEmits(["checkCircle", "ent"]);
+const CIRCLE = ref(null);
 const mode = ref("info");
 
 const enter = (e) => {
@@ -39,13 +44,12 @@ const enter = (e) => {
   if (props.isDraw) {
     if (mode.value == "isSuccess") return;
     mode.value = "isSuccess";
-    emit("checkCircle", props.id);
+    emit("checkCircle", getCenter());
   } else {
     mode.value = "isActive";
   }
 };
 const down = (e) => {
-  console.log(e);
   enter();
 };
 const leave = (e) => {
@@ -54,10 +58,23 @@ const leave = (e) => {
     mode.value = "info";
   }
 };
+const getCenter = () => {
+  const x = CIRCLE.value.offsetLeft + CIRCLE.value.offsetWidth / 2;
+  const y = CIRCLE.value.offsetTop + CIRCLE.value.offsetHeight / 2;
+  return { id: props.id, x, y };
+};
 watch(
   () => props.caEdit,
   (v) => {
     if (v) mode.value = "info";
+  }
+);
+watch(
+  () => props.Error,
+  (v) => {
+    if (v) {
+      mode.value = "isError";
+    }
   }
 );
 </script>
