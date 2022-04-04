@@ -44,6 +44,7 @@ import Circle from "/src/components/UnLock/Circle.vue";
 import Line from "/src/components/UnLock/Line.vue";
 import { ref, onMounted } from "vue";
 import { login } from "/src/api/module/ybw/user.js";
+import { throttle } from "/src/utils/index.js";
 let requestTimer = null;
 let errorTimer = null;
 const visible = ref(false);
@@ -68,7 +69,7 @@ const drawStart = (e, v) => {
   isDraw.value = true;
 };
 let date = ref(Date.now());
-const drawIng = (e) => {
+const drawIng = throttle((e) => {
   if (!isDraw.value) return;
   if (Date.now() - date.value <= 10) return;
   date.value = Date.now();
@@ -89,7 +90,7 @@ const drawIng = (e) => {
   });
   console.log(arr);
   lineQueue.value = arr;
-};
+}, 20);
 const drawEnd = (e, v) => {
   //连线完成后一段时间内禁止操作
   caEdit.value = false;
