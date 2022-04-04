@@ -32,12 +32,14 @@
           :start="item.startPoint"
           :end="item.endPoint"
         />
+        <div class="close" @click="emit('cancel')"></div>
       </div>
     </transition>
   </div>
 </template>
 
 <script setup>
+import CircleCloseButton from "/src/components/CircleCloseButton.vue";
 import Circle from "/src/components/UnLock/Circle.vue";
 import Line from "/src/components/UnLock/Line.vue";
 import { ref, onMounted } from "vue";
@@ -85,6 +87,7 @@ const drawIng = (e) => {
       endPoint,
     });
   });
+  console.log(arr);
   lineQueue.value = arr;
 };
 const drawEnd = (e, v) => {
@@ -180,12 +183,53 @@ onMounted(() => {
   justify-content: space-around;
   overflow: hidden;
   transition: all 0.3s;
+  padding-top: 30px;
   .row {
     aspect-ratio: 5/ 1;
     width: 100%;
     height: auto;
     display: flex;
     justify-content: space-around;
+  }
+}
+.close {
+  left: 100%;
+  top: 0;
+  transform: translate(-100%, 0);
+  position: absolute;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  &:hover::before,
+  &:hover::after {
+    background: rgba(255, 255, 255, 0.9);
+  }
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    border-radius: 2px;
+    top: 50%;
+    left: 0;
+    margin-top: -1px;
+    background: rgba(255, 255, 255, 0.6);
+  }
+  &::before {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  &::after {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
   }
 }
 </style>

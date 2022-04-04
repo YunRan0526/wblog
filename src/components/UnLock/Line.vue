@@ -8,6 +8,7 @@
   ></div>
 </template>
 <script setup>
+import { end, start } from "@popperjs/core";
 import { onMounted, watch, ref } from "vue";
 const props = defineProps({
   start: {
@@ -32,11 +33,11 @@ const computedStyle = () => {
   let angel = (Math.atan2(l, h) * 180) / Math.PI;
   option.value = {
     left: `${props.start.x}px`,
-    top: `${props.start.y}px`,
+    top: `${props.start.y - 5}px`,
     background: "rgba(255, 255, 255, 0.9)",
     "border-radius": "5px",
     width: `${width}px`,
-    "transform-origin": "left center",
+    "transform-origin": "0% 50%",
     transform: `rotate(${angel}deg)`,
     height: "10px",
   };

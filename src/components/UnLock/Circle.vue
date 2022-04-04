@@ -102,6 +102,7 @@ watch(
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.6);
     transition: background-color 0.3s;
+    filter: contrast();
   }
 }
 .isActive {

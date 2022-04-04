@@ -8,8 +8,7 @@ const Star = (canvas, ctx, options) => {
   function Star(canvas, ctx, options) {
     this.timer = null;
     this.colors = ["#C45C66", "#C3CE5F", "#00ACA5", "#F19923", "#B493F3"];
-    this.color =
-      this.colors[Math.floor(Math.random() * this.colors.length)];
+    this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
     this.size = Math.random() * options.size + 10;
     this.radius = this.size / 2;
     this.shortRadius = this.radius * 0.5;
@@ -101,8 +100,7 @@ const Box = (canvas, ctx, options) => {
   function Box(canvas, ctx, options) {
     this.timer = null;
     this.colors = ["#C45C66", "#C3CE5F", "#00ACA5", "#F19923", "#B493F3"];
-    this.color =
-      this.colors[Math.floor(Math.random() * this.colors.length)];
+    this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
     this.size = Math.random() * options.size + 10;
     this.px = canvas.width / 2 - this.size / 2;
     this.py = canvas.height / 2 - this.size / 2;
