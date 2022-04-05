@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from "vue";
+import { ref, watch } from "vue";
 const props = defineProps({
   id: {
     type: Number,
@@ -28,7 +28,7 @@ const props = defineProps({
   isDraw: {
     type: Boolean,
   },
-  caEdit: {
+  canEdit: {
     type: Boolean,
   },
   Error: {
@@ -40,7 +40,7 @@ const CIRCLE = ref(null);
 const mode = ref("info");
 
 const enter = (e) => {
-  if (!props.caEdit) return;
+  if (!props.canEdit) return;
   if (props.isDraw) {
     if (mode.value == "isSuccess") return;
     mode.value = "isSuccess";
@@ -53,7 +53,7 @@ const down = (e) => {
   enter();
 };
 const leave = (e) => {
-  if (!props.caEdit) return;
+  if (!props.canEdit) return;
   if (!props.isDraw) {
     mode.value = "info";
   }
@@ -63,12 +63,14 @@ const getCenter = () => {
   const y = CIRCLE.value.offsetTop + CIRCLE.value.offsetHeight / 2;
   return { id: props.id, x, y };
 };
+//绘制结束后初始化
 watch(
-  () => props.caEdit,
+  () => props.canEdit,
   (v) => {
     if (v) mode.value = "info";
   }
 );
+//验证失败
 watch(
   () => props.Error,
   (v) => {

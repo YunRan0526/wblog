@@ -26,10 +26,10 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/juejin_api/, '')
       },
       '/api': {
-        target: 'http://192.168.0.111:3000',
-        // target: 'https://www.yebaoc.com',
+        // target: 'http://192.168.0.111:3000',
+        target: 'https://www.yebaoc.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        // rewrite: (path) => path.replace(/^\/api/, ''),
       }
     }
   },

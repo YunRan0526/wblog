@@ -18,7 +18,7 @@
             :key="(item - 1) * 3 + c"
             :id="(item - 1) * 3 + c"
             :isDraw="isDraw"
-            :caEdit="caEdit"
+            :canEdit="canEdit"
             :Error="isError"
             @drawStart="drawStart"
             @drawEnd="drawEnd"
@@ -39,7 +39,6 @@
 </template>
 
 <script setup>
-import CircleCloseButton from "/src/components/CircleCloseButton.vue";
 import Circle from "/src/components/UnLock/Circle.vue";
 import Line from "/src/components/UnLock/Line.vue";
 import { ref, onMounted } from "vue";
@@ -48,11 +47,12 @@ import { throttle } from "/src/utils/index.js";
 let requestTimer = null;
 let errorTimer = null;
 const visible = ref(false);
+//组件dom实例
 const unlock = ref("unlock");
 const lineQueue = ref([]);
 const queue = ref([]);
 const isDraw = ref(false);
-const caEdit = ref(true);
+const canEdit = ref(true);
 const password = ref("");
 const isError = ref(false);
 const props = defineProps({
@@ -64,16 +64,17 @@ const props = defineProps({
   },
 });
 const emit = defineEmits(["cancel", "confirm"]);
+//开始绘制
 const drawStart = (e, v) => {
   e.preventDefault();
   isDraw.value = true;
 };
-let date = ref(Date.now());
+//实时绘制
 const drawIng = throttle((e) => {
   if (!isDraw.value) return;
-  if (Date.now() - date.value <= 10) return;
-  date.value = Date.now();
   const arr = [];
+  //数组里面相邻的两项 作为起始点位和结束点位
+  //当没有结束点位时将鼠标所在位置作为结束点位
   queue.value.forEach((p, index) => {
     let endPoint;
     let startPoint = queue.value[index];
@@ -93,13 +94,15 @@ const drawIng = throttle((e) => {
 }, 20);
 const drawEnd = (e, v) => {
   //连线完成后一段时间内禁止操作
-  caEdit.value = false;
+  canEdit.value = false;
+  //如果绘制结束时 数字里面最后一项没有id 则证明是鼠标跟随点位  需要将其去除
   if (
     lineQueue.value.length > 0 &&
     !lineQueue.value[lineQueue.value.length - 1].endPoint.id
   ) {
     lineQueue.value.pop();
   }
+  //绘制完成 延时 发起请求
   requestTimer = setTimeout(async () => {
     if (password.value.length > 0) {
       const res = await login({
@@ -123,7 +126,7 @@ const drawEnd = (e, v) => {
       init();
     }
   }, 1000);
-  // 在circle里面弹起鼠标;
+  // 鼠标弹起需要立即停止绘制
   isDraw.value = false;
   let pw = "";
   queue.value.forEach((p) => {
@@ -139,9 +142,10 @@ const getCenter = (v) => {
   if (idx !== -1) return;
   lineQueue.value.push(v);
 };
+//初始化
 const init = () => {
   isError.value = false;
-  caEdit.value = true;
+  canEdit.value = true;
   queue.value = [];
   lineQueue.value = [];
   password.value = "";
