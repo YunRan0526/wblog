@@ -3,9 +3,9 @@
     <transition name="unlock" @after-leave="emit('destroy')">
       <div
         class="unlock"
-        @mouseup.stop="drawEnd"
+        @mouseup="drawEnd"
         @mousedown.capture="drawStart"
-        @mousemove.stop="drawIng"
+        @mousemove="drawIng"
         ref="unlock"
         :style="{
           width: `${props.width}px`,

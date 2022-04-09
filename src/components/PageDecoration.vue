@@ -8,7 +8,7 @@
       <div></div>
       <div></div>
     </div>
-    <ElScrollbar class="page_content">
+    <ElScrollbar class="page_content" @scroll="scroll">
       <slot></slot>
       <slot name="test" :test="'11'" :test2="'22'"></slot>
     </ElScrollbar>
@@ -19,9 +19,12 @@
 <script setup>
 import CircleCloseButton from "/src/components/CircleCloseButton.vue";
 import { ElScrollbar } from "element-plus";
-const emit = defineEmits(["close"]);
+const emit = defineEmits(["close", "scroll"]);
 const close = () => {
   emit("close");
+};
+const scroll = () => {
+  emit("scroll");
 };
 </script>
 <style lang="scss" scoped>

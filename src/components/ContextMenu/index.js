@@ -1,6 +1,8 @@
 import ContextMenu from './ContextMenu.vue'
 import { render, createVNode, ref } from "vue";
 import yb from '/src/utils/YbManager.js'
+
+
 let uuid = 1
 //用于渲染菜单的el
 const instance = []

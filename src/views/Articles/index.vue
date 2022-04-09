@@ -1,5 +1,5 @@
 <template>
-  <PageDecoration @close="close">
+  <PageDecoration @close="close" @scroll="scroll">
     <div style="width: 100%; display: flex; justify-content: center">
       <div class="page_title">我的文章</div>
     </div>
@@ -39,6 +39,7 @@ import $message from "/src/components/MessageBox/index.js";
 import { clear } from "/src/components/ContextMenu/index.js";
 const router = useRouter();
 let articles = ref(0);
+const content = ref(null);
 const getDeatil = (id) => {
   router.push({ path: "/MarkDownViewer", query: { id } });
 };
@@ -85,10 +86,13 @@ const showContextMenu = (e, v) => {
 const removeContextMenu = () => {
   clear();
 };
+const scroll = () => {
+  clear();
+};
 const initList = () => {
   getAllArticle().then((res) => {
     if (res.success) {
-      articles.value = res.results;
+      articles.value = res.results.reverse();
     }
   });
 };
