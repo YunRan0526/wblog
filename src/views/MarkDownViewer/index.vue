@@ -114,6 +114,12 @@ $theme-red: #c45c66;
   white-space: nowrap;
   animation: page__show-project 1s ease 0.5s forwards;
 }
+.viewer-container {
+  ::v-deep(a) {
+    pointer-events: none !important;
+    cursor: text !important;
+  }
+}
 @media screen and (min-width: 761px) {
   .viewer-container {
     width: calc(100% - 300px);
