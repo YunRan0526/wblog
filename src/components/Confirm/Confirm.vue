@@ -4,7 +4,7 @@
       <div class="yb-confirm" @click.stop="contentClick" v-show="visible">
         <div class="yb-confirm-header"></div>
         <div class="yb-confirm-content">
-          {{ content }}
+          {{ props.content }}
         </div>
         <div class="yb-confirm-footer">
           <div class="cancel-box" @click.stop="cancel()">
@@ -28,55 +28,38 @@
     </transition>
   </div>
 </template>
-<script>
-import { defineComponent, onMounted, ref, onUnmounted } from "vue";
-
-import { ElInput } from "element-plus";
-export default defineComponent({
-  props: {
-    title: {
-      type: String,
-      default: () => {
-        return "提示";
-      },
-    },
-    content: {
-      default: () => {
-        return "";
-      },
+<script setup>
+import { onMounted, ref, onUnmounted } from "vue";
+const props = defineProps({
+  title: {
+    type: String,
+    default: () => {
+      return "提示";
     },
   },
-  emits: ["cancel", "confirm"],
-  components: {
-    ElInput,
-  },
-  setup(props, { emit: emits }) {
-    let visible = ref(false);
-    let password = ref("");
-    const cancel = () => {
-      emits("cancel");
-    };
-    const confirm = () => {
-      emits("confirm", password.value);
-    };
-    const layClick = () => {
-      emits("cancel");
-    };
-    const contentClick = () => {};
-    onMounted(() => {
-      visible.value = true;
-    });
-    onUnmounted(() => {});
-    return {
-      cancel,
-      confirm,
-      layClick,
-      contentClick,
-      visible,
-      password,
-    };
+  content: {
+    default: () => {
+      return "";
+    },
   },
 });
+const emits = defineEmits(["cancel", "confirm"]);
+let visible = ref(false);
+let password = ref("");
+const cancel = () => {
+  emits("cancel");
+};
+const confirm = () => {
+  emits("confirm", password.value);
+};
+const layClick = () => {
+  emits("cancel");
+};
+const contentClick = () => {};
+onMounted(() => {
+  visible.value = true;
+});
+onUnmounted(() => {});
 </script>
 <style lang="scss" scoped>
 $theme-black: #283c5f;

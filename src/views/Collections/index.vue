@@ -26,42 +26,23 @@
     </div>
   </PageDecoration>
 </template>
-<script>
-import { defineComponent, onMounted, reactive } from "vue";
-import PageDecoration from "/src/components/PageDecoration.vue";
-import DecorationBox from "/src/components/DecorationBox.vue";
+<script setup>
+import { onMounted, reactive } from "vue";
 import { useRouter } from "vue-router";
 
-export default defineComponent({
-  components: {
-    PageDecoration,
-    DecorationBox,
-  },
-  name: "Collections",
-  setup() {
-    const router = useRouter();
-    const close = () => {
-      router.push({ path: "/" });
-    };
-    let collections = reactive({ list: null });
-    onMounted(() => {});
-    const getSrc = (path) => {
-      if (process.env.NODE_ENV === "development") {
-        return path;
-      }
-      const modules = import.meta.globEager("/src/assets/*.*");
-      return modules[path].default;
-    };
-
-    return {
-      close,
-      collections,
-      getTarget,
-      getSrc,
-      router,
-    };
-  },
-});
+const router = useRouter();
+const close = () => {
+  router.push({ path: "/" });
+};
+let collections = reactive({ list: null });
+onMounted(() => {});
+const getSrc = (path) => {
+  if (process.env.NODE_ENV === "development") {
+    return path;
+  }
+  const modules = import.meta.globEager("/src/assets/*.*");
+  return modules[path].default;
+};
 </script>
 <style lang="scss" scoped>
 $theme-black: #283c5f;

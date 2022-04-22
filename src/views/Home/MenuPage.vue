@@ -17,43 +17,21 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import CircleCloseButton from "/src/components/CircleCloseButton.vue";
 import Menu from "/src/components/Menu.vue";
 import MoveStar from "/src/components/MoveStar.vue";
-import { defineComponent, ref, onMounted, onBeforeUnmount } from "vue";
-export default defineComponent({
-  name: "menuPage",
-  components: {
-    CircleCloseButton,
-    Menu,
-    MoveStar,
-  },
-  emits: ["closeMenu"],
-  setup(_props, { emit: emits }) {
-    const closeMenu = () => {
-      emits("closeMenu");
-    };
-    let bgc = ref("#faf7d9");
-    const currentSize = ref(window.innerWidth);
-    const resizeHandler = () => {
-      currentSize.value = window.innerWidth;
-    };
-    onMounted(() => {
-      window.addEventListener("resize", resizeHandler);
-    });
-    onBeforeUnmount(() => {
-      window.removeEventListener("resize", resizeHandler);
-    });
-    return {
-      CircleCloseButton,
-      emits,
-      closeMenu,
-      bgc,
-      currentSize,
-      resizeHandler,
-    };
-  },
+import { ref, onMounted, onBeforeUnmount } from "vue";
+let bgc = ref("#faf7d9");
+const currentSize = ref(window.innerWidth);
+const resizeHandler = () => {
+  currentSize.value = window.innerWidth;
+};
+onMounted(() => {
+  window.addEventListener("resize", resizeHandler);
+});
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", resizeHandler);
 });
 </script>
 <style lang="scss" scoped>

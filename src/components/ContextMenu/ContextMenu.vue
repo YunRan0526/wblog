@@ -85,7 +85,6 @@ onMounted(() => {
 .yb-context-menu {
   box-sizing: border-box;
   cursor: pointer;
-  background: #ffffff;
   list-style: none;
   border-radius: 5px;
   transition: 0.1s ease;

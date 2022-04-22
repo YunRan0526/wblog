@@ -11,30 +11,14 @@
     <MenuBtn class="MenuBtn_Container" @click="showMenuPage" />
   </div>
 </template>
-<script>
+<script setup>
 import StarAndMoon from "/src/components/StarAndMoon.vue";
 import Border from "/src/components/Border.vue";
 import Logo from "/src/components/Logo.vue";
 import MenuBtn from "/src/components/MenuBtn.vue";
-
-export default {
-  name: "V1",
-  components: {
-    StarAndMoon,
-    Border,
-    Logo,
-    MenuBtn,
-  },
-  emits: ["showMenuPage"],
-  setup(_props, { emit: emits }) {
-    const showMenuPage = () => {
-      emits("showMenuPage");
-    };
-    return {
-      showMenuPage,
-    };
-  },
-  mounted() {},
+const emits = defineEmits(["showMenuPage"]);
+const showMenuPage = () => {
+  emits("showMenuPage");
 };
 </script>
 

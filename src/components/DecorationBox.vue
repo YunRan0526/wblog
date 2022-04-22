@@ -60,9 +60,9 @@ $theme-red: #c45c66;
   display: none !important;
 }
 .el-popover {
-  background: $theme-white !important;
+  background: #ffffff !important;
   border-color: $theme-white !important;
-  font-size: 17px !important;
+  font-size: 18px !important;
 }
 @media screen and (min-width: 761px) {
   .DecorationBox {

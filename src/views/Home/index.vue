@@ -11,31 +11,17 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import MainPage from "/src/views/Home/MainPage.vue";
 import MenuPage from "/src/views/Home/MenuPage.vue";
 import { ref } from "vue";
-export default {
-  name: "Home",
-  components: {
-    MainPage,
-    MenuPage,
-  },
-  setup() {
-    let menuPage = ref(false);
+let menuPage = ref(false);
 
-    const closeMenuPage = () => {
-      menuPage.value = false;
-    };
-    const showMenuPage = () => {
-      menuPage.value = true;
-    };
-    return {
-      showMenuPage,
-      closeMenuPage,
-      menuPage,
-    };
-  },
+const closeMenuPage = () => {
+  menuPage.value = false;
+};
+const showMenuPage = () => {
+  menuPage.value = true;
 };
 </script>
 <style lang="scss" scoped>

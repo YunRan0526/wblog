@@ -16,36 +16,20 @@
     <div class="content">000</div>
   </PageDecoration>
 </template>
-<script>
-import { defineComponent } from "vue";
+<script setup>
 import PageDecoration from "/src/components/PageDecoration.vue";
-import DecorationBox from "/src/components/DecorationBox.vue";
 import { useRouter } from "vue-router";
-export default defineComponent({
-  components: {
-    PageDecoration,
-    DecorationBox,
-  },
-  name: "AboutMe",
-  setup() {
-    const router = useRouter();
-    const close = () => {
-      router.push({ path: "/" });
-    };
-    const getSrc = (path) => {
-      if (process.env.NODE_ENV === "development") {
-        return path;
-      }
-      const modules = import.meta.globEager("/src/assets/*.*");
-      return modules[path].default;
-    };
-    return {
-      close,
-      getSrc,
-      router,
-    };
-  },
-});
+const router = useRouter();
+const close = () => {
+  router.push({ path: "/" });
+};
+const getSrc = (path) => {
+  if (process.env.NODE_ENV === "development") {
+    return path;
+  }
+  const modules = import.meta.globEager("/src/assets/*.*");
+  return modules[path].default;
+};
 </script>
 <style lang="scss" scoped>
 $theme-black: #283c5f;

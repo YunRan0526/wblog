@@ -8,13 +8,7 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "StarAndMoon",
-  setup() {},
-  mounted() {},
-};
-</script>
+<script setup></script>
 <style lang="scss">
 $theme-black: #283c5f;
 $theme-white: #faf7d9;
