@@ -22,10 +22,14 @@ import CircleCloseButton from "/src/components/CircleCloseButton.vue";
 import Menu from "/src/components/Menu.vue";
 import MoveStar from "/src/components/MoveStar.vue";
 import { ref, onMounted, onBeforeUnmount } from "vue";
+const emits = defineEmits(["closeMenu"]);
 let bgc = ref("#faf7d9");
 const currentSize = ref(window.innerWidth);
 const resizeHandler = () => {
   currentSize.value = window.innerWidth;
+};
+const closeMenu = () => {
+  emits("closeMenu");
 };
 onMounted(() => {
   window.addEventListener("resize", resizeHandler);

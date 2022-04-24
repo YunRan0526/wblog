@@ -1,32 +1,16 @@
 <template>
-  <router-view @click="clickToEffects" />
+  <router-view @click.stop="clickToEffects" />
   <ClickEffects
     v-for="item in effectsArr"
     :key="item.id"
     :style="{ position: 'absolute', left: item.left, top: item.top }"
     class="ClickEffects"
   />
-  <!-- <div style="display: flex;">
-    <Loading />
-  </div> -->
-  <!-- <div
-    style="
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 100vh;
-    "
-  >
-    <UnLock style="width: 900px" />
-  </div> -->
 </template>
 
 <script setup>
-import { reactive } from "@vue/runtime-core";
+import { reactive } from "vue";
 import ClickEffects from "./components/ClickEffects.vue";
-import Loading from "/src/components/Loading/Loading.vue";
-import UnLock from "/src/components/UnLock/index.vue";
 const effectsArr = reactive([]);
 let clearTimer = reactive({});
 const clickToEffects = (e) => {

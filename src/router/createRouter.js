@@ -100,6 +100,13 @@ const routes =
             meta: {
                 requireAuth: false
             }
+        },
+        {
+            path: '/Test',
+            component: () => import('/src/views/Test/index.vue'),
+            meta: {
+                requireAuth: false
+            }
         }
     ];
 
