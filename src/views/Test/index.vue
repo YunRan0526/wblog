@@ -1,19 +1,14 @@
 <template>
-  <div @click="show">
-    <PageDec2></PageDec2>
-  </div>
+  <PageDec2 @animationEnd="close"></PageDec2>
 </template>
 
 <script setup>
+import { useRouter } from "vue-router";
 import PageDec2 from "../../components/PageDec2.vue";
-const show = () => {
-  console.log(1);
+const router = useRouter();
+const close = () => {
+  router.push("/Home");
 };
 </script>
 
-<style lang="scss">
-.tets {
-  position: relative;
-  contain: paint;
-}
-</style>
+<style lang="scss" scoped></style>

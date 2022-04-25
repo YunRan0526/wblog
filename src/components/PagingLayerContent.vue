@@ -1,14 +1,19 @@
 <template>
   <div class="content-wraper">
     <div class="content"><slot></slot></div>
-    <span class="content-btn">
+    <span class="content-btn" @click="hide">
       <section></section>
       <section><div></div></section>
     </span>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+const emits = defineEmits(["hide"]);
+const hide = () => {
+  emits("hide");
+};
+</script>
 
 <style lang="scss" scoped>
 @keyframes page-box__show-content {
@@ -50,7 +55,7 @@
   -webkit-overflow-scrolling: touch;
   opacity: 0;
   transition: all 0.35s ease 0s;
-  animation: page-box__show-content 0.6s ease 0.55s forwards;
+  animation: page-box__show-content 0.6s ease 0.7s forwards;
 }
 .content-btn {
   cursor: pointer;

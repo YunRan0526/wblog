@@ -43,7 +43,7 @@ const routes =
             path: '/AboutMe',
             component: () => import('/src/views/AboutMe/index.vue'),
             meta: {
-                requireAuth: true
+                requireAuth: false
             }
         },
         {
@@ -64,7 +64,7 @@ const routes =
             path: '/Collections',
             component: () => import('/src/views/Collections/index.vue'),
             meta: {
-                requireAuth: true
+                requireAuth: false
             }
         },
         {

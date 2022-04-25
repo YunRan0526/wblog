@@ -1,17 +1,20 @@
 <template>
   <div class="layer" :data-state="state">
-    <div class="card" ref="crad1"></div>
     <div class="card"></div>
     <div class="card"></div>
-    <div class="card" ref="crad4"></div>
-    <slot> </slot>
+    <div class="card"></div>
+    <div class="card" ref="contentCard">
+      <slot> </slot>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref, onBeforeUnmount, nextTick } from "vue";
-const card1 = ref(null);
+import { onMounted, ref, onBeforeUnmount } from "vue";
+const contentCard = ref(null);
 const state = ref("");
+const timer = ref(null);
+const emits = defineEmits(["animationEnd"]);
 const show = () => {
   state.value = true;
 };
@@ -21,9 +24,13 @@ const close = () => {
 const toggle = () => {
   state.value = !state.value;
 };
-const card1Hanlder = () => {
+const cradHanlder = () => {
   if (!state.value) {
-    console.log("onHidden end");
+    if (timer.value) clearTimeout(timer.value);
+    timer.value = setTimeout(() => {
+      emits("animationEnd");
+      clearTimeout(timer.value);
+    }, 100);
   }
 };
 defineExpose({
@@ -32,12 +39,11 @@ defineExpose({
   toggle,
 });
 onMounted(() => {
-  console.log(card1.value);
-  card1.value.addEventListener("transitionend", card1Hanlder);
+  contentCard.value.addEventListener("transitionend", cradHanlder);
   show();
 });
 onBeforeUnmount(() => {
-  card1.value.removeEventListener("transitionend", card1Hanlder);
+  contentCard.value.removeEventListener("transitionend", cradHanlder);
 });
 </script>
 <style scoped lang="scss">

@@ -1,15 +1,18 @@
 <template>
-  <div>
-    <PagingLayer ref="layer">
-      <PagingLayerContent> </PagingLayerContent>
-    </PagingLayer>
-  </div>
+  <teleport to="body">
+    <div>
+      <PagingLayer ref="layer" @animationEnd="emits('animationEnd')">
+        <PagingLayerContent @hide="toogle"> </PagingLayerContent>
+      </PagingLayer>
+    </div>
+  </teleport>
 </template>
 
 <script setup>
 import PagingLayer from ".//PagingLayer.vue";
 import PagingLayerContent from "./PagingLayerContent.vue";
 import { ref } from "vue";
+const emits = defineEmits(["animationEnd"]);
 const layer = ref(null);
 
 const toogle = () => {
