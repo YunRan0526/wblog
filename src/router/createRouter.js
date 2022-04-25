@@ -64,7 +64,7 @@ const routes =
             path: '/Collections',
             component: () => import('/src/views/Collections/index.vue'),
             meta: {
-                requireAuth: false
+                requireAuth: true
             }
         },
         {

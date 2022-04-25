@@ -92,7 +92,7 @@ const scroll = () => {
 const initList = () => {
   getAllArticle().then((res) => {
     if (res.success) {
-      articles.value = res.results.reverse();
+      articles.value = res.results;
     }
   });
 };
