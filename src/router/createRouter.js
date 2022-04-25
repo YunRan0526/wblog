@@ -82,13 +82,6 @@ const routes =
             }
         },
         {
-            path: '/Memories',
-            component: () => import('/src/views/Memories/index.vue'),
-            meta: {
-                requireAuth: true
-            }
-        },
-        {
             path: '/MarkDownEditor',
             component: () => import('/src/views/MarkDownEditor/index.vue'),
             meta: {
