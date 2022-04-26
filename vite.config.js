@@ -1,7 +1,6 @@
 import {
   defineConfig
 } from 'vite'
-
 import viteCompression from 'vite-plugin-compression'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -20,9 +19,6 @@ export default defineConfig({
       ext: '.gz',
     })
   ],
-  alias: {
-
-  },
   server: {
     host: '0.0.0.0',
     port: 3366,
@@ -43,13 +39,6 @@ export default defineConfig({
   },
   build: {
     sourcemap: false,
-    terserOptions: {
-      compress: {
-        //生产环境时移除console
-        drop_console: true,
-        drop_debugger: true,
-      },
-    },
     rollupOptions: {
       output: {
         chunkFileNames: 'static/js/[name]-[hash].js',
@@ -66,7 +55,6 @@ export default defineConfig({
     //   preprocessorOptions: {
     //     scss: {
     //       additionalData: `@import "./src/style/gobal.scss";`
-
     //     },
     //   }
     // },

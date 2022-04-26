@@ -2,7 +2,11 @@
   <div class="myMenu">
     <div class="content">
       <span class="avatar_container">
-        <img src="../image/avatar.jpg" class="avatar" @dblclick="login" />
+        <img
+          src="/src/assets/avatar/avatar4.png"
+          class="avatar"
+          @dblclick="login"
+        />
       </span>
 
       <div class="cen">
@@ -182,6 +186,10 @@ $theme-red: #c45c66;
     align-items: center;
     justify-content: space-between;
     .avatar_container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
       cursor: pointer;
       transition: all 0.4s ease;
       &:hover {

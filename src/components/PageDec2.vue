@@ -2,7 +2,9 @@
   <teleport to="body">
     <div>
       <PagingLayer ref="layer" @animationEnd="emits('animationEnd')">
-        <PagingLayerContent @hide="toogle"> </PagingLayerContent>
+        <PagingLayerContent @hide="toogle">
+          <slot></slot>
+        </PagingLayerContent>
       </PagingLayer>
     </div>
   </teleport>
