@@ -17,17 +17,11 @@ router.beforeEach(async (to, from, next) => {
             })
         } else {
             await $unlock().then(res => {
-                login({ account: '136518847@qq.com', password: res }).then(e => {
-                    if (e.success) {
-                        $message.success('验证成功')
-                        window._UnLock.component.exposed.successHandler()
-                        next()
-                    } else {
-                        $message.error('验证失败')
-                        window._UnLock.component.exposed.errorHandler()
-                        next('/Home')
-                    }
-                })
+                if (res?.type) {
+                    next()
+                } else {
+                    next('/Home')
+                }
             })
         }
 

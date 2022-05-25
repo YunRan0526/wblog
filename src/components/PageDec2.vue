@@ -1,13 +1,9 @@
 <template>
-  <teleport to="body">
-    <div>
-      <PagingLayer ref="layer" @animationEnd="emits('animationEnd')">
-        <PagingLayerContent @hide="toogle">
-          <slot></slot>
-        </PagingLayerContent>
-      </PagingLayer>
-    </div>
-  </teleport>
+  <PagingLayer ref="layer" @animationEnd="emits('animationEnd')">
+    <PagingLayerContent @hide="toogle">
+      <slot></slot>
+    </PagingLayerContent>
+  </PagingLayer>
 </template>
 
 <script setup>

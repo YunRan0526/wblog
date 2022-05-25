@@ -109,10 +109,9 @@ const drawEnd = (e, v) => {
         account: "136518847@qq.com",
         password: password.value,
       });
-      if (res.success) {
+      if (res?.success) {
         emit("confirm", { type: true, message: "登录成功" });
         sessionStorage.setItem("yebaoc_password", password.value);
-        localStorage.setItem("yebaoc_token", res.token);
         init();
       } else {
         isError.value = true;
